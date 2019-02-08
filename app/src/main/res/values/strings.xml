@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Inner Solutions</string>
+
+    <string name="title_activity_add_card">AddCardActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+
+</resources>
