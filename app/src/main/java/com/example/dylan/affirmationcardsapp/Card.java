@@ -1,5 +1,6 @@
 package com.example.dylan.affirmationcardsapp;
 
+import io.objectbox.Box;
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 
@@ -7,6 +8,7 @@ import io.objectbox.annotation.Id;
 public class Card {
     private int image;
     private boolean free = true;
+    private boolean favorite;
 
     @Id
     private long id;
@@ -16,6 +18,15 @@ public class Card {
         this.free = isFree;
     }
     public Card() { }
+
+
+    //If the user clicks the favorite button, it will swap the value of the boolean favorite value.
+    public void setFavorite(boolean b){
+
+        favorite = b;
+        Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
+        cardBox.put(this);
+    }
 
 
     public Card(int image){
@@ -34,5 +45,8 @@ public class Card {
     }
     public boolean isFree(){
         return this.free;
+    }
+    public boolean isFavorite(){
+        return favorite;
     }
 }
