@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/enlargedCard"
         android:layout_width="257dp"
-        android:layout_height="400dp"
+        android:layout_height="403dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -18,19 +18,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
+        app:layout_constraintVertical_bias="0.24" />
 
-    <com.like.LikeButton
-        app:icon_size="15dp"
-        app:icon_type="heart"
-        android:id="@+id/heart_button"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        app:layout_constraintLeft_toLeftOf="@id/enlargedCard"
-        app:layout_constraintTop_toBottomOf="@id/enlargedCard"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:anim_scale_factor="4"
-        />
 
     <TextView
         android:id="@+id/tv"
@@ -41,5 +30,38 @@
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/heartView"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="favorite_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/enlargedCard"
+        app:layout_constraintHorizontal_bias="0.24"
+        app:layout_constraintStart_toStartOf="@+id/enlargedCard"
+        app:layout_constraintTop_toBottomOf="@+id/enlargedCard"
+        app:layout_constraintVertical_bias="0.26"
+        app:srcCompat="@drawable/ic_favorite_black_24dp" />
+
+    <ImageView
+        android:id="@+id/shareView"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="share_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/enlargedCard"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toEndOf="@+id/heartView"
+        app:layout_constraintTop_toBottomOf="@+id/enlargedCard"
+        app:layout_constraintVertical_bias="0.26"
+        app:srcCompat="@drawable/ic_share_black_24dp" />
+
 
 </android.support.constraint.ConstraintLayout>

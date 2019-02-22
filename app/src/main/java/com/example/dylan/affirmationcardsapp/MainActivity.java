@@ -1,8 +1,8 @@
 package com.example.dylan.affirmationcardsapp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,14 +14,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void buttonGetCard(View v){
+    public void buttonGetCard(View v) {
         Intent i = new Intent(this, CardActivity.class);
-        i.putExtra("Purpose","new");
+        i.putExtra("Purpose", "new");
         startActivity(i);
 
     }
 
-    public void collectionClicked(View v){
+    public void collectionClicked(View v) {
         Intent i = new Intent(this, CollectionActivity.class);
         startActivity(i);
     }

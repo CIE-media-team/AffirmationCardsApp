@@ -2,8 +2,6 @@ package com.example.dylan.affirmationcardsapp;
 
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
@@ -12,19 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
-
-import java.io.ByteArrayOutputStream;
 
 
 class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter.ViewHolder> {
     private int[] imageIds;
+
     public CaptionedImagesAdapter(int[] imageIds) {
         this.imageIds = imageIds;
     }
 
     @Override
-    public int getItemCount(){
+    public int getItemCount() {
         return imageIds.length;
     }
 
@@ -44,25 +40,17 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
         imageView.setImageDrawable(drawable);
 
         cardView.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(cardView.getContext(), CollectionEnlarge.class);
-            intent.putExtra(CollectionEnlarge.EXTRA_CARD_ID, position);
-            cardView.getContext().startActivity(intent);
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(cardView.getContext(), CollectionEnlarge.class);
+                intent.putExtra(CollectionEnlarge.EXTRA_CARD_ID, position);
+                cardView.getContext().startActivity(intent);
 
 
-        }
-
-
-
-
-
-
+            }
 
 
         });
-
-
 
 
     }
