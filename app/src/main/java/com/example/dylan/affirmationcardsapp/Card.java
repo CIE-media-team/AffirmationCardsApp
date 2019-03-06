@@ -9,6 +9,7 @@ public class Card {
     private int image;
     private boolean free = true;
     private boolean favorite;
+    private boolean owned = true;
 
     @Id
     private long id;
@@ -16,6 +17,7 @@ public class Card {
     public Card(int image, boolean isFree) {
         this.image = image;
         this.free = isFree;
+
 
     }
 
@@ -53,5 +55,9 @@ public class Card {
         favorite = b;
         Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
         cardBox.put(this);
+    }
+
+    public boolean isOwned(){
+        return owned;
     }
 }

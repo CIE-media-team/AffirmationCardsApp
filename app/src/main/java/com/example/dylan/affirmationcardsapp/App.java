@@ -29,6 +29,7 @@ public class App extends Application {
         // Get the wrapper (Box) for the Book table that lets us store Book objects
         cardBox = boxStore.boxFor(Card.class);
         //if the database hasn't been populated already, populate it
+        cardBox.removeAll();
         if (cardBox.count() == 0) {
             List<Card> initialCards = new ArrayList<>();
             initialCards.add(new Card(R.drawable.red_joker));

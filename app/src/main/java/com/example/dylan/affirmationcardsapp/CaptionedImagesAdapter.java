@@ -39,6 +39,8 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
 
         imageView.setImageDrawable(drawable);
 
+
+        //
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

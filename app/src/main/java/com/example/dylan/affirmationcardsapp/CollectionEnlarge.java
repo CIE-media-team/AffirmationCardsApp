@@ -54,7 +54,7 @@ public class CollectionEnlarge extends AppCompatActivity {
         ImageView heartView = findViewById(R.id.heartView);
         String action;
         if (card.isFavorite()) {
-            heartView.setImageDrawable(getResources().getDrawable(R.drawable.ic_favorite_black_24dp));
+            heartView.setImageDrawable(getResources().getDrawable(R.drawable.ic_unsortfavorite_24dp));
             action = "Card removed from favorites";
 
         } else {
