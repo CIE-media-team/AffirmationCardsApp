@@ -29,6 +29,7 @@ public class CardActivity extends AppCompatActivity {
         String purpose = getIntent().getStringExtra("Purpose");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
         BoxStore boxStore = App.getApp().getBoxStore();
         Box<Card> cardBox = boxStore.boxFor(Card.class);
         cards = cardBox.getAll();

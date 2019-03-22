@@ -29,7 +29,6 @@ public class CollectionActivity extends AppCompatActivity {
         BoxStore boxStore = App.getApp().getBoxStore();
         Box<Card> cardBox = boxStore.boxFor(Card.class);
         cardList = cardBox.getAll();
-        int zzzi = 0;
         RecyclerView cardRecycler = (RecyclerView) findViewById(R.id.building_recycler);
 
         int[] cardImages = new int[cardList.size()];
