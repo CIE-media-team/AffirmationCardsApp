@@ -4,12 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CardActivity">
+    tools:context=".CardActivity"
+    android:background="#C4FBB0"
+    >
 
     <ImageView
         android:id="@+id/imageCard"
-        android:layout_width="416dp"
-        android:layout_height="610.6dp"
+        android:layout_width="335dp"
+        android:layout_height="518dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/card31"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,13 +26,12 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="564dp"
         android:layout_marginEnd="8dp"
         android:onClick="favorite_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.361"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageCard"
+        app:layout_constraintTop_toBottomOf="@+id/imageCard"
         app:srcCompat="@drawable/ic_favorite_black_24dp" />
 
     <ImageView
@@ -36,11 +40,10 @@
         android:layout_height="35dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:onClick="share_button"
-        app:layout_constraintBottom_toBottomOf="@+id/imageCard"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.575"
+        app:layout_constraintHorizontal_bias="0.602"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageCard"
         app:srcCompat="@drawable/ic_share_black_24dp" />
 </android.support.constraint.ConstraintLayout>
