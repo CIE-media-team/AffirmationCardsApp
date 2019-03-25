@@ -60,7 +60,6 @@ public class CardActivity extends AppCompatActivity {
         }
         //if the button is clicked, it flips the favorite boolean value
         card.setFavorite(!card.isFavorite());
-        TextView tv = findViewById(R.id.tv);
 
 
         Toast.makeText(this, action,

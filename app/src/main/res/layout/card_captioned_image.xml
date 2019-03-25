@@ -4,9 +4,12 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     cardPreventCornerOverlap="false"
-    cardUseCompatPadding="true">
+    cardUseCompatPadding="true"
+
+    >
 
     <ImageView
+
         android:id="@+id/cardView"
         android:layout_width="86dp"
         android:layout_height="133dp"

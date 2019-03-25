@@ -63,9 +63,7 @@ public class CollectionEnlarge extends AppCompatActivity {
         }
         //if the button is clicked, it flips the favorite boolean value
         card.setFavorite(!card.isFavorite());
-        TextView tv = findViewById(R.id.tv);
 
-        tv.setText("" + card.isFavorite());
 
         Toast.makeText(this, action,
                 Toast.LENGTH_SHORT).show();
