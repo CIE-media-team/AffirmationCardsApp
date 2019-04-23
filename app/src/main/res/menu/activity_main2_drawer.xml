@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+    <item android:title="Actions">
+    <menu android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_getcard"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Get Card" />
+        <item
+            android:id="@+id/nav_collection"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Collection" />
+        <item
+            android:id="@+id/nav_add"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Add Card" />
+        <item
+            android:id="@+id/nav_info"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Info" />
+        <item
+            android:id="@+id/nav_journal"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Journal" />
+    </menu>
+    </item>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+
+            <item
+                android:id="@+id/nav_learnmore"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Learn More" />
+            <item
+                android:id="@+id/nav_purchase"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Purchase" />
+        </menu>
+    </item>
+
+</menu>

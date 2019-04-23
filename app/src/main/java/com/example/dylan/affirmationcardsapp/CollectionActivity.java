@@ -141,7 +141,7 @@ public class CollectionActivity extends AppCompatActivity {
 
 
 
-        CaptionedImagesAdapter.imageIds = cardImages;
+       // CaptionedImagesAdapter.imageIds = cardImages;
 
         adapter.notifyItemRangeChanged(0,freeCardImages.length);
 
