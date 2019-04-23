@@ -15,9 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".InstructionActivity"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".JournalActivity" />
+        <activity
+            android:name=".InstructionActivity"
+            android:parentActivityName=".Main2Activity" />
+        <activity
+            android:name=".Main2Activity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,21 +30,21 @@
         </activity>
         <activity
             android:name=".CardActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".Main2Activity" />
         <activity
             android:name=".CollectionActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".Main2Activity" />
         <activity
             android:name=".CollectionEnlarge"
             android:parentActivityName=".CollectionActivity" />
         <activity
-            android:name=".AddCardActivity"
+            android:name=".AddCard"
             android:label="@string/title_activity_add_card"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".Main2Activity"
+       >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.dylan.affirmationcardsapp.MainActivity" />
+                android:value="com.example.dylan.affirmationcardsapp.Main2Activity" />
         </activity>
     </application>
 

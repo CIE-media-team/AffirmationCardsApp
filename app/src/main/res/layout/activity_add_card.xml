@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddCard"
+    >
+    <ImageView
+        android:id="@+id/image2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/template"
+        android:scaleX="1.05"
+        android:scaleY="1.05"
+        />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textMultiLine"
+
+        android:gravity="center"
+        android:hint="Enter text here and press submit to create your new card."
+        android:typeface="monospace"
+        app:layout_constraintLeft_toLeftOf="@id/image2"
+        app:layout_constraintRight_toRightOf="@id/image2"
+        app:layout_constraintTop_toTopOf="@id/image2"
+        app:layout_constraintBottom_toBottomOf="@id/image2"
+        android:background="@null"
+        />
+
+
+</android.support.constraint.ConstraintLayout>

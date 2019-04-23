@@ -22,6 +22,9 @@ public class CollectionEnlarge extends AppCompatActivity {
     Drawable d;
     private Card card;
     private LikeButton likeButton;
+    private Box<Card> cardBox;
+    private BoxStore boxStore;
+    private List<Card> cardList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,18 +32,23 @@ public class CollectionEnlarge extends AppCompatActivity {
         setContentView(R.layout.activity_collection_enlarge);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        BoxStore boxStore = App.getApp().getBoxStore();
-        Box<Card> cardBox = boxStore.boxFor(Card.class);
-        List<Card> cards = cardBox.getAll();
+        boxStore = App.getApp().getBoxStore();
+        cardBox = boxStore.boxFor(Card.class);
+        cardList = cardBox.getAll();
         ImageView cardView = findViewById(R.id.enlargedCard);
+        String bob = EXTRA_CARD_ID;
+
+        //gets the card position. After it gets the position, get the card in the database at that position
         int cardId = (Integer) getIntent().getExtras().get(EXTRA_CARD_ID);
         ImageView heartView = findViewById(R.id.heartView);
 
-        card = cards.get(cardId);
+        card = cardList.get(cardId);
         if (card.isFavorite()) {
             heartView.setImageDrawable(getResources().getDrawable(R.drawable.ic_favorite_red_24dp));
         }
-        cardView.setImageResource(cards.get(cardId).getImage());
+        //cardView.setImageResource(CollectionActivity.imageIDs[cardId]);
+
+        cardView.setImageResource(card.getImage());
 
 
     }
@@ -51,6 +59,9 @@ public class CollectionEnlarge extends AppCompatActivity {
     }
 
     public void favorite_button(View view) {
+        boxStore = App.getApp().getBoxStore();
+        cardBox = boxStore.boxFor(Card.class);
+        cardList = cardBox.getAll();
         ImageView heartView = findViewById(R.id.heartView);
         String action;
         if (card.isFavorite()) {
@@ -63,6 +74,7 @@ public class CollectionEnlarge extends AppCompatActivity {
         }
         //if the button is clicked, it flips the favorite boolean value
         card.setFavorite(!card.isFavorite());
+        cardBox.put(card);
 
 
         Toast.makeText(this, action,

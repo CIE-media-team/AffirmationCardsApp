@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -62,8 +63,10 @@ public class CardActivity extends AppCompatActivity {
         card.setFavorite(!card.isFavorite());
 
 
-        Toast.makeText(this, action,
-                Toast.LENGTH_SHORT).show();
+        Toast t = Toast.makeText(this, action,
+                Toast.LENGTH_SHORT);
+        t.setGravity(Gravity.TOP, Gravity.CENTER, 150);
+        t.show();
     }
 
     public void share_button(View view) {
