@@ -23,8 +23,7 @@ public class CollectionEnlarge extends AppCompatActivity {
     private Card card;
     private LikeButton likeButton;
     private Box<Card> cardBox;
-    private BoxStore boxStore;
-    private List<Card> cardList;
+    private ImageView heartView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +31,14 @@ public class CollectionEnlarge extends AppCompatActivity {
         setContentView(R.layout.activity_collection_enlarge);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        boxStore = App.getApp().getBoxStore();
-        cardBox = boxStore.boxFor(Card.class);
-        cardList = cardBox.getAll();
+        heartView = findViewById(R.id.heartView);
         ImageView cardView = findViewById(R.id.enlargedCard);
-        String bob = EXTRA_CARD_ID;
 
-        //gets the card position. After it gets the position, get the card in the database at that position
-        int cardId = (Integer) getIntent().getExtras().get(EXTRA_CARD_ID);
-        ImageView heartView = findViewById(R.id.heartView);
+        // The database id of the card is in the intent. Get the Card from ObjectBox based on the id
+        long cardId = getIntent().getLongExtra(EXTRA_CARD_ID, -1);
+        cardBox = App.getApp().getBoxStore().boxFor(Card.class);
+        card = cardBox.get(cardId);
 
-        card = cardList.get(cardId);
         if (card.isFavorite()) {
             heartView.setImageDrawable(getResources().getDrawable(R.drawable.ic_favorite_red_24dp));
         }
@@ -59,10 +55,7 @@ public class CollectionEnlarge extends AppCompatActivity {
     }
 
     public void favorite_button(View view) {
-        boxStore = App.getApp().getBoxStore();
-        cardBox = boxStore.boxFor(Card.class);
-        cardList = cardBox.getAll();
-        ImageView heartView = findViewById(R.id.heartView);
+
         String action;
         if (card.isFavorite()) {
             heartView.setImageDrawable(getResources().getDrawable(R.drawable.ic_unsortfavorite_24dp));
