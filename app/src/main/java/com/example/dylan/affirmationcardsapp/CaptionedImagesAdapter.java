@@ -12,18 +12,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import java.util.List;
+
 
 class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter.ViewHolder> {
-    public static int[] imageIds;
+    private List<Card> images;
 
-    public CaptionedImagesAdapter(int[] imageIds) {
-        this.imageIds = imageIds;
+    void setImages(List<Card> images) {
+        this.images = images;
     }
-
 
     @Override
     public int getItemCount() {
-        return imageIds.length;
+        return images.size();
     }
 
 
@@ -37,7 +38,7 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final CardView cardView = holder.cardView;
         ImageView imageView = cardView.findViewById(R.id.cardView);
-        Drawable drawable = ContextCompat.getDrawable(cardView.getContext(), imageIds[position]);
+        Drawable drawable = ContextCompat.getDrawable(cardView.getContext(), images.get(position).getImage());
 
         imageView.setImageDrawable(drawable);
 
@@ -47,8 +48,11 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(cardView.getContext(), CollectionEnlarge.class);
-                intent.putExtra(CollectionEnlarge.EXTRA_CARD_ID, position);
-                Log.d("testing", Integer.toString(position));
+
+                // Instead of sending the position, send the database id in the intent.
+                long id = CaptionedImagesAdapter.this.images.get(position).getId();
+                intent.putExtra(CollectionEnlarge.EXTRA_CARD_ID, id);
+                Log.d("testing", Long.toString(id));
 
                 cardView.getContext().startActivity(intent);
 
@@ -60,7 +64,6 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
 
 
     }
-
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
