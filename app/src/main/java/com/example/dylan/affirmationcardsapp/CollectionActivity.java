@@ -1,5 +1,6 @@
 package com.example.dylan.affirmationcardsapp;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +13,6 @@ import android.widget.ImageButton;
 import java.util.List;
 
 import io.objectbox.Box;
-import io.objectbox.BoxStore;
 import io.objectbox.query.QueryBuilder;
 
 public class CollectionActivity extends AppCompatActivity {
@@ -93,6 +93,8 @@ public class CollectionActivity extends AppCompatActivity {
         loadCards(sortByFavorites);
     }
     public void addCard(View view){
+        Intent i = new Intent(this, AddCard.class);
+        startActivity(i);
 
     }
     public void removeCard(View view){

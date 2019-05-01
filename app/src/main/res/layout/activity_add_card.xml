@@ -19,20 +19,20 @@
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:background="@null"
         android:ems="10"
-        android:inputType="textMultiLine"
-
         android:gravity="center"
         android:hint="Enter text here and press submit to create your new card."
+        android:inputType="textMultiLine"
+        android:lineSpacingExtra="15dp"
+        android:textSize="35dp"
         android:typeface="monospace"
+        app:layout_constraintBottom_toBottomOf="@id/image2"
         app:layout_constraintLeft_toLeftOf="@id/image2"
         app:layout_constraintRight_toRightOf="@id/image2"
-        app:layout_constraintTop_toTopOf="@id/image2"
-        app:layout_constraintBottom_toBottomOf="@id/image2"
-        android:background="@null"
-        />
+        app:layout_constraintTop_toTopOf="@id/image2" />
 
 
 </android.support.constraint.ConstraintLayout>
