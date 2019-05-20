@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 
@@ -45,12 +47,20 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
 
         if (c.isCreated()) {
             tv.setText(c.getText());
-            holder.imageView.setImageResource(R.drawable.cardblank);
+
+            Glide
+                    .with(holder.cardView.getContext())
+                    .load(R.drawable.cardblank)
+                    .into((ImageView) holder.cardView.findViewById(R.id.cardView));
 
 
         } else {
-            holder.imageView.setImageResource(images.get(position).getImage());
+            //holder.imageView.setImageResource(images.get(position).getImage());
             tv.setText("");
+            Glide
+                    .with(holder.cardView.getContext())
+                    .load(c.getImage())
+                    .into((ImageView) holder.cardView.findViewById(R.id.cardView));
         }
         final CardView cardView = holder.cardView;
 

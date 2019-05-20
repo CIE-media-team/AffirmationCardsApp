@@ -53,6 +53,15 @@ public class CollectionActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onResume() {
+        // fetch updated data
+        sortByFavorites = getPreferences(MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
+        loadCards(sortByFavorites);
+        super.onResume();
+
+    }
+
     private void loadCards(boolean sortedByFavorites) {
         Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
 
@@ -124,6 +133,14 @@ public class CollectionActivity extends AppCompatActivity {
 
 
 
+
+    }
+
+    public void updateAdapter(Card c) {
+        Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
+        List<Card> cardList = cardBox.getAll();
+
+        adapter.notifyItemChanged(cardList.indexOf(c));
 
     }
 
