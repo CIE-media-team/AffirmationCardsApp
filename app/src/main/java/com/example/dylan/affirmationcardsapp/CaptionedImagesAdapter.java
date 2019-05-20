@@ -2,12 +2,14 @@ package com.example.dylan.affirmationcardsapp;
 
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -38,7 +40,18 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        holder.imageView.setImageResource(images.get(position).getImage());
+        Card c = images.get(position);
+        TextView tv = holder.cardView.findViewById(R.id.cardText);
+
+        if (c.isCreated()) {
+            tv.setText(c.getText());
+            holder.imageView.setImageResource(R.drawable.cardblank);
+
+
+        } else {
+            holder.imageView.setImageResource(images.get(position).getImage());
+            tv.setText("");
+        }
         final CardView cardView = holder.cardView;
 
 
@@ -71,6 +84,9 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
             super(v);
             cardView = v;
             imageView = (ImageView) v.findViewById(R.id.cardView);
+            Typeface font = Typeface.createFromAsset(cardView.getContext().getAssets(), "font.otf");
+            ((TextView) v.findViewById(R.id.cardText)).setTypeface(font);
+
         }
     }
 }

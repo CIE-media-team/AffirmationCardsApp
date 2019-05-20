@@ -36,7 +36,7 @@ public class App extends Application {
         // Get the wrapper (Box) for the Book table that lets us store Book objects
         cardBox = boxStore.boxFor(Card.class);
         //if the database hasn't been populated already, populate it
-        //cardBox.removeAll();
+        cardBox.removeAll();
         //Ask Dr. Layman if he has any ideas on how to code this more intellectually***
         if (cardBox.count() == 0) {
             setNotif();

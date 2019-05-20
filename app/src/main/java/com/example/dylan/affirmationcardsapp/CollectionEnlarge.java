@@ -102,9 +102,10 @@ public class CollectionEnlarge extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+
                                 cardBox.remove(card);
                                 Intent i = new Intent(CollectionEnlarge.this, CollectionActivity.class);
-                                i.putExtra("delete", true);
+
                                 startActivity(i);
                             }
                         });

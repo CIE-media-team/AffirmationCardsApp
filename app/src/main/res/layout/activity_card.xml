@@ -5,66 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CardActivity"
-    android:background="#BCDFBC"
+    android:background="@drawable/noleaves"
     >
 
     <ImageView
         android:id="@+id/imageCard"
-        android:layout_width="match_parent"
-        android:layout_height="645dp"
-        android:background="#BCDFBC"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+
+        android:adjustViewBounds="true"
+        android:src="@drawable/cardblank"
+        app:layout_constraintBottom_toTopOf="@+id/heart_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-
-        tools:srcCompat="@drawable/template" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/heart_button"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="44dp"
+        android:layout_height="55dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="28dp"
         android:onClick="favorite_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.394"
+        app:layout_constraintHorizontal_bias="0.367"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageCard"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_favorite_black_24dp" />
+        app:srcCompat="@drawable/ic_unsortfavorite_24dp" />
 
     <ImageView
         android:id="@+id/share_button"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="44dp"
+        android:layout_height="55dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="28dp"
         android:onClick="share_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="0.64"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageCard"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_share_black_24dp" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        tools:layout_editor_absoluteX="175dp"
-        tools:layout_editor_absoluteY="294dp"
-        app:layout_constraintLeft_toLeftOf="@id/imageCard"
-        app:layout_constraintRight_toRightOf="@id/imageCard"
-        app:layout_constraintTop_toTopOf="@id/imageCard"
-        app:layout_constraintBottom_toBottomOf="@id/imageCard"/>
 
     <TextView
         android:id="@+id/cardText"
@@ -74,11 +60,11 @@
         android:gravity="center"
         android:lineSpacingExtra="15dp"
         android:textSize="35dp"
-        android:textColor="#000000"
+        android:typeface="monospace"
 
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/imageCard"
         app:layout_constraintEnd_toEndOf="@+id/imageCard"
         app:layout_constraintStart_toStartOf="@+id/imageCard"
-
         app:layout_constraintTop_toTopOf="@+id/imageCard" />
 </android.support.constraint.ConstraintLayout>
