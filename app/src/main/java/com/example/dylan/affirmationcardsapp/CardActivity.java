@@ -1,6 +1,7 @@
 package com.example.dylan.affirmationcardsapp;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -25,10 +26,17 @@ public class CardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("Get Card");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card);
         String purpose = getIntent().getStringExtra("Purpose");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Typeface font = Typeface.createFromAsset(getAssets(), "font.otf");
+        TextView cardText = (TextView) findViewById(R.id.cardText);
+        cardText.setTypeface(font);
+
+
 
 
         BoxStore boxStore = App.getApp().getBoxStore();
@@ -41,7 +49,16 @@ public class CardActivity extends AppCompatActivity {
         Random rand = new Random();
         int randNum = rand.nextInt(cards.size() - 1);
         card = cards.get(randNum);
-        cardView.setImageResource(card.getImage());
+
+        if (card.isCreated()) {
+            cardText.setText(card.getText());
+            cardView.setImageResource(R.drawable.template);
+
+        } else {
+            cardView.setImageResource(card.getImage());
+            cardText.setText(null);
+        }
+
         if (card.isFavorite()) {
             heartView.setImageDrawable(getResources().getDrawable(R.drawable.ic_favorite_red_24dp));
         }

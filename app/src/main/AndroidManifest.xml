@@ -5,7 +5,7 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.SET_ALARM" />
 
     <application
         android:name=".App"
@@ -16,13 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Repeating_activity"></activity>
         <activity android:name=".JournalActivity" />
         <activity
             android:name=".InstructionActivity"
-            android:parentActivityName=".Main2Activity" />
+            android:parentActivityName=".Main2Activity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Main2Activity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,18 +34,21 @@
         </activity>
         <activity
             android:name=".CardActivity"
-            android:parentActivityName=".Main2Activity" />
+            android:parentActivityName=".Main2Activity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CollectionActivity"
-            android:parentActivityName=".Main2Activity" />
+            android:parentActivityName=".Main2Activity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CollectionEnlarge"
-            android:parentActivityName=".CollectionActivity" />
+            android:parentActivityName=".CollectionActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AddCard"
             android:label="@string/title_activity_add_card"
             android:parentActivityName=".Main2Activity"
-       >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.dylan.affirmationcardsapp.Main2Activity" />

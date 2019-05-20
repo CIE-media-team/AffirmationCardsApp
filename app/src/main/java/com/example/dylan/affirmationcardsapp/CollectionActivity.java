@@ -21,10 +21,10 @@ public class CollectionActivity extends AppCompatActivity {
     private CaptionedImagesAdapter adapter;
     private boolean sortByFavorites;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("My Collection");
         setContentView(R.layout.activity_collection);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -34,15 +34,22 @@ public class CollectionActivity extends AppCompatActivity {
         cardRecycler.setAdapter(adapter);
         LinearLayoutManager layoutManager = new GridLayoutManager(this, 4);
         cardRecycler.setLayoutManager(layoutManager);
+        View v = null;
+        if (getIntent().getBooleanExtra("delete", false)) {
+            removeCard(v);
 
-        // Get the stored state of the "Sort By Favorites" button
-        sortByFavorites = getPreferences(MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
-        if(sortByFavorites) {
-            ImageButton heartView = (ImageButton) findViewById(R.id.sortFavorite);
-            heartView.setImageResource(R.drawable.ic_favorite_red_24dp);
+        } else {
+
+            // Get the stored state of the "Sort By Favorites" button
+            sortByFavorites = getPreferences(MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
+            if (sortByFavorites) {
+                ImageButton heartView = (ImageButton) findViewById(R.id.sortFavorite);
+                heartView.setImageResource(R.drawable.ic_favorite_red_24dp);
+            }
+
+            loadCards(sortByFavorites);
         }
 
-        loadCards(sortByFavorites);
 
     }
 
@@ -65,7 +72,9 @@ public class CollectionActivity extends AppCompatActivity {
         // Set the adapter with the arranged list of cards. Then tell it to update the UI.
         adapter.setImages(cardList);
         adapter.notifyDataSetChanged();
+
     }
+
 
     public void sortByFavorites(View view){
         //NEED TO MAKE IT SO HEART CHANGES TO SOLID #########################################
@@ -98,6 +107,23 @@ public class CollectionActivity extends AppCompatActivity {
 
     }
     public void removeCard(View view){
+        sortByFavorites = getPreferences(MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
+
+        Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
+        QueryBuilder<Card> cardQuery = cardBox.query()
+                .equal(Card_.created, true);
+        if (sortByFavorites) {
+            cardQuery = cardQuery.orderDesc(Card_.favorite);
+        }
+        List<Card> cardList = cardQuery.build().find();
+
+        // Set the adapter with the arranged list of cards. Then tell it to update the UI.
+        adapter.setImages(cardList);
+        adapter.notifyDataSetChanged();
+
+
+
+
 
     }
 

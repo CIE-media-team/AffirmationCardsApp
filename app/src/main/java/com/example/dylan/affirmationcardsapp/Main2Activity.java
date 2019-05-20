@@ -3,9 +3,6 @@ package com.example.dylan.affirmationcardsapp;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -89,8 +86,6 @@ public class Main2Activity extends AppCompatActivity
         } else if (id == R.id.nav_info) {
             Intent i = new Intent(this, InstructionActivity.class);
             startActivity(i);
-        } else if (id == R.id.nav_journal) {
-            Intent i = new Intent(this, JournalActivity.class);
 
         } else if (id == R.id.nav_share) {
 
@@ -113,4 +108,6 @@ public class Main2Activity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

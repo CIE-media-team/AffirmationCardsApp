@@ -10,6 +10,8 @@ public class Card {
     private boolean free = true;
     private boolean favorite;
     private boolean owned = true;
+    private String text;
+    private boolean created = false;
 
     @Id
     private long id;
@@ -21,12 +23,25 @@ public class Card {
 
     }
 
+    public Card(String text) {
+        this.text = text;
+        this.created = true;
+        this.image = R.drawable.ic_menu_send;
+    }
+
     public Card() {
     }
 
+    public String getText() {
+        return this.text;
+    }
 
+    public boolean isCreated() {
+        return this.created;
+    }
     public Card(int image) {
         this.image = image;
+
     }
 
     public int getImage() {

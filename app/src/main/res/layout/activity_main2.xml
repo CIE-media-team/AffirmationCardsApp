@@ -8,29 +8,23 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
     >
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-      >
+
 
     <ImageView
+        android:id="@+id/image"
+        android:paddingTop="?android:attr/actionBarSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:src="@drawable/cardfront"
-        app:layout_constraintTop_toTopOf="parent"
-        android:scaleY="1.07"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        android:layout_weight="1"
+        android:scaleType="centerCrop" />
+
 
     <include
         layout="@layout/app_bar_main2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/appbar"/>
-    </android.support.constraint.ConstraintLayout>
-
-
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="225dp"

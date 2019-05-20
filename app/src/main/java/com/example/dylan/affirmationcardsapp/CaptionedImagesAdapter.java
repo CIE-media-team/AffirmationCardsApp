@@ -2,11 +2,8 @@ package com.example.dylan.affirmationcardsapp;
 
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +14,7 @@ import java.util.List;
 
 class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter.ViewHolder> {
     private List<Card> images;
+    CardView cardView;
 
     void setImages(List<Card> images) {
         this.images = images;
@@ -27,6 +25,10 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
         return images.size();
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
 
     @Override
     public CaptionedImagesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -36,15 +38,11 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
+        holder.imageView.setImageResource(images.get(position).getImage());
         final CardView cardView = holder.cardView;
-        ImageView imageView = cardView.findViewById(R.id.cardView);
-        Drawable drawable = ContextCompat.getDrawable(cardView.getContext(), images.get(position).getImage());
-
-        imageView.setImageDrawable(drawable);
 
 
-        //
-        cardView.setOnClickListener(new View.OnClickListener() {
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(cardView.getContext(), CollectionEnlarge.class);
@@ -52,7 +50,6 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
                 // Instead of sending the position, send the database id in the intent.
                 long id = CaptionedImagesAdapter.this.images.get(position).getId();
                 intent.putExtra(CollectionEnlarge.EXTRA_CARD_ID, id);
-                Log.d("testing", Long.toString(id));
 
                 cardView.getContext().startActivity(intent);
 
@@ -68,10 +65,12 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private CardView cardView;
+        public ImageView imageView;
 
         public ViewHolder(CardView v) {
             super(v);
             cardView = v;
+            imageView = (ImageView) v.findViewById(R.id.cardView);
         }
     }
 }
