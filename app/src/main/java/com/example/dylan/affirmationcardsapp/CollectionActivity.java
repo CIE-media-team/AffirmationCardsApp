@@ -62,6 +62,7 @@ public class CollectionActivity extends AppCompatActivity {
 
     }
 
+    
     private void loadCards(boolean sortedByFavorites) {
         Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
 
