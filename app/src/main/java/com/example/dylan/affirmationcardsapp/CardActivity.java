@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 import java.util.Random;
 
@@ -74,10 +76,18 @@ public class CardActivity extends AppCompatActivity {
 
         if (card.isCreated()) {
             cardText.setText(card.getText());
-            cardView.setImageResource(R.drawable.cardblank);
+            Glide
+                    .with(this)
+                    .load(R.drawable.cardblank)
+                    .into(cardView);
+
 
         } else {
-            cardView.setImageResource(card.getImage());
+            Glide
+                    .with(this)
+                    .load(card.getImage())
+                    .into(cardView);
+
             cardText.setText(null);
         }
 

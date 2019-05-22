@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.like.LikeButton;
 
 import io.objectbox.Box;
@@ -68,11 +69,16 @@ public class CollectionEnlarge extends AppCompatActivity {
 
 
             cardText.setText(card.getText());
+            cardView.setImageResource(android.R.color.transparent);
 
         } else {
 
 
-            cardView.setImageResource(card.getImage());
+            Glide
+                    .with(this)
+                    .load(card.getImage())
+                    .into(cardView);
+
             cardText.setText(null);
         }
 

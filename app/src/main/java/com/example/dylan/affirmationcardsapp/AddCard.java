@@ -9,7 +9,6 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -39,7 +38,6 @@ public class AddCard extends AppCompatActivity {
         float textHeight = dpHeight / 1.9972526f;
 
 
-        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) editText.getLayoutParams();
         // params.height = (int)textHeight;
         //  params.width = (int)textWidth;
         // editText.setLayoutParams(params);

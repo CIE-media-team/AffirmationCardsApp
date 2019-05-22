@@ -15,7 +15,6 @@
         android:paddingTop="?android:attr/actionBarSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/cardfront"
         android:layout_weight="1"
         android:scaleType="centerCrop" />
 

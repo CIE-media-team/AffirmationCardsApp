@@ -15,7 +15,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -31,7 +34,11 @@ public class Main2Activity extends AppCompatActivity
         setContentView(R.layout.activity_main2);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
-
+        ImageView background = (ImageView) findViewById(R.id.image);
+        Glide
+                .with(this)
+                .load(R.drawable.cardfront)
+                .into(background);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
