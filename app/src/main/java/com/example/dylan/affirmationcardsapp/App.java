@@ -19,10 +19,12 @@ public class App extends Application {
     private static App app;
     private static Box<Card> cardBox;
     private BoxStore boxStore;
+    private static List<Card> initialCards;
 
     public static App getApp() {
         return app;
     }
+
 
     @Override
     public void onCreate() {
@@ -36,11 +38,11 @@ public class App extends Application {
         // Get the wrapper (Box) for the Book table that lets us store Book objects
         cardBox = boxStore.boxFor(Card.class);
         //if the database hasn't been populated already, populate it
-        //cardBox.removeAll();
+        cardBox.removeAll();
         //Ask Dr. Layman if he has any ideas on how to code this more intellectually***
         if (cardBox.count() == 0) {
             setNotif();
-            List<Card> initialCards = new ArrayList<>();
+            initialCards = new ArrayList<>();
             initialCards.add(new Card(R.drawable.card1));
             initialCards.add(new Card(R.drawable.card2));
             initialCards.add(new Card(R.drawable.card3));
@@ -140,6 +142,10 @@ public class App extends Application {
 
     public BoxStore getBoxStore() {
         return boxStore;
+    }
+
+    public static List<Card> getInitialCards() {
+        return initialCards;
     }
 
 }

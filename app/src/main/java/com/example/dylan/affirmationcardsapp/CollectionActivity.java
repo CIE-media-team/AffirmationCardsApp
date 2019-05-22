@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class CollectionActivity extends AppCompatActivity {
 
     private CaptionedImagesAdapter adapter;
     private boolean sortByFavorites;
+    private static int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +64,7 @@ public class CollectionActivity extends AppCompatActivity {
 
     }
 
-    
+
     private void loadCards(boolean sortedByFavorites) {
         Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
 
@@ -118,19 +120,34 @@ public class CollectionActivity extends AppCompatActivity {
     }
     public void removeCard(View view){
         sortByFavorites = getPreferences(MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
+        TextView tv = findViewById(R.id.error);
 
-        Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
-        QueryBuilder<Card> cardQuery = cardBox.query()
-                .equal(Card_.created, true);
-        if (sortByFavorites) {
-            cardQuery = cardQuery.orderDesc(Card_.favorite);
+        if (counter % 2 == 0) {
+
+            Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
+            QueryBuilder<Card> cardQuery = cardBox.query()
+                    .equal(Card_.created, true);
+            if (sortByFavorites) {
+                cardQuery = cardQuery.orderDesc(Card_.favorite);
+            }
+            List<Card> cardList = cardQuery.build().find();
+            if (cardList.size() == 0) {
+                tv.setVisibility(View.VISIBLE);
+            } else {
+                tv.setVisibility(View.INVISIBLE);
+
+            }
+            // Set the adapter with the arranged list of cards. Then tell it to update the UI.
+            adapter.setImages(cardList);
+            adapter.notifyDataSetChanged();
+        } else {
+            tv.setVisibility(View.INVISIBLE);
+
+            loadCards(sortByFavorites);
+
         }
-        List<Card> cardList = cardQuery.build().find();
 
-        // Set the adapter with the arranged list of cards. Then tell it to update the UI.
-        adapter.setImages(cardList);
-        adapter.notifyDataSetChanged();
-
+        counter += 1;
 
 
 

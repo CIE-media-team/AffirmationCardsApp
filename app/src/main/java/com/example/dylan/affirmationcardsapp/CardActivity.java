@@ -2,7 +2,6 @@ package com.example.dylan.affirmationcardsapp;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -69,7 +68,7 @@ public class CardActivity extends AppCompatActivity {
         ImageView heartView = findViewById(R.id.heart_button);
         String action;
         if (card.isFavorite()) {
-            heartView.setImageDrawable(getResources().getDrawable(R.drawable.ic_favorite_black_24dp));
+            heartView.setImageDrawable(getResources().getDrawable(R.drawable.ic_unsortfavorite_24dp));
             action = "Card removed from favorites";
 
         } else {
@@ -87,14 +86,11 @@ public class CardActivity extends AppCompatActivity {
     }
 
     public void share_button(View view) {
-        Uri imageUri = Uri.parse("android.resource://" + getPackageName()
-                + "/drawable/" + "ic_launcher");
-        Intent shareIntent = new Intent();
-        shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_TEXT, "Hello");
-        shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
-        shareIntent.setType("image/jpeg");
-        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        startActivity(Intent.createChooser(shareIntent, "send"));
+        Intent i = new Intent(android.content.Intent.ACTION_SEND);
+        i.setType("text/plain");
+        String shareBodyText = "Fertile Affirmations is a mindfulness based tool created to help motivate and support you during your family building journey. Check it out at http://fertileaffirmations.com/.";
+        // i.putExtra(android.content.Intent.EXTRA_SUBJECT, "Wow!");
+        i.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
+        startActivity(Intent.createChooser(i, "Choose sharing method"));
     }
 }

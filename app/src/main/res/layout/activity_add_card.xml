@@ -5,23 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddCard"
-    android:background="@drawable/noleaves"
     >
 
     <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/noleaves"
+        android:scaleType="centerCrop"
+        android:scaleX="1.01"
+        android:scaleY="1.01" />
+
+
+    <ImageView
         android:id="@+id/image2"
-        android:layout_width="409dp"
-        android:layout_height="645dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
 
-        android:layout_marginBottom="16dp"
-        android:scaleType="centerInside"
+        android:adjustViewBounds="true"
         android:src="@drawable/cardblank"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/linear"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -34,7 +41,7 @@
         android:hint="Enter text here and press submit to create your new card."
         android:inputType="textMultiLine|textCapSentences"
         android:lineSpacingExtra="15dp"
-        android:textSize="35dp"
+        android:textSize="35sp"
         android:typeface="monospace"
         android:textColor="#000000"
 
@@ -42,6 +49,42 @@
         app:layout_constraintLeft_toLeftOf="@id/image2"
         app:layout_constraintRight_toRightOf="@id/image2"
         app:layout_constraintTop_toTopOf="@id/image2" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/linear"
+        app:layout_constraintTop_toBottomOf="@id/image2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/heart_button"
+            android:layout_width="44dp"
+            android:layout_height="55dp"
+            android:layout_marginEnd="50dp"
+
+
+            android:onClick="favorite_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.367"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_unsortfavorite_24dp" />
+
+        <ImageView
+            android:id="@+id/share_button"
+            android:layout_width="44dp"
+            android:layout_height="55dp"
+
+            android:onClick="share_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.64"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_share_black_24dp" />
+    </LinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>

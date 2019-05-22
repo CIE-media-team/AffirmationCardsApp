@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -31,7 +30,7 @@ public class CollectionEnlarge extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("Collection");
+        setTitle("My Card");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection_enlarge);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -151,15 +150,12 @@ public class CollectionEnlarge extends AppCompatActivity {
     }
 
     public void share_button(View view) {
-        Uri imageUri = Uri.parse("android.resource://" + getPackageName()
-                + "/drawable/" + "ic_launcher");
-        Intent shareIntent = new Intent();
-        shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_TEXT, "Hello");
-        shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
-        shareIntent.setType("image/jpeg");
-        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        startActivity(Intent.createChooser(shareIntent, "send"));
+        Intent i = new Intent(android.content.Intent.ACTION_SEND);
+        i.setType("text/plain");
+        String shareBodyText = "Fertile Affirmations is a mindfulness based tool created to help motivate and support you during your family building journey. Check it out at http://fertileaffirmations.com/.";
+        // i.putExtra(android.content.Intent.EXTRA_SUBJECT, "Wow!");
+        i.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
+        startActivity(Intent.createChooser(i, "Choose sharing method"));
     }
 }
 

@@ -13,6 +13,7 @@ public class Card {
     private String text;
     private boolean created = false;
 
+
     @Id
     private long id;
 
@@ -23,10 +24,14 @@ public class Card {
 
     }
 
-    public Card(String text) {
+    public Card(String text, Boolean favorited) {
+
         this.text = text;
         this.created = true;
         this.image = R.drawable.ic_menu_send;
+        this.favorite = favorited;
+
+
     }
 
     public Card() {
@@ -34,6 +39,10 @@ public class Card {
 
     public String getText() {
         return this.text;
+    }
+
+    public boolean getCreated() {
+        return this.created;
     }
 
     public boolean isCreated() {
@@ -63,7 +72,6 @@ public class Card {
     public boolean isFavorite() {
         return favorite;
     }
-
     //If the user clicks the favorite button, it will swap the value of the boolean favorite value.
     public void setFavorite(boolean b) {
 

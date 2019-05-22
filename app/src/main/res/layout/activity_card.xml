@@ -5,8 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CardActivity"
-    android:background="@drawable/noleaves"
+
+
     >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/noleaves"
+        android:scaleType="centerCrop"
+        android:scaleX="1.01"
+        android:scaleY="1.01" />
+
 
     <ImageView
         android:id="@+id/imageCard"
@@ -15,42 +25,49 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="8dp"
 
         android:adjustViewBounds="true"
         android:src="@drawable/cardblank"
-        app:layout_constraintBottom_toTopOf="@+id/heart_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/linear"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/heart_button"
-        android:layout_width="44dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="28dp"
-        android:onClick="favorite_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.367"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_unsortfavorite_24dp" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/linear"
+        app:layout_constraintTop_toBottomOf="@id/imageCard"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <ImageView
-        android:id="@+id/share_button"
-        android:layout_width="44dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="28dp"
-        android:onClick="share_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.64"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_share_black_24dp" />
+        <ImageView
+            android:id="@+id/heartView"
+            android:layout_width="44dp"
+            android:layout_height="55dp"
+            android:layout_marginEnd="50dp"
+
+
+            android:onClick="favorite_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.367"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_unsortfavorite_24dp" />
+
+        <ImageView
+            android:id="@+id/share_button"
+            android:layout_width="44dp"
+            android:layout_height="55dp"
+
+            android:onClick="share_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.64"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_share_black_24dp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/cardText"
