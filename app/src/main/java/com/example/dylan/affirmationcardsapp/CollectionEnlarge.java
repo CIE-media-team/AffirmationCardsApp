@@ -69,7 +69,11 @@ public class CollectionEnlarge extends AppCompatActivity {
 
 
             cardText.setText(card.getText());
-            cardView.setImageResource(android.R.color.transparent);
+
+            Glide
+                    .with(this)
+                    .load(R.drawable.cardblank)
+                    .into(cardView);
 
         } else {
 
