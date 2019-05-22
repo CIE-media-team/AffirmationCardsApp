@@ -18,7 +18,7 @@ import io.objectbox.Box;
 import io.objectbox.query.QueryBuilder;
 
 public class CollectionActivity extends AppCompatActivity {
-    private static final String SORTED_BY_FAVORITES = "sorted_by_favorites";
+    public static final String SORTED_BY_FAVORITES = "sorted_by_favorites";
 
     private CaptionedImagesAdapter adapter;
     private boolean sortByFavorites;
@@ -53,6 +53,7 @@ public class CollectionActivity extends AppCompatActivity {
 
             // Get the stored state of the "Sort By Favorites" button
             sortByFavorites = getPreferences(MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
+
             if (sortByFavorites) {
                 ImageButton heartView = (ImageButton) findViewById(R.id.sortFavorite);
                 heartView.setImageResource(R.drawable.ic_favorite_red_24dp);
@@ -171,6 +172,9 @@ public class CollectionActivity extends AppCompatActivity {
 
     }
 
+    public static String getReset() {
+        return SORTED_BY_FAVORITES;
+    }
 
 
 }

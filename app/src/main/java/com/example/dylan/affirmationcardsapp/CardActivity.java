@@ -27,7 +27,7 @@ public class CardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("Get Card");
+        setTitle("My Reading");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card);
@@ -74,7 +74,7 @@ public class CardActivity extends AppCompatActivity {
 
         if (card.isCreated()) {
             cardText.setText(card.getText());
-            cardView.setImageResource(R.drawable.template);
+            cardView.setImageResource(R.drawable.cardblank);
 
         } else {
             cardView.setImageResource(card.getImage());

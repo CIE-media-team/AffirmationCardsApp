@@ -2,6 +2,7 @@ package com.example.dylan.affirmationcardsapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -102,7 +103,7 @@ public class Main2Activity extends AppCompatActivity
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(true);
             builder.setTitle("Reset App");
-            builder.setMessage("Are you sure you would like reset the app to default?");
+            builder.setMessage("Are you sure you want to reset the app to default?");
             builder.setPositiveButton("Confirm",
                     new DialogInterface.OnClickListener() {
                         @Override
@@ -116,6 +117,16 @@ public class Main2Activity extends AppCompatActivity
                                 
                                 cardBox.remove(card);
                             }
+                            QueryBuilder<Card> cardQuery2 = cardBox.query()
+                                    .equal(Card_.favorite, true);
+                            List<Card> cardList2 = cardQuery2.build().find();
+                            for (Card card : cardList2) {
+                                card.setFavorite(false);
+                            }
+                            SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
+                            editor.putBoolean(CollectionActivity.getReset(), false);
+                            editor.apply();
+
                             String action = "Successfully reset app";
 
                             Toast t = Toast.makeText(getApplicationContext(), action,
