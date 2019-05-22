@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -18,6 +20,8 @@ import com.bumptech.glide.Glide;
 
 public class AddCard extends AppCompatActivity {
     private boolean favorited = false;
+    private EditText et;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,8 +29,12 @@ public class AddCard extends AppCompatActivity {
         setContentView(R.layout.activity_add_card);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Typeface font = Typeface.createFromAsset(getAssets(), "font.otf");
-        EditText editText = findViewById(R.id.editText);
-        editText.setTypeface(font);
+        et = (EditText) findViewById(R.id.editText);
+
+        et.setTypeface(font);
+
+        et.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        et.setRawInputType(InputType.TYPE_CLASS_TEXT);
 
         ImageView iv = findViewById(R.id.image2);
 
@@ -42,7 +50,7 @@ public class AddCard extends AppCompatActivity {
 
 
         float textSize = dpWidth / 11.75510f;
-        editText.setTextSize(textSize);
+        // et.setTextSize(textSize);
 
         float textWidth = dpWidth / 1.314468f;
 
@@ -52,7 +60,6 @@ public class AddCard extends AppCompatActivity {
         // params.height = (int)textHeight;
         //  params.width = (int)textWidth;
         // editText.setLayoutParams(params);
-
 
 
     }
@@ -75,7 +82,6 @@ public class AddCard extends AppCompatActivity {
         if (item.getItemId() == findViewById(R.id.close).getId()) {
             finish();
         } else if (item.getItemId() == findViewById(R.id.check).getId()) {
-            EditText et = (EditText) findViewById(R.id.editText);
             String text = et.getText().toString();
             if (text.length() > 0) {
                 Card newCard = new Card(text, favorited);
@@ -131,7 +137,6 @@ public class AddCard extends AppCompatActivity {
         i.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
         startActivity(Intent.createChooser(i, "Choose sharing method"));
     }
-
 
 
 }
