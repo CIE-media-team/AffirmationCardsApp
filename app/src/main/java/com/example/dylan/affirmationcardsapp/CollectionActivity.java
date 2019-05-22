@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -34,7 +35,15 @@ public class CollectionActivity extends AppCompatActivity {
         RecyclerView cardRecycler = findViewById(R.id.building_recycler);
         adapter = new CaptionedImagesAdapter();
         cardRecycler.setAdapter(adapter);
-        LinearLayoutManager layoutManager = new GridLayoutManager(this, 4);
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+        int number = 0;
+
+
+        number = (int) dpWidth / 91;
+
+
+        LinearLayoutManager layoutManager = new GridLayoutManager(this, number);
         cardRecycler.setLayoutManager(layoutManager);
         View v = null;
         if (getIntent().getBooleanExtra("delete", false)) {

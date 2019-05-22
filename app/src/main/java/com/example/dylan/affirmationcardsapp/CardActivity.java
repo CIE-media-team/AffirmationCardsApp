@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +35,28 @@ public class CardActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Typeface font = Typeface.createFromAsset(getAssets(), "font.otf");
         TextView cardText = (TextView) findViewById(R.id.cardText);
+
+
         cardText.setTypeface(font);
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+        float dpHeight = displayMetrics.heightPixels / displayMetrics.density;
+
+
+        float textSize = dpWidth / 11.75510f;
+        cardText.setTextSize(textSize);
+
+        float textWidth = dpWidth / 1.314468f;
+
+        float textHeight = dpHeight / 1.9972526f;
+
+
+        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) cardText.getLayoutParams();
+        // params.height = (int)textHeight;
+        // params.width = (int)textWidth;
+        //cardText.setLayoutParams(params);
+
+
 
 
 

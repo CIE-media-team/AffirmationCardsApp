@@ -24,7 +24,7 @@ public class Card {
 
     }
 
-    public Card(String text, Boolean favorited) {
+    public Card(String text, boolean favorited) {
 
         this.text = text;
         this.created = true;

@@ -33,17 +33,17 @@
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="300sp"
+        android:layout_height="400sp"
         android:background="@null"
         android:ems="10"
         android:gravity="center"
         android:hint="Enter text here and press submit to create your new card."
         android:inputType="textMultiLine|textCapSentences"
         android:lineSpacingExtra="15dp"
+        android:textColor="#000000"
         android:textSize="35sp"
         android:typeface="monospace"
-        android:textColor="#000000"
 
         app:layout_constraintBottom_toBottomOf="@id/image2"
         app:layout_constraintLeft_toLeftOf="@id/image2"

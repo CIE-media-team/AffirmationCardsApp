@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -21,7 +23,27 @@ public class AddCard extends AppCompatActivity {
         setContentView(R.layout.activity_add_card);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Typeface font = Typeface.createFromAsset(getAssets(), "font.otf");
-        ((EditText) findViewById(R.id.editText)).setTypeface(font);
+        EditText editText = findViewById(R.id.editText);
+        editText.setTypeface(font);
+
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+        float dpHeight = displayMetrics.heightPixels / displayMetrics.density;
+
+
+        float textSize = dpWidth / 11.75510f;
+        editText.setTextSize(textSize);
+
+        float textWidth = dpWidth / 1.314468f;
+
+        float textHeight = dpHeight / 1.9972526f;
+
+
+        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) editText.getLayoutParams();
+        // params.height = (int)textHeight;
+        //  params.width = (int)textWidth;
+        // editText.setLayoutParams(params);
+
 
 
     }

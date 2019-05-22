@@ -11,8 +11,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -99,7 +101,7 @@ public class Main2Activity extends AppCompatActivity
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(true);
-            builder.setTitle("Delete Card");
+            builder.setTitle("Reset App");
             builder.setMessage("Are you sure you would like reset the app to default?");
             builder.setPositiveButton("Confirm",
                     new DialogInterface.OnClickListener() {
@@ -111,10 +113,15 @@ public class Main2Activity extends AppCompatActivity
                                     .equal(Card_.created, true);
                             List<Card> cardList = cardQuery.build().find();
                             for (Card card : cardList) {
-                                if (cardBox.getAll().contains(card)) {
-                                    cardBox.remove(card);
-                                }
+                                
+                                cardBox.remove(card);
                             }
+                            String action = "Successfully reset app";
+
+                            Toast t = Toast.makeText(getApplicationContext(), action,
+                                    Toast.LENGTH_SHORT);
+                            t.setGravity(Gravity.TOP, Gravity.CENTER, 150);
+                            t.show();
 
 
                         }
