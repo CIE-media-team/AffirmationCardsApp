@@ -39,6 +39,7 @@
         android:ems="10"
         android:gravity="center"
         android:hint="Enter text here and press submit to create your new card."
+        android:imeOptions="actionDone"
         android:inputType="textMultiLine|textCapSentences"
         android:lineSpacingExtra="15dp"
         android:textColor="#000000"

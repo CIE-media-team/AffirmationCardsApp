@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +13,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 public class AddCard extends AppCompatActivity {
     private boolean favorited = false;
@@ -24,6 +27,14 @@ public class AddCard extends AppCompatActivity {
         Typeface font = Typeface.createFromAsset(getAssets(), "font.otf");
         EditText editText = findViewById(R.id.editText);
         editText.setTypeface(font);
+
+        ImageView iv = findViewById(R.id.image2);
+
+        Glide
+                .with(this)
+                .load(R.drawable.cardblank)
+                .into(iv);
+
 
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
@@ -57,33 +68,40 @@ public class AddCard extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         String action;
-        switch (item.getItemId()) {
-            case R.id.close:
+        Boolean close = true;
+        int id = item.getItemId();
+        Log.d("Tag", Integer.toString(item.getItemId()));
+        Log.d("Tag", Integer.toString(findViewById(R.id.close).getId()));
+        if (item.getItemId() == findViewById(R.id.close).getId()) {
+            finish();
+        } else if (item.getItemId() == findViewById(R.id.check).getId()) {
+            EditText et = (EditText) findViewById(R.id.editText);
+            String text = et.getText().toString();
+            if (text.length() > 0) {
+                Card newCard = new Card(text, favorited);
+                App.getApp().getBoxStore().boxFor(Card.class).put(newCard);
+                action = "Added the new card to your collection!";
+
+            } else {
+                action = "Card text cannot be empty!";
+                close = false;
+            }
+            Toast t = Toast.makeText(this, action,
+                    Toast.LENGTH_SHORT);
+            t.setGravity(Gravity.TOP, Gravity.CENTER, 150);
+            t.show();
+
+            if (close) {
                 finish();
-            case R.id.check:
-                EditText et = (EditText) findViewById(R.id.editText);
-                String text = et.getText().toString();
-                if (text.length() > 0) {
-                    Card newCard = new Card(text, favorited);
-                    App.getApp().getBoxStore().boxFor(Card.class).put(newCard);
-                    action = "Added the new card to your collection!";
 
-                } else {
-                    action = "Card text cannot be empty!";
-                }
-                Toast t = Toast.makeText(this, action,
-                        Toast.LENGTH_SHORT);
-                t.setGravity(Gravity.TOP, Gravity.CENTER, 150);
-                t.show();
-                finish();
+            }
 
 
-
-            default:
-                return super.onOptionsItemSelected(item);
         }
-    }
+        return super.onOptionsItemSelected(item);
 
+
+    }
     public void favorite_button(View view) {
         ImageView heartView = findViewById(R.id.heart_button);
         String action;
