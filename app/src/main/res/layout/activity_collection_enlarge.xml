@@ -7,80 +7,111 @@
     tools:context=".CollectionEnlarge">
 
     <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/noleaves"
         android:scaleType="centerCrop"
         android:scaleX="1.01"
         android:scaleY="1.01"
+        android:src="@drawable/noleaves"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/enlargedCard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="25dp"
 
-        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
         android:src="@drawable/cardblank"
-        app:layout_constraintBottom_toTopOf="@+id/linear"
+
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/linear"
-        app:layout_constraintTop_toBottomOf="@id/enlargedCard"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent=".85" />
 
-        <ImageView
+
+    <ImageView
             android:id="@+id/heartView"
-            android:layout_width="44dp"
-            android:layout_height="55dp"
-            android:layout_marginRight="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
 
 
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent=".06"
+
+
+        android:layout_marginStart="8dp"
+
+        android:layout_marginTop="8dp"
+
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
             android:onClick="favorite_button"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.367"
+        app:layout_constraintHorizontal_bias="0.35"
             app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/enlargedCard"
             app:srcCompat="@drawable/ic_unsortfavorite_24dp" />
 
         <ImageView
             android:id="@+id/share_button"
-            android:layout_width="44dp"
-            android:layout_height="55dp"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
 
+
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHeight_percent=".06"
+
+
+            android:layout_marginStart="8dp"
+
+            android:layout_marginTop="8dp"
+
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:onClick="share_button"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.64"
+            app:layout_constraintHorizontal_bias="0.65"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enlargedCard"
             app:srcCompat="@drawable/ic_share_black_24dp" />
-    </LinearLayout>
 
     <TextView
         android:id="@+id/cardText"
-        android:layout_width="300sp"
-        android:layout_height="400sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
         android:gravity="center"
         android:lineSpacingExtra="15dp"
-        android:textSize="36sp"
+        android:paddingStart="40dp"
+
+
+        android:paddingEnd="40dp"
         android:textColor="#000000"
 
 
-        app:layout_constraintBottom_toBottomOf="@+id/enlargedCard"
-        app:layout_constraintEnd_toEndOf="@+id/enlargedCard"
-        app:layout_constraintStart_toStartOf="@+id/enlargedCard"
-        app:layout_constraintTop_toTopOf="@+id/enlargedCard" />
+        android:textSize="36sp"
+        android:typeface="monospace"
+        app:layout_constraintLeft_toLeftOf="@id/enlargedCard"
+        app:layout_constraintRight_toRightOf="@id/enlargedCard"
+        app:layout_constraintTop_toTopOf="@id/enlargedCard"
+        app:layout_constraintBottom_toBottomOf="@id/enlargedCard">
+
+    </TextView>
+
 
 </android.support.constraint.ConstraintLayout>

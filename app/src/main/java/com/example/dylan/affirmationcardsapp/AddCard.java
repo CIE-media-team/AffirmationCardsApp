@@ -26,6 +26,7 @@ public class AddCard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("Create Card");
+
         setContentView(R.layout.activity_add_card);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Typeface font = Typeface.createFromAsset(getAssets(), "font.otf");
@@ -35,6 +36,7 @@ public class AddCard extends AppCompatActivity {
 
         et.setImeOptions(EditorInfo.IME_ACTION_DONE);
         et.setRawInputType(InputType.TYPE_CLASS_TEXT);
+
 
         ImageView iv = findViewById(R.id.image2);
 

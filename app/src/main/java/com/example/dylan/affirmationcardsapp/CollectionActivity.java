@@ -43,7 +43,7 @@ public class CollectionActivity extends AppCompatActivity {
         number = (int) dpWidth / 91;
 
 
-        LinearLayoutManager layoutManager = new GridLayoutManager(this, number);
+        LinearLayoutManager layoutManager = new GridLayoutManager(this, 4);
         cardRecycler.setLayoutManager(layoutManager);
         View v = null;
         if (getIntent().getBooleanExtra("delete", false)) {
@@ -56,7 +56,7 @@ public class CollectionActivity extends AppCompatActivity {
 
             if (sortByFavorites) {
                 ImageButton heartView = (ImageButton) findViewById(R.id.sortFavorite);
-                heartView.setImageResource(R.drawable.ic_favorite_red_24dp);
+                heartView.setImageResource(R.drawable.fave);
             }
 
             loadCards(sortByFavorites);
@@ -113,7 +113,7 @@ public class CollectionActivity extends AppCompatActivity {
             sortByFavorites = true;
         }
         else{
-            heartView.setImageResource(R.drawable.ic_unsortfavorite_24dp);
+            heartView.setImageResource(R.drawable.fave);
             sortByFavorites = false;
         }
         // Save the user's choice so it will be remembered when the Activity is recreated
