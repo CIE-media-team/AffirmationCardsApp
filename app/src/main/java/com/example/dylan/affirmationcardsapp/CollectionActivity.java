@@ -88,6 +88,7 @@ public class CollectionActivity extends AppCompatActivity {
         // by the "Favorite" property, and True comes after False, so we use descending.
         if(sortedByFavorites){
             cardQuery = cardQuery.orderDesc(Card_.favorite);
+
         }
         List<Card> cardList = cardQuery.build().find();
 

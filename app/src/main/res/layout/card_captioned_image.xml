@@ -6,8 +6,6 @@
     android:layout_marginRight="3dp"
     app:cardCornerRadius="6dp"
     android:layout_marginBottom="8dp"
-    android:paddingBottom="8dp"
-    app:cardPreventCornerOverlap="false"
 
 
     >
@@ -44,8 +42,10 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:lineSpacingExtra="5dp"
-            android:textColor="#000000"
+            android:textColor="#383833"
             android:textSize="9sp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
 
 
             app:layout_constraintBottom_toBottomOf="@+id/cardView"

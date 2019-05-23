@@ -56,7 +56,7 @@
         android:imeOptions="actionDone"
         android:inputType="textMultiLine|textCapSentences"
         android:lineSpacingExtra="20dp"
-        android:textColor="#000000"
+        android:textColor="#383833"
 
         android:paddingStart="40dp"
         android:paddingEnd="40dp"
