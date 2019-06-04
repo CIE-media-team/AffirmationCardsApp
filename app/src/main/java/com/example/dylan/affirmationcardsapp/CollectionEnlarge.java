@@ -2,11 +2,13 @@ package com.example.dylan.affirmationcardsapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,10 +34,20 @@ public class CollectionEnlarge extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("My Card");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection_enlarge);
+
+        Typeface font = Typeface.createFromAsset(getAssets(), "font.otf");
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        TextView title = findViewById(R.id.toolbar_title);
+        title.setText("My Card");
+        title.setTypeface(font);
+        title.setTextColor(Color.BLACK);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         heartView = findViewById(R.id.heartView);
         ImageView cardView = findViewById(R.id.enlargedCard);
@@ -44,8 +56,7 @@ public class CollectionEnlarge extends AppCompatActivity {
         long cardId = getIntent().getLongExtra(EXTRA_CARD_ID, -1);
         cardBox = App.getApp().getBoxStore().boxFor(Card.class);
         card = cardBox.get(cardId);
-        TextView cardText = (TextView) findViewById(R.id.cardText);
-        Typeface font = Typeface.createFromAsset(getAssets(), "font.otf");
+        TextView cardText = findViewById(R.id.cardText);
         cardText.setTypeface(font);
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;

@@ -57,6 +57,7 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
         } else {
             //holder.imageView.setImageResource(images.get(position).getImage());
             tv.setText("");
+
             Glide
                     .with(holder.cardView.getContext())
                     .load(c.getImage())
@@ -93,7 +94,7 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
         public ViewHolder(CardView v) {
             super(v);
             cardView = v;
-            imageView = (ImageView) v.findViewById(R.id.cardView);
+            imageView = v.findViewById(R.id.cardView);
             Typeface font = Typeface.createFromAsset(cardView.getContext().getAssets(), "font.otf");
             ((TextView) v.findViewById(R.id.cardText)).setTypeface(font);
 

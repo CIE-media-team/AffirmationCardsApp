@@ -24,21 +24,22 @@
         android:id="@+id/image2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="8dp"
 
         android:scaleType="fitCenter"
         android:src="@drawable/cardblank"
 
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        app:layout_goneMarginTop="8dp"
 
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
 
 
         app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent=".85"
+        app:layout_constraintHeight_percent=".80"
 
         />
 
@@ -82,7 +83,6 @@
 
         android:layout_marginStart="8dp"
 
-        android:layout_marginTop="8dp"
 
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
@@ -108,7 +108,6 @@
 
         android:layout_marginStart="8dp"
 
-        android:layout_marginTop="8dp"
 
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
@@ -121,6 +120,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image2"
         app:srcCompat="@drawable/ic_share_black_24dp" />
+
+    <include
+        layout="@layout/toolbar"
+        android:id="@+id/toolbar"></include>
 
 
 </android.support.constraint.ConstraintLayout>

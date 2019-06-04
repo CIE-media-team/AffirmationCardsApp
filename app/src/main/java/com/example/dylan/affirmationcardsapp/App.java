@@ -97,7 +97,11 @@ public class App extends Application {
 
             // ObjectBox is smart enough to handle CRUD on Collections of entities
             cardBox.put(initialCards);
+
+
         }
+
+
     }
 
     public void setNotif() {

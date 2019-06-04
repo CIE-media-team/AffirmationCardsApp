@@ -12,6 +12,7 @@ public class Card {
     private boolean owned = true;
     private String text;
     private boolean created = false;
+    private static boolean justReset = false;
 
 
     @Id
@@ -82,5 +83,13 @@ public class Card {
 
     public boolean isOwned(){
         return owned;
+    }
+
+    public void setJustReset(boolean b) {
+        justReset = b;
+    }
+
+    public boolean getJustReset() {
+        return justReset;
     }
 }

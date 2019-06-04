@@ -2,11 +2,14 @@ package com.example.dylan.affirmationcardsapp;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageButton;
@@ -27,9 +30,19 @@ public class CollectionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("My Collection");
         setContentView(R.layout.activity_collection);
+
+        Typeface font = Typeface.createFromAsset(getAssets(), "font.otf");
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        TextView title = findViewById(R.id.toolbar_title);
+        title.setText("My Collection");
+        title.setTypeface(font);
+        title.setTextColor(Color.BLACK);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         // Initialize the RecyclerView and configure its adapter
         RecyclerView cardRecycler = findViewById(R.id.building_recycler);
@@ -55,7 +68,7 @@ public class CollectionActivity extends AppCompatActivity {
             sortByFavorites = getPreferences(MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
 
             if (sortByFavorites) {
-                ImageButton heartView = (ImageButton) findViewById(R.id.sortFavorite);
+                ImageButton heartView = findViewById(R.id.sortFavorite);
                 heartView.setImageResource(R.drawable.fave);
             }
 
@@ -105,7 +118,7 @@ public class CollectionActivity extends AppCompatActivity {
 
 
         //if the heart is currently not sortByFavorites, make it sortByFavorites
-        ImageButton heartView = (ImageButton)findViewById(R.id.sortFavorite);
+        ImageButton heartView = findViewById(R.id.sortFavorite);
 
 
         //change whether the heart is filled or not

@@ -1,9 +1,11 @@
 package com.example.dylan.affirmationcardsapp;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
@@ -29,14 +31,27 @@ public class CardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("My Reading");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card);
         String purpose = getIntent().getStringExtra("Purpose");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Typeface font = Typeface.createFromAsset(getAssets(), "font.otf");
-        TextView cardText = (TextView) findViewById(R.id.cardText);
+        Typeface font2 = Typeface.createFromAsset(getAssets(), "italic.otf");
+
+        TextView cardText = findViewById(R.id.cardText);
+
+
+        // Update the action bar title with the TypefaceSpan instance
+
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        TextView title = findViewById(R.id.toolbar_title);
+        title.setText("My Reading");
+        title.setTypeface(font);
+        title.setTextColor(Color.BLACK);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         cardText.setTypeface(font);
@@ -53,7 +68,7 @@ public class CardActivity extends AppCompatActivity {
         float textHeight = dpHeight / 1.9972526f;
 
 
-        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) cardText.getLayoutParams();
+        ViewGroup.LayoutParams params = cardText.getLayoutParams();
         // params.height = (int)textHeight;
         // params.width = (int)textWidth;
         //cardText.setLayoutParams(params);

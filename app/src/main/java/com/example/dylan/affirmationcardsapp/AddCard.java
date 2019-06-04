@@ -1,9 +1,11 @@
 package com.example.dylan.affirmationcardsapp;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -25,12 +28,20 @@ public class AddCard extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Create Card");
 
         setContentView(R.layout.activity_add_card);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Typeface font = Typeface.createFromAsset(getAssets(), "font.otf");
-        et = (EditText) findViewById(R.id.editText);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        TextView title = findViewById(R.id.toolbar_title);
+        title.setText("My Collection");
+        title.setTypeface(font);
+        title.setTextColor(Color.BLACK);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        et = findViewById(R.id.editText);
 
         et.setTypeface(font);
 

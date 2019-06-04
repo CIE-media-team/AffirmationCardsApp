@@ -19,9 +19,14 @@
             android:icon="@drawable/add_icon"
             android:title="Create Card" />
         <item
+            android:id="@+id/nav_remind"
+            android:icon="@drawable/remindme"
+            android:title="Remind Me" />
+        <item
             android:id="@+id/nav_info"
             android:icon="@drawable/info_icon"
             android:title="Info" />
+
         <item
             android:id="@+id/nav_reset"
             android:icon="@drawable/reset_icon"
