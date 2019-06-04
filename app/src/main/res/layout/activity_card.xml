@@ -103,6 +103,7 @@
 
         android:paddingEnd="40dp"
         android:textColor="#383833"
+        android:paddingLeft="5dp"
 
 
         android:textSize="36sp"

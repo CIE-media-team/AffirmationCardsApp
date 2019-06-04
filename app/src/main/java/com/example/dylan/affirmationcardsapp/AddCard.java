@@ -96,6 +96,7 @@ public class AddCard extends AppCompatActivity {
             finish();
         } else if (item.getItemId() == findViewById(R.id.check).getId()) {
             String text = et.getText().toString();
+            text = " " + text + " ";
             if (text.length() > 0) {
                 Card newCard = new Card(text, favorited);
                 App.getApp().getBoxStore().boxFor(Card.class).put(newCard);
