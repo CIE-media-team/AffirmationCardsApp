@@ -2,7 +2,6 @@ package com.example.dylan.affirmationcardsapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -47,7 +46,6 @@ public class CollectionEnlarge extends AppCompatActivity {
         TextView title = findViewById(R.id.toolbar_title);
         title.setText("My Card");
         title.setTypeface(font2);
-        title.setTextColor(Color.BLACK);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 

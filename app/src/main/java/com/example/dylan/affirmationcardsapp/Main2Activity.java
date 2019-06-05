@@ -53,7 +53,7 @@ public class Main2Activity extends AppCompatActivity
         //  String imageType = getIntent().getStringExtra("style");
         int image = 0;
         if (imageType.equals("warm")) {
-            image = R.drawable.cardfront;
+            image = R.drawable.warmcard;
             warm = true;
         } else if (imageType.equals("porcelain")) {
             image = R.drawable.porcelain;

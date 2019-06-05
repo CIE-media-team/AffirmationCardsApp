@@ -1,7 +1,6 @@
 package com.example.dylan.affirmationcardsapp;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -41,7 +40,6 @@ public class AddCard extends AppCompatActivity {
         TextView title = findViewById(R.id.toolbar_title);
         title.setText("Create Card");
         title.setTypeface(font2);
-        title.setTextColor(Color.BLACK);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         et = findViewById(R.id.editText);
 
