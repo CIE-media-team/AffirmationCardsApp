@@ -4,46 +4,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstRunActivity">
+    tools:context=".FirstRunActivity"
+    android:background="@drawable/noleaves">
 
     <ImageView
         android:id="@+id/warm"
-        android:layout_width="225dp"
-        android:layout_height="309dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintWidth_percent=".4"
+        app:layout_constraintHeight_percent=".4"
+
+        android:onClick="warmClicked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/cardfront"
-        android:onClick="warmClicked" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/warm" />
 
     <ImageView
         android:id="@+id/porcelain"
-        android:layout_width="225dp"
-        android:layout_height="309dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintWidth_percent=".4"
+        app:layout_constraintHeight_percent=".4"
+
+        android:onClick="porcelainClicked"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/porcelain"
-        android:onClick="porcelainClicked" />
+        app:srcCompat="@drawable/porcelainfirst" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/preferenceView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Choose your preference."
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/warm"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <ImageView
+        android:id="@+id/imageView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Choose your preference."
         app:layout_constraintBottom_toTopOf="@+id/warm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/porcelain" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/fertilelogo" />
 </android.support.constraint.ConstraintLayout>

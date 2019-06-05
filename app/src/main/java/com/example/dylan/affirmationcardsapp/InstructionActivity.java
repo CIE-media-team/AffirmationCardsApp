@@ -24,7 +24,7 @@ public class InstructionActivity extends AppCompatActivity {
 
         TextView title = findViewById(R.id.toolbar_title);
         title.setText("Information");
-        title.setTypeface(font);
+        title.setTypeface(font2);
         title.setTextColor(Color.BLACK);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

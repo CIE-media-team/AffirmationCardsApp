@@ -32,13 +32,15 @@ public class AddCard extends AppCompatActivity {
         setContentView(R.layout.activity_add_card);
 
         Typeface font = Typeface.createFromAsset(getAssets(), "font.otf");
+        Typeface font2 = Typeface.createFromAsset(getAssets(), "italic.otf");
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         TextView title = findViewById(R.id.toolbar_title);
-        title.setText("My Collection");
-        title.setTypeface(font);
+        title.setText("Create Card");
+        title.setTypeface(font2);
         title.setTextColor(Color.BLACK);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         et = findViewById(R.id.editText);

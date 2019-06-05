@@ -49,7 +49,7 @@ public class CardActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         TextView title = findViewById(R.id.toolbar_title);
         title.setText("My Reading");
-        title.setTypeface(font);
+        title.setTypeface(font2);
         title.setTextColor(Color.BLACK);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

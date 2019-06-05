@@ -8,7 +8,7 @@
 
         <item
             android:id="@+id/nav_getcard"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/getcard"
             android:title="Get Card" />
         <item
             android:id="@+id/nav_collection"
