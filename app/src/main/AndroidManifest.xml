@@ -10,8 +10,8 @@
     <application
         android:name=".App"
         android:allowBackup="false"
-        android:icon="@mipmap/launcher_icon"
-        android:roundIcon="@mipmap/launcher_icon_round"
+        android:icon="@mipmap/launchericon1"
+        android:roundIcon="@mipmap/launchericon1"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
