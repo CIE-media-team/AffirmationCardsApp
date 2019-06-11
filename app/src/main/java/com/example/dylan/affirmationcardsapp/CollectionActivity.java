@@ -61,10 +61,12 @@ public class CollectionActivity extends AppCompatActivity {
         if (getIntent().getBooleanExtra("delete", false)) {
             removeCard(v);
 
-        } else {
+
+        }
+
 
             // Get the stored state of the "Sort By Favorites" button
-            sortByFavorites = getPreferences(MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
+        sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
 
             if (sortByFavorites) {
                 ImageButton heartView = findViewById(R.id.sortFavorite);
@@ -75,12 +77,12 @@ public class CollectionActivity extends AppCompatActivity {
         }
 
 
-    }
+
 
     @Override
     public void onResume() {
         // fetch updated data
-        sortByFavorites = getPreferences(MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
+        sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
         loadCards(sortByFavorites);
         super.onResume();
 
@@ -130,7 +132,7 @@ public class CollectionActivity extends AppCompatActivity {
             sortByFavorites = false;
         }
         // Save the user's choice so it will be remembered when the Activity is recreated
-        SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = getSharedPreferences("sort", MODE_PRIVATE).edit();
         editor.putBoolean(SORTED_BY_FAVORITES, sortByFavorites);
         editor.apply();
 
@@ -142,7 +144,7 @@ public class CollectionActivity extends AppCompatActivity {
 
     }
     public void removeCard(View view){
-        sortByFavorites = getPreferences(MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
+        sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
         TextView tv = findViewById(R.id.error);
 
         if (counter % 2 == 0) {
@@ -177,13 +179,6 @@ public class CollectionActivity extends AppCompatActivity {
 
     }
 
-    public void updateAdapter(Card c) {
-        Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
-        List<Card> cardList = cardBox.getAll();
-
-        adapter.notifyItemChanged(cardList.indexOf(c));
-
-    }
 
     public static String getReset() {
         return SORTED_BY_FAVORITES;

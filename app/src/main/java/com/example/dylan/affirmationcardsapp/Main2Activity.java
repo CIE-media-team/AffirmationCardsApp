@@ -30,6 +30,8 @@ import java.util.TimeZone;
 import io.objectbox.Box;
 import io.objectbox.query.QueryBuilder;
 
+import static com.example.dylan.affirmationcardsapp.CollectionActivity.SORTED_BY_FAVORITES;
+
 public class Main2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -205,6 +207,7 @@ public class Main2Activity extends AppCompatActivity
                             justReset = true;
 
 
+                            getSharedPreferences("sort", MODE_PRIVATE).edit().putBoolean(SORTED_BY_FAVORITES, false).apply();
 
 
 

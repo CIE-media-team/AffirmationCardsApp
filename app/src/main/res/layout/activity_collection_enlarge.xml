@@ -19,7 +19,7 @@
 
     <ImageView
         android:id="@+id/enlargedCard"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
 
@@ -28,6 +28,8 @@
 
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:adjustViewBounds="false"
+
 
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -36,7 +38,9 @@
 
 
         app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent=".80" />
+        app:layout_constraintHeight_percent=".80"
+
+        />
 
 
     <ImageView
@@ -91,20 +95,19 @@
 
     <TextView
         android:id="@+id/cardText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
 
         android:gravity="center"
         android:lineSpacingExtra="15dp"
-        android:paddingStart="40dp"
 
 
-        android:paddingEnd="40dp"
         android:textColor="#383833"
 
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
 
         android:textSize="36sp"
-        android:typeface="monospace"
         app:layout_constraintLeft_toLeftOf="@id/enlargedCard"
         app:layout_constraintRight_toRightOf="@id/enlargedCard"
         app:layout_constraintTop_toTopOf="@id/enlargedCard"
