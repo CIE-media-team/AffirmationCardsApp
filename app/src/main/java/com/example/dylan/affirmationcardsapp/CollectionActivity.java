@@ -21,10 +21,13 @@ import io.objectbox.query.QueryBuilder;
 
 public class CollectionActivity extends AppCompatActivity {
     public static final String SORTED_BY_FAVORITES = "sorted_by_favorites";
-
+    private static int counter = 0;
     private CaptionedImagesAdapter adapter;
     private boolean sortByFavorites;
-    private static int counter = 0;
+
+    public static String getReset() {
+        return SORTED_BY_FAVORITES;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,19 +68,16 @@ public class CollectionActivity extends AppCompatActivity {
         }
 
 
-            // Get the stored state of the "Sort By Favorites" button
+        // Get the stored state of the "Sort By Favorites" button
         sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
 
-            if (sortByFavorites) {
-                ImageButton heartView = findViewById(R.id.sortFavorite);
-                heartView.setImageResource(R.drawable.fave);
-            }
-
-            loadCards(sortByFavorites);
+        if (sortByFavorites) {
+            ImageButton heartView = findViewById(R.id.sortFavorite);
+            heartView.setImageResource(R.drawable.fave);
         }
 
-
-
+        loadCards(sortByFavorites);
+    }
 
     @Override
     public void onResume() {
@@ -87,7 +87,6 @@ public class CollectionActivity extends AppCompatActivity {
         super.onResume();
 
     }
-
 
     private void loadCards(boolean sortedByFavorites) {
         Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
@@ -100,7 +99,7 @@ public class CollectionActivity extends AppCompatActivity {
 
         // If sorting by favorites, lets also "order by Favorite descending". This will sort
         // by the "Favorite" property, and True comes after False, so we use descending.
-        if(sortedByFavorites){
+        if (sortedByFavorites) {
             cardQuery = cardQuery.orderDesc(Card_.favorite);
 
         }
@@ -112,8 +111,7 @@ public class CollectionActivity extends AppCompatActivity {
 
     }
 
-
-    public void sortByFavorites(View view){
+    public void sortByFavorites(View view) {
         //NEED TO MAKE IT SO HEART CHANGES TO SOLID #########################################
         //12:15-2:30
 
@@ -123,11 +121,10 @@ public class CollectionActivity extends AppCompatActivity {
 
 
         //change whether the heart is filled or not
-        if(!sortByFavorites) {
+        if (!sortByFavorites) {
             heartView.setImageResource(R.drawable.ic_favorite_red_24dp);
             sortByFavorites = true;
-        }
-        else{
+        } else {
             heartView.setImageResource(R.drawable.fave);
             sortByFavorites = false;
         }
@@ -138,12 +135,14 @@ public class CollectionActivity extends AppCompatActivity {
 
         loadCards(sortByFavorites);
     }
-    public void addCard(View view){
+
+    public void addCard(View view) {
         Intent i = new Intent(this, AddCard.class);
         startActivity(i);
 
     }
-    public void removeCard(View view){
+
+    public void removeCard(View view) {
         sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
         TextView tv = findViewById(R.id.error);
 
@@ -175,13 +174,6 @@ public class CollectionActivity extends AppCompatActivity {
         counter += 1;
 
 
-
-
-    }
-
-
-    public static String getReset() {
-        return SORTED_BY_FAVORITES;
     }
 
 

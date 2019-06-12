@@ -103,7 +103,6 @@ public class CollectionEnlarge extends AppCompatActivity {
         //cardView.setImageResource(CollectionActivity.imageIDs[cardId]);
 
 
-
     }
 
 
@@ -168,6 +167,7 @@ public class CollectionEnlarge extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
     public void favorite_button(View view) {
 
         String action;

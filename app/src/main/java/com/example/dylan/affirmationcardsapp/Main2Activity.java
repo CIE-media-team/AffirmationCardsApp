@@ -121,7 +121,7 @@ public class Main2Activity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_add) {
-            Intent i = new Intent(this,AddCard.class);
+            Intent i = new Intent(this, AddCard.class);
             startActivity(i);
 
         } else if (id == R.id.nav_collection) {
@@ -190,7 +190,7 @@ public class Main2Activity extends AppCompatActivity
 
 
                             for (Card card : cardList) {
-                                
+
                                 cardBox.remove(card);
                             }
                             QueryBuilder<Card> cardQuery2 = cardBox.query()
@@ -208,7 +208,6 @@ public class Main2Activity extends AppCompatActivity
 
 
                             getSharedPreferences("sort", MODE_PRIVATE).edit().putBoolean(SORTED_BY_FAVORITES, false).apply();
-
 
 
                             String action = "Successfully reset app";
@@ -244,12 +243,12 @@ public class Main2Activity extends AppCompatActivity
             i.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
             startActivity(Intent.createChooser(i, "Choose sharing method"));
 
-        } else if (id == R.id.nav_learnmore){
+        } else if (id == R.id.nav_learnmore) {
             //http://fertileaffirmations.com/
             Uri uriUrl = Uri.parse("http://fertileaffirmations.com/");
             Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
             startActivity(launchBrowser);
-        } else if (id == R.id.nav_purchase){
+        } else if (id == R.id.nav_purchase) {
             //http://fertileaffirmations.com/
             Uri uriUrl = Uri.parse("http://fertileaffirmations.com/shop");
             Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
@@ -270,7 +269,6 @@ public class Main2Activity extends AppCompatActivity
             startActivity(i);
         }
     }
-
 
 
 }

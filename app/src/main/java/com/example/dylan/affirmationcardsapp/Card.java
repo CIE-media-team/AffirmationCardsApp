@@ -6,15 +6,13 @@ import io.objectbox.annotation.Id;
 
 @Entity
 public class Card {
+    private static boolean justReset = false;
     private int image;
     private boolean free = true;
     private boolean favorite;
     private boolean owned = true;
     private String text;
     private boolean created = false;
-    private static boolean justReset = false;
-
-
     @Id
     private long id;
 
@@ -38,6 +36,11 @@ public class Card {
     public Card() {
     }
 
+    public Card(int image) {
+        this.image = image;
+
+    }
+
     public String getText() {
         return this.text;
     }
@@ -48,10 +51,6 @@ public class Card {
 
     public boolean isCreated() {
         return this.created;
-    }
-    public Card(int image) {
-        this.image = image;
-
     }
 
     public int getImage() {
@@ -73,6 +72,7 @@ public class Card {
     public boolean isFavorite() {
         return favorite;
     }
+
     //If the user clicks the favorite button, it will swap the value of the boolean favorite value.
     public void setFavorite(boolean b) {
 
@@ -81,15 +81,15 @@ public class Card {
         cardBox.put(this);
     }
 
-    public boolean isOwned(){
+    public boolean isOwned() {
         return owned;
-    }
-
-    public void setJustReset(boolean b) {
-        justReset = b;
     }
 
     public boolean getJustReset() {
         return justReset;
+    }
+
+    public void setJustReset(boolean b) {
+        justReset = b;
     }
 }

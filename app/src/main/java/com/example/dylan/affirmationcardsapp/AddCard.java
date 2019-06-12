@@ -122,6 +122,7 @@ public class AddCard extends AppCompatActivity {
 
 
     }
+
     public void favorite_button(View view) {
         ImageView heartView = findViewById(R.id.heart_button);
         String action;

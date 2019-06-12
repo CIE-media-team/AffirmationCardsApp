@@ -32,7 +32,6 @@ public class InstructionActivity extends AppCompatActivity {
         tv.setTextColor(Color.BLACK);
 
 
-
     }
 
 

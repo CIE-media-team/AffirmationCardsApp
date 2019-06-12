@@ -17,8 +17,8 @@ import java.util.List;
 
 
 class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter.ViewHolder> {
-    private List<Card> images;
     CardView cardView;
+    private List<Card> images;
 
     void setImages(List<Card> images) {
         this.images = images;
@@ -88,8 +88,8 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private CardView cardView;
         public ImageView imageView;
+        private CardView cardView;
 
         public ViewHolder(CardView v) {
             super(v);

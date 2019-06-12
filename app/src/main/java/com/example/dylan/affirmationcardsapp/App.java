@@ -12,13 +12,16 @@ public class App extends Application {
 
     private static App app;
     private static Box<Card> cardBox;
-    private BoxStore boxStore;
     private static List<Card> initialCards;
+    private BoxStore boxStore;
 
     public static App getApp() {
         return app;
     }
 
+    public static List<Card> getInitialCards() {
+        return initialCards;
+    }
 
     @Override
     public void onCreate() {
@@ -140,10 +143,6 @@ public class App extends Application {
 
     public BoxStore getBoxStore() {
         return boxStore;
-    }
-
-    public static List<Card> getInitialCards() {
-        return initialCards;
     }
 
 }

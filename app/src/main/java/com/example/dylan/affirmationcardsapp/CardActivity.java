@@ -72,10 +72,6 @@ public class CardActivity extends AppCompatActivity {
         //cardText.setLayoutParams(params);
 
 
-
-
-
-
         BoxStore boxStore = App.getApp().getBoxStore();
         Box<Card> cardBox = boxStore.boxFor(Card.class);
         cards = cardBox.getAll();
