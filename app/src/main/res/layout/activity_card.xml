@@ -8,8 +8,6 @@
 
 
     >
-
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,27 +16,47 @@
         android:scaleY="1.11"
         android:src="@drawable/noleaves" />
 
-
-    <ImageView
-        android:id="@+id/imageCard"
+    <com.wajahatkarim3.easyflipview.EasyFlipView
+        android:id="@+id/flipView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:flipDuration="500"
+        app:flipEnabled="true"
+        app:flipOnTouch="true"
 
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="4dp"
 
-        android:layout_marginRight="8dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/card2"
 
         app:layout_constraintHeight_default="percent"
         app:layout_constraintHeight_percent=".80"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintBottom_toTopOf="@id/imageView3"
 
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        >
+
+        <ImageView
+            android:id="@+id/imageCard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:scaleType="fitCenter" />
+
+        <ImageView
+            android:id="@+id/cardBack"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+
+            android:scaleType="fitCenter"
+            android:src="@drawable/porcelain" />
+
+
+    </com.wajahatkarim3.easyflipview.EasyFlipView>
 
 
     <ImageView
@@ -63,7 +81,7 @@
         app:layout_constraintHeight_percent=".06"
         app:layout_constraintHorizontal_bias="0.35"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageCard"
+        app:layout_constraintTop_toBottomOf="@id/flipView"
         app:srcCompat="@drawable/ic_unsortfavorite_24dp" />
 
     <ImageView
@@ -88,7 +106,7 @@
         app:layout_constraintHeight_percent=".06"
         app:layout_constraintHorizontal_bias="0.65"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageCard"
+        app:layout_constraintTop_toBottomOf="@id/flipView"
         app:srcCompat="@drawable/ic_share_black_24dp" />
 
     <TextView
@@ -108,10 +126,10 @@
 
         android:textSize="36sp"
         android:typeface="monospace"
-        app:layout_constraintBottom_toBottomOf="@id/imageCard"
-        app:layout_constraintLeft_toLeftOf="@id/imageCard"
-        app:layout_constraintRight_toRightOf="@id/imageCard"
-        app:layout_constraintTop_toTopOf="@id/imageCard" />
+        app:layout_constraintBottom_toBottomOf="@id/flipView"
+        app:layout_constraintLeft_toLeftOf="@id/flipView"
+        app:layout_constraintRight_toRightOf="@id/flipView"
+        app:layout_constraintTop_toTopOf="@id/flipView" />
 
     <include
         android:id="@+id/toolbar"

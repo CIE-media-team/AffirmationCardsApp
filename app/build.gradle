@@ -40,6 +40,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
+    implementation 'com.wajahatkarim3.EasyFlipView:EasyFlipView:1.0.0'
+
 
 }
 apply plugin: 'io.objectbox'

@@ -1,8 +1,11 @@
 package com.example.dylan.affirmationcardsapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
@@ -14,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.wajahatkarim3.easyflipview.EasyFlipView;
 
 import java.util.List;
 import java.util.Random;
@@ -24,9 +28,13 @@ import io.objectbox.BoxStore;
 
 public class CardActivity extends AppCompatActivity {
     ImageView cardView;
+    TextView cardText;
     List<Card> cards;
     Card card;
-
+    EasyFlipView flipView;
+    ImageView heartView;
+    SharedPreferences prefs = null;
+    ImageView cardback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +45,19 @@ public class CardActivity extends AppCompatActivity {
         Typeface font = Typeface.createFromAsset(getAssets(), "font.otf");
         Typeface font2 = Typeface.createFromAsset(getAssets(), "italic.otf");
 
-        TextView cardText = findViewById(R.id.cardText);
+        cardText = findViewById(R.id.cardText);
+        cardback = findViewById(R.id.cardBack);
+
+        prefs = getSharedPreferences("CardType", Context.MODE_PRIVATE);
+        String imageType = prefs.getString("style", "porcelain");
+        if (imageType.equals("porcelain")) {
+            cardback.setImageResource(R.drawable.porcelain);
+        } else {
+            cardback.setImageResource(R.drawable.warmcard);
+        }
+
+
+
 
 
         // Update the action bar title with the TypefaceSpan instance
@@ -76,7 +96,7 @@ public class CardActivity extends AppCompatActivity {
         Box<Card> cardBox = boxStore.boxFor(Card.class);
         cards = cardBox.getAll();
         cardView = findViewById(R.id.imageCard);
-        ImageView heartView = findViewById(R.id.heart_button);
+        heartView = findViewById(R.id.heart_button);
 
 
         Random rand = new Random();
@@ -100,9 +120,26 @@ public class CardActivity extends AppCompatActivity {
             cardText.setText(null);
         }
 
+
+        flipView = findViewById(R.id.flipView);
+
+        new Handler().postDelayed(new Runnable() {
+                                      @Override
+                                      public void run() {
+                                          flipCard();
+                                      }
+                                  },
+                700);
+
+
         if (card.isFavorite()) {
             heartView.setImageDrawable(getResources().getDrawable(R.drawable.ic_favorite_red_24dp));
         }
+    }
+
+    public void flipCard() {
+        flipView.flipTheView();
+
 
     }
 
@@ -134,5 +171,29 @@ public class CardActivity extends AppCompatActivity {
         // i.putExtra(android.content.Intent.EXTRA_SUBJECT, "Wow!");
         i.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
         startActivity(Intent.createChooser(i, "Choose sharing method"));
+    }
+
+    public void setImage(View view) {
+        ImageView iv = findViewById(R.id.imageCard);
+        iv.setVisibility(View.VISIBLE);
+
+
+        if (card.isCreated()) {
+            cardText.setText(card.getText());
+            Glide
+                    .with(this)
+                    .load(R.drawable.cardblank)
+                    .into(cardView);
+
+
+        } else {
+            Glide
+                    .with(this)
+                    .load(card.getImage())
+                    .into(cardView);
+
+            cardText.setText(null);
+        }
+
     }
 }
