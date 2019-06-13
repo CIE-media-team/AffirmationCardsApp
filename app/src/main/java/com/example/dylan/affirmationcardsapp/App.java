@@ -44,9 +44,9 @@ public class App extends Application {
             initialCards.add(new Card(R.drawable.card2));
             initialCards.add(new Card(R.drawable.card3));
             initialCards.add(new Card(R.drawable.card4));
-            initialCards.add(new Card(R.drawable.card5));
-            initialCards.add(new Card(R.drawable.card6));
-            initialCards.add(new Card(R.drawable.card7));
+            initialCards.add(new Card(R.drawable.card4));
+            initialCards.add(new Card(R.drawable.card4));
+            initialCards.add(new Card(R.drawable.card4));
             initialCards.add(new Card(R.drawable.card8));
             initialCards.add(new Card(R.drawable.card9));
             initialCards.add(new Card(R.drawable.card10));

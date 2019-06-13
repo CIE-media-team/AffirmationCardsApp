@@ -130,7 +130,7 @@ public class CardActivity extends AppCompatActivity {
     public void share_button(View view) {
         Intent i = new Intent(android.content.Intent.ACTION_SEND);
         i.setType("text/plain");
-        String shareBodyText = "Fertile Affirmations is a mindfulness based tool created to help motivate and support you during your family building journey. Check it out at http://fertileaffirmations.com/.";
+        String shareBodyText = "I just received my Fertile Affirmation. You can to at fertileaffirmations.com";
         // i.putExtra(android.content.Intent.EXTRA_SUBJECT, "Wow!");
         i.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
         startActivity(Intent.createChooser(i, "Choose sharing method"));

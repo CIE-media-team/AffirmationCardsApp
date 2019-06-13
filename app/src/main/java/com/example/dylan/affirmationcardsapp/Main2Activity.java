@@ -40,6 +40,7 @@ public class Main2Activity extends AppCompatActivity
     boolean warm, porcelain;
     ImageView background;
     private boolean justReset = false;
+    private boolean sortByFavorites;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class Main2Activity extends AppCompatActivity
 
         prefs = getSharedPreferences("CardType", Context.MODE_PRIVATE);
         String imageType = prefs.getString("style", "porcelain");
+
 
 
         //  String imageType = getIntent().getStringExtra("style");
@@ -81,17 +83,17 @@ public class Main2Activity extends AppCompatActivity
     }
 
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else if (true) {
-        } else {
-
-            super.onBackPressed();
-        }
-    }
+//    @Override
+//    public void onBackPressed() {
+//        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+//        if (drawer.isDrawerOpen(GravityCompat.START)) {
+//            drawer.closeDrawer(GravityCompat.START);
+//        } else if (true) {
+//        } else {
+//
+//            super.onBackPressed();
+//        }
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -155,7 +157,7 @@ public class Main2Activity extends AppCompatActivity
                         .setData(CalendarContract.Events.CONTENT_URI)
                         .setType("vnd.android.cursor.item/event")
                         .putExtra(CalendarContract.Events.TITLE, "Fertile Affirmations")
-                        .putExtra(CalendarContract.Events.DESCRIPTION, "Receive my daily affirmation!")
+                        .putExtra(CalendarContract.Events.DESCRIPTION, "Pull my daily Fertile Affirmation!")
                         .putExtra(CalendarContract.Events.RRULE, "FREQ=DAILY")
 
                         // to specify start time use "beginTime" instead of "dtstart"
@@ -253,8 +255,22 @@ public class Main2Activity extends AppCompatActivity
             Uri uriUrl = Uri.parse("http://fertileaffirmations.com/shop");
             Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
             startActivity(launchBrowser);
-        }
+        } else if (id == R.id.nav_preference) {
 
+            Intent i = new Intent(this, FirstRunActivity.class);
+            startActivity(i);
+
+        } else if (id == R.id.nav_favorites) {
+
+            Intent i = new Intent(this, CollectionActivity.class);
+            SharedPreferences.Editor editor = getSharedPreferences("sort", MODE_PRIVATE).edit();
+            editor.putBoolean(SORTED_BY_FAVORITES, true);
+            editor.apply();
+
+
+            startActivity(i);
+
+        }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -31,23 +31,23 @@ public class FirstRunActivity extends AppCompatActivity {
         prefs = getSharedPreferences("CardType", Context.MODE_PRIVATE);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        if (prefs.getBoolean("firstrun", true)) {
-            // Do first run stuff here then set 'firstrun' as false
-            // using the following line to edit/commit prefs
-
-
-        } else {
-
-            Intent i = new Intent(this, Main2Activity.class);
-            i.putExtra("style", prefs.getString("style", "porcelain"));
-
-            startActivity(i);
-        }
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//
+//        if (prefs.getBoolean("firstrun", true)) {
+//            // Do first run stuff here then set 'firstrun' as false
+//            // using the following line to edit/commit prefs
+//
+//
+//        } else {
+//
+//            Intent i = new Intent(this, Main2Activity.class);
+//            i.putExtra("style", prefs.getString("style", "porcelain"));
+//
+//            startActivity(i);
+//        }
+//    }
 
     public void warmClicked(View view) {
         Intent i = new Intent(this, Main2Activity.class);

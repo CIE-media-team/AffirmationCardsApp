@@ -70,6 +70,7 @@ public class CollectionActivity extends AppCompatActivity {
         }
 
 
+
         // Get the stored state of the "Sort By Favorites" button
         sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
 
@@ -92,7 +93,14 @@ public class CollectionActivity extends AppCompatActivity {
 
     private void loadCards(boolean sortedByFavorites) {
         Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
+        List<Card> cardList;
 
+        sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
+
+        if (sortByFavorites) {
+            ImageButton heartView = findViewById(R.id.sortFavorite);
+            heartView.setImageResource(R.drawable.ic_favorite_red_24dp);
+        }
         // Let the database do the searching. Get cards that are Free or Owned.
         QueryBuilder<Card> cardQuery = cardBox.query()
                 .equal(Card_.free, true)
@@ -102,10 +110,30 @@ public class CollectionActivity extends AppCompatActivity {
         // If sorting by favorites, lets also "order by Favorite descending". This will sort
         // by the "Favorite" property, and True comes after False, so we use descending.
         if (sortedByFavorites) {
-            cardQuery = cardQuery.orderDesc(Card_.favorite);
+            //cardQuery = cardQuery.orderDesc(Card_.favorite);
+            QueryBuilder<Card> cardQueryFavorites = cardBox.query()
+                    .equal(Card_.favorite, true);
+            cardList = cardQueryFavorites.build().find();
+
+
+        } else {
+
+
+            cardList = cardQuery.build().find();
+        }
+        TextView tv = findViewById(R.id.error);
+
+        if (cardList.size() == 0) {
+
+            tv.setText("You have no cards favorited!");
+            tv.setVisibility(View.VISIBLE);
+
+        } else {
+            tv.setText("");
+            tv.setVisibility(View.INVISIBLE);
+
 
         }
-        List<Card> cardList = cardQuery.build().find();
 
         // Set the adapter with the arranged list of cards. Then tell it to update the UI.
         adapter.setImages(cardList);
@@ -158,6 +186,7 @@ public class CollectionActivity extends AppCompatActivity {
             }
             List<Card> cardList = cardQuery.build().find();
             if (cardList.size() == 0) {
+                tv.setText("You have no cards left to delete!");
                 tv.setVisibility(View.VISIBLE);
             } else {
                 tv.setVisibility(View.INVISIBLE);
