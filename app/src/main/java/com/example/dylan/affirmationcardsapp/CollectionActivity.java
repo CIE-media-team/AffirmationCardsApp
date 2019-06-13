@@ -45,6 +45,8 @@ public class CollectionActivity extends AppCompatActivity {
         title.setTypeface(font2);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        TextView tv3 = findViewById(R.id.error);
+        tv3.setTypeface(font2);
 
         // Initialize the RecyclerView and configure its adapter
         RecyclerView cardRecycler = findViewById(R.id.building_recycler);
