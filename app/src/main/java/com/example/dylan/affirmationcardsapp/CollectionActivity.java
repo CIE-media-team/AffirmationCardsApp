@@ -26,6 +26,7 @@ public class CollectionActivity extends AppCompatActivity {
     private CaptionedImagesAdapter adapter;
     private boolean sortByFavorites;
     SharedPreferences prefs = null;
+    String imageType;
 
 
     public static String getReset() {
@@ -55,7 +56,7 @@ public class CollectionActivity extends AppCompatActivity {
         RecyclerView cardRecycler = findViewById(R.id.building_recycler);
 
         prefs = getSharedPreferences("CardType", Context.MODE_PRIVATE);
-        String imageType = prefs.getString("style", "porcelain");
+        imageType = prefs.getString("style", "porcelain");
         int image;
         if (imageType.equals("porcelain")) {
             image = (R.drawable.porcelain);
@@ -151,6 +152,7 @@ public class CollectionActivity extends AppCompatActivity {
         }
 
         // Set the adapter with the arranged list of cards. Then tell it to update the UI.
+        adapter.setPreference(imageType);
         adapter.setImages(cardList);
         adapter.notifyDataSetChanged();
 

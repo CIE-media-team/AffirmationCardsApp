@@ -1,7 +1,9 @@
 package com.example.dylan.affirmationcardsapp;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -45,6 +47,20 @@ public class CollectionEnlarge extends AppCompatActivity {
 
         Typeface font = Typeface.createFromAsset(getAssets(), "font.otf");
         Typeface font2 = Typeface.createFromAsset(getAssets(), "italic.otf");
+
+
+        ImageView cardback = findViewById(R.id.cardBack);
+        SharedPreferences prefs = getSharedPreferences("CardType", Context.MODE_PRIVATE);
+        String imageType = prefs.getString("style", "porcelain");
+        if (imageType.equals("porcelain")) {
+            cardback.setImageResource(R.drawable.porcelain);
+        } else {
+            cardback.setImageResource(R.drawable.warmcard);
+        }
+
+
+
+
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
