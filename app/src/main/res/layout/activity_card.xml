@@ -22,7 +22,6 @@
         android:layout_height="0dp"
         app:flipDuration="500"
         app:flipEnabled="true"
-        app:flipOnTouch="true"
 
 
 

@@ -1,5 +1,6 @@
 package com.example.dylan.affirmationcardsapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -24,6 +25,8 @@ public class CollectionActivity extends AppCompatActivity {
     private static int counter = 0;
     private CaptionedImagesAdapter adapter;
     private boolean sortByFavorites;
+    SharedPreferences prefs = null;
+
 
     public static String getReset() {
         return SORTED_BY_FAVORITES;
@@ -50,7 +53,18 @@ public class CollectionActivity extends AppCompatActivity {
 
         // Initialize the RecyclerView and configure its adapter
         RecyclerView cardRecycler = findViewById(R.id.building_recycler);
-        adapter = new CaptionedImagesAdapter();
+
+        prefs = getSharedPreferences("CardType", Context.MODE_PRIVATE);
+        String imageType = prefs.getString("style", "porcelain");
+        int image;
+        if (imageType.equals("porcelain")) {
+            image = (R.drawable.porcelain);
+        } else {
+            image = (R.drawable.warmcard);
+        }
+
+
+        adapter = new CaptionedImagesAdapter(image);
         cardRecycler.setAdapter(adapter);
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
@@ -74,10 +88,11 @@ public class CollectionActivity extends AppCompatActivity {
         // Get the stored state of the "Sort By Favorites" button
         sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
 
-        if (sortByFavorites) {
-            ImageButton heartView = findViewById(R.id.sortFavorite);
-            heartView.setImageResource(R.drawable.fave);
-        }
+
+//        if (sortByFavorites) {
+//            ImageButton heartView = findViewById(R.id.sortFavorite);
+//            heartView.setImageResource(R.drawable.fave);
+//        }
 
         loadCards(sortByFavorites);
     }

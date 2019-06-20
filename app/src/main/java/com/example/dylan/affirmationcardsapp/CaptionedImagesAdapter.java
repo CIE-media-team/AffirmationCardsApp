@@ -19,6 +19,12 @@ import java.util.List;
 class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter.ViewHolder> {
     CardView cardView;
     private List<Card> images;
+    private int image;
+
+    public CaptionedImagesAdapter(int image) {
+        this.image = image;
+    }
+
 
     void setImages(List<Card> images) {
         this.images = images;
@@ -40,29 +46,18 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
         return new ViewHolder(cv);
     }
 
+
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         Card c = images.get(position);
         TextView tv = holder.cardView.findViewById(R.id.cardText);
 
-        if (c.isCreated()) {
-            tv.setText(c.getText());
 
-            Glide
-                    .with(holder.cardView.getContext())
-                    .load(R.drawable.cardblank)
-                    .into((ImageView) holder.cardView.findViewById(R.id.cardView));
+        Glide
+                .with(holder.cardView.getContext())
+                .load(image)
+                .into((ImageView) holder.cardView.findViewById(R.id.cardView));
 
-
-        } else {
-            //holder.imageView.setImageResource(images.get(position).getImage());
-            tv.setText("");
-
-            Glide
-                    .with(holder.cardView.getContext())
-                    .load(c.getImage())
-                    .into((ImageView) holder.cardView.findViewById(R.id.cardView));
-        }
         final CardView cardView = holder.cardView;
 
 

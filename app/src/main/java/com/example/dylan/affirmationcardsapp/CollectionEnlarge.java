@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.like.LikeButton;
+import com.wajahatkarim3.easyflipview.EasyFlipView;
 
 import io.objectbox.Box;
 
@@ -29,6 +31,11 @@ public class CollectionEnlarge extends AppCompatActivity {
     private Box<Card> cardBox;
     private ImageView heartView;
     private Menu menu;
+    EasyFlipView flipView;
+    ImageView cardView2;
+    TextView cardText;
+
+
 
 
     @Override
@@ -56,7 +63,7 @@ public class CollectionEnlarge extends AppCompatActivity {
         long cardId = getIntent().getLongExtra(EXTRA_CARD_ID, -1);
         cardBox = App.getApp().getBoxStore().boxFor(Card.class);
         card = cardBox.get(cardId);
-        TextView cardText = findViewById(R.id.cardText);
+        cardText = findViewById(R.id.cardText);
         cardText.setTypeface(font);
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
@@ -79,7 +86,6 @@ public class CollectionEnlarge extends AppCompatActivity {
         if (card.isCreated()) {
 
 
-            cardText.setText(card.getText());
 
             Glide
                     .with(this)
@@ -103,9 +109,39 @@ public class CollectionEnlarge extends AppCompatActivity {
         //cardView.setImageResource(CollectionActivity.imageIDs[cardId]);
 
 
+        flipView = findViewById(R.id.flipView);
+        cardView2 = findViewById(R.id.enlargedCard);
+        cardView2.setVisibility(View.INVISIBLE);
+
+        new Handler().postDelayed(new Runnable() {
+                                      @Override
+                                      public void run() {
+                                          flipCard();
+                                      }
+                                  },
+                700);
+
+
     }
 
 
+    public void flipCard() {
+        cardView2.setVisibility(View.VISIBLE);
+
+        flipView.flipTheView();
+        if (card.isCreated()) {
+
+            cardText.postDelayed(new Runnable() {
+                public void run() {
+                    cardText.setText(card.getText());
+                }
+            }, 320);
+
+
+        }
+
+
+    }
     public void setDrawable(Drawable d) {
         this.d = d;
     }

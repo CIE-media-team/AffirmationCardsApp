@@ -38,15 +38,14 @@ public class App extends Application {
         //cardBox.removeAll();
         //Ask Dr. Layman if he has any ideas on how to code this more intellectually***
         if (cardBox.count() == 0) {
-            setNotif();
             initialCards = new ArrayList<>();
             initialCards.add(new Card(R.drawable.card1));
             initialCards.add(new Card(R.drawable.card2));
             initialCards.add(new Card(R.drawable.card3));
             initialCards.add(new Card(R.drawable.card4));
-            initialCards.add(new Card(R.drawable.card4));
-            initialCards.add(new Card(R.drawable.card4));
-            initialCards.add(new Card(R.drawable.card4));
+            initialCards.add(new Card(R.drawable.card5));
+            initialCards.add(new Card(R.drawable.card6));
+            initialCards.add(new Card(R.drawable.card7));
             initialCards.add(new Card(R.drawable.card8));
             initialCards.add(new Card(R.drawable.card9));
             initialCards.add(new Card(R.drawable.card10));
@@ -104,40 +103,6 @@ public class App extends Application {
 
         }
 
-
-    }
-
-    public void setNotif() {
-//        NotificationManager mNotificationManager =
-//                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-//            NotificationChannel channel = new NotificationChannel("YOUR_CHANNEL_ID",
-//                    "YOUR_CHANNEL_NAME",
-//                    NotificationManager.IMPORTANCE_DEFAULT);
-//            channel.setDescription("YOUR_NOTIFICATION_CHANNEL_DISCRIPTION");
-//            mNotificationManager.createNotificationChannel(channel);
-//        }
-//        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "YOUR_CHANNEL_ID")
-//                .setSmallIcon(R.mipmap.ic_launcher) // notification icon
-//                .setContentTitle("Fertile Affirmations") // title for notification
-//                .setContentText("Your daily affirmation is here!")// message for notification
-//                .setAutoCancel(true); // clear notification after click
-//        Intent intent = new Intent(getApplicationContext(), CardActivity.class);
-//        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-//        mBuilder.setContentIntent(pi);
-//        mNotificationManager.notify(0, mBuilder.build());
-
-
-//        Calendar calendar = Calendar.getInstance();
-//
-//        calendar.set(Calendar.HOUR_OF_DAY,15);
-//        calendar.set(Calendar.MINUTE,32);
-//
-//        Intent intent = new Intent(getApplicationContext(),Notification_receiver.class);
-//        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-//
-//        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
 
     }
 

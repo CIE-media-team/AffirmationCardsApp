@@ -24,7 +24,7 @@
         <item
             android:id="@+id/nav_add"
             android:icon="@drawable/add_icon"
-            android:title="Create Card" />
+            android:title="Create My Own Card" />
 
         <item
             android:id="@+id/nav_favorites"

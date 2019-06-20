@@ -104,7 +104,6 @@ public class CardActivity extends AppCompatActivity {
         card = cards.get(randNum);
 
         if (card.isCreated()) {
-            cardText.setText(card.getText());
             Glide
                     .with(this)
                     .load(R.drawable.cardblank)
@@ -122,6 +121,8 @@ public class CardActivity extends AppCompatActivity {
 
 
         flipView = findViewById(R.id.flipView);
+        ImageView cardView = findViewById(R.id.imageCard);
+        cardView.setVisibility(View.INVISIBLE);
 
         new Handler().postDelayed(new Runnable() {
                                       @Override
@@ -138,7 +139,21 @@ public class CardActivity extends AppCompatActivity {
     }
 
     public void flipCard() {
+        cardView.setVisibility(View.VISIBLE);
+
         flipView.flipTheView();
+
+        if (card.isCreated()) {
+
+            cardText.postDelayed(new Runnable() {
+                public void run() {
+                    cardText.setText(card.getText());
+                }
+            }, 320);
+
+
+        }
+
 
 
     }
@@ -167,7 +182,7 @@ public class CardActivity extends AppCompatActivity {
     public void share_button(View view) {
         Intent i = new Intent(android.content.Intent.ACTION_SEND);
         i.setType("text/plain");
-        String shareBodyText = "I just received my Fertile Affirmation. You can to at fertileaffirmations.com";
+        String shareBodyText = "I just received my Fertile Affirmation. You can to at fertileaffirmations.com!";
         // i.putExtra(android.content.Intent.EXTRA_SUBJECT, "Wow!");
         i.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
         startActivity(Intent.createChooser(i, "Choose sharing method"));

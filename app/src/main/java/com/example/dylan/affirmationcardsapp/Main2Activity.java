@@ -128,6 +128,11 @@ public class Main2Activity extends AppCompatActivity
 
         } else if (id == R.id.nav_collection) {
             Intent i = new Intent(this, CollectionActivity.class);
+
+            SharedPreferences.Editor editor = getSharedPreferences("sort", MODE_PRIVATE).edit();
+            editor.putBoolean(SORTED_BY_FAVORITES, false);
+            editor.apply();
+
             startActivity(i);
 
         } else if (id == R.id.nav_getcard) {
@@ -163,9 +168,8 @@ public class Main2Activity extends AppCompatActivity
                         // to specify start time use "beginTime" instead of "dtstart"
                         //.putExtra(Events.DTSTART, calendar.getTimeInMillis())
                         .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, start)
+                        .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, start + 10000)
 
-                        .putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true)
-                        .putExtra(CalendarContract.Events.HAS_ALARM, 1)
                         .putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
@@ -266,6 +270,7 @@ public class Main2Activity extends AppCompatActivity
             SharedPreferences.Editor editor = getSharedPreferences("sort", MODE_PRIVATE).edit();
             editor.putBoolean(SORTED_BY_FAVORITES, true);
             editor.apply();
+            i.putExtra("favorites", true);
 
 
             startActivity(i);
