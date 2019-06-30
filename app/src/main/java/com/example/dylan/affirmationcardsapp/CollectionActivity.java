@@ -10,7 +10,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -67,12 +66,6 @@ public class CollectionActivity extends AppCompatActivity {
 
         adapter = new CaptionedImagesAdapter(image);
         cardRecycler.setAdapter(adapter);
-        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        int number = 0;
-
-
-        number = (int) dpWidth / 91;
 
 
         LinearLayoutManager layoutManager = new GridLayoutManager(this, 4);
