@@ -10,8 +10,8 @@
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/launcher_icon_logo_words"
-        android:roundIcon="@mipmap/launcher_icon_logo_words_round"
+        android:icon="@mipmap/falauncher"
+        android:roundIcon="@mipmap/falauncher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">

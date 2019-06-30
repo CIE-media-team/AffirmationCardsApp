@@ -10,21 +10,18 @@
             android:id="@+id/nav_getcard"
             android:enabled="true"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Affirmation Card" />
+            android:title="Affirmation" />
         <item
             android:id="@+id/nav_collection"
             android:icon="@drawable/ic_collection_1"
             android:title="Collection" />
 
-        <item
-            android:id="@+id/nav_preference"
-            android:icon="@drawable/ic_preferenceicon"
-            android:title="Choose Preference" />
+
 
         <item
             android:id="@+id/nav_add"
             android:icon="@drawable/add_icon"
-            android:title="Create My Own Card" />
+            android:title="Custom Affirmation" />
 
         <item
             android:id="@+id/nav_favorites"
@@ -34,7 +31,7 @@
         <item
             android:id="@+id/nav_info"
             android:icon="@drawable/info_icon"
-            android:title="Info" />
+            android:title="Instructions" />
         <item
             android:id="@+id/nav_remind"
             android:icon="@drawable/remindme"

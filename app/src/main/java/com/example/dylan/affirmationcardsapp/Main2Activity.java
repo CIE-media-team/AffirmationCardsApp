@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract;
@@ -15,9 +16,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -52,6 +56,8 @@ public class Main2Activity extends AppCompatActivity
         prefs = getSharedPreferences("CardType", Context.MODE_PRIVATE);
         String imageType = prefs.getString("style", "porcelain");
 
+        Typeface font2 = Typeface.createFromAsset(getAssets(), "italic.otf");
+        NavigationView navigationView = findViewById(R.id.nav_view);
 
 
         //  String imageType = getIntent().getStringExtra("style");
@@ -78,8 +84,26 @@ public class Main2Activity extends AppCompatActivity
         toggle.getDrawerArrowDrawable().setColor(Color.parseColor("#634f36"));
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        Menu m = navigationView.getMenu();
+        for (int i = 0; i < m.size(); i++) {
+            MenuItem mi = m.getItem(i);
+
+            //for aapplying a font to subMenu ...
+            SubMenu subMenu = mi.getSubMenu();
+            if (subMenu != null && subMenu.size() > 0) {
+                for (int j = 0; j < subMenu.size(); j++) {
+                    MenuItem subMenuItem = subMenu.getItem(j);
+                    applyFontToMenuItem(subMenuItem);
+                }
+            }
+
+            //the method we have create in activity
+            applyFontToMenuItem(mi);
+        }
+
     }
 
 
@@ -100,6 +124,17 @@ public class Main2Activity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         return true;
     }
+
+
+    private void applyFontToMenuItem(MenuItem mi) {
+        Typeface font = Typeface.createFromAsset(getAssets(), "italic.otf");
+        SpannableString mNewTitle = new SpannableString(mi.getTitle());
+
+        mNewTitle.setSpan(new CustomTypefaceSpan("", font), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        mi.setTitle(mNewTitle);
+    }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -259,10 +294,10 @@ public class Main2Activity extends AppCompatActivity
             Uri uriUrl = Uri.parse("http://fertileaffirmations.com/shop");
             Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
             startActivity(launchBrowser);
-        } else if (id == R.id.nav_preference) {
-
-            Intent i = new Intent(this, FirstRunActivity.class);
-            startActivity(i);
+//        } else if (id == R.id.nav_preference) {
+//
+//            Intent i = new Intent(this, FirstRunActivity.class);
+//            startActivity(i);
 
         } else if (id == R.id.nav_favorites) {
 

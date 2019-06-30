@@ -17,7 +17,7 @@
 
         android:layout_marginRight="8dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/cardblank"
+        android:src="@drawable/newinfocard"
 
         app:layout_constraintHeight_default="percent"
         app:layout_constraintHeight_percent=".80"
@@ -28,30 +28,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-
-    <TextView
-        android:id="@+id/infoView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="30dp"
-        android:lineSpacingExtra="5dp"
-
-        android:gravity="center"
-        android:text="@string/info_card"
-        android:textSize="15sp"
-        android:paddingTop="30dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:paddingStart="40dp"
-        android:paddingEnd="40dp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="@id/imageView"
-        app:layout_constraintBottom_toBottomOf="@id/imageView"
-        app:layout_constraintLeft_toLeftOf="@id/imageView"
-        app:layout_constraintRight_toRightOf="@id/imageView" />
 
     <include
         layout="@layout/toolbar"

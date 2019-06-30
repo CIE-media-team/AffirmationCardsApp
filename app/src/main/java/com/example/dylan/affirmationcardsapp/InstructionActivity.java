@@ -1,6 +1,5 @@
 package com.example.dylan.affirmationcardsapp;
 
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,13 +22,9 @@ public class InstructionActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         TextView title = findViewById(R.id.toolbar_title);
-        title.setText("Information");
+        title.setText("Instructions");
         title.setTypeface(font2);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        TextView tv = findViewById(R.id.infoView);
-        tv.setTypeface(font2);
-        tv.setTextColor(Color.BLACK);
 
 
     }

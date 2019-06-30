@@ -51,9 +51,9 @@ public class CardActivity extends AppCompatActivity {
         prefs = getSharedPreferences("CardType", Context.MODE_PRIVATE);
         String imageType = prefs.getString("style", "porcelain");
         if (imageType.equals("porcelain")) {
-            cardback.setImageResource(R.drawable.porcelain);
+            cardback.setImageResource(R.drawable.porcelainround);
         } else {
-            cardback.setImageResource(R.drawable.warmcard);
+            cardback.setImageResource(R.drawable.warmround);
         }
 
 
