@@ -11,7 +11,6 @@ import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,9 +52,21 @@ public class CollectionEnlarge extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("CardType", Context.MODE_PRIVATE);
         String imageType = prefs.getString("style", "porcelain");
         if (imageType.equals("porcelain")) {
-            cardback.setImageResource(R.drawable.porcelainround);
+
+            Glide
+                    .with(cardback.getContext())
+                    .load(R.drawable.porcelainround)
+                    .into((ImageView) cardback.findViewById(R.id.cardBack));
+            //cardback.setImageResource(R.drawable.porcelainround);
+
+
         } else {
-            cardback.setImageResource(R.drawable.warmround);
+            Glide
+                    .with(cardback.getContext())
+                    .load(R.drawable.warmround)
+                    .into((ImageView) cardback.findViewById(R.id.cardBack));
+
+            //cardback.setImageResource(R.drawable.warmround);
         }
 
 
@@ -81,23 +92,6 @@ public class CollectionEnlarge extends AppCompatActivity {
         card = cardBox.get(cardId);
         cardText = findViewById(R.id.cardText);
         cardText.setTypeface(font);
-        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        float dpHeight = displayMetrics.heightPixels / displayMetrics.density;
-
-
-        float textSize = dpWidth / 11.75510f;
-        //cardText.setTextSize(textSize);
-
-        float textWidth = dpWidth / 1.314468f;
-
-        float textHeight = dpHeight / 1.9972526f;
-
-
-        //  ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) cardText.getLayoutParams();
-        //  params.height = (int)textHeight;
-        // params.width = (int)textWidth;
-        // cardText.setLayoutParams(params);
 
         if (card.isCreated()) {
 
