@@ -38,7 +38,7 @@ public class AddCard extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         TextView title = findViewById(R.id.toolbar_title);
-        title.setText("Create Card");
+        title.setText("Custom Affirmation");
         title.setTypeface(font2);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         et = findViewById(R.id.editText);
