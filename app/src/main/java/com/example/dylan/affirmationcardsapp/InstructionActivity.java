@@ -48,6 +48,8 @@ public class InstructionActivity extends AppCompatActivity {
         pics.add(R.drawable.instructions3);
         pics.add(R.drawable.instructions4);
         pics.add(R.drawable.instructions5);
+        pics.add(R.drawable.instructions6);
+
         leftbutton.setVisibility(View.INVISIBLE);
 
 
@@ -73,14 +75,14 @@ public class InstructionActivity extends AppCompatActivity {
 
     public void goRight(View view) {
 
-        if (counter < 5) {
+        if (counter < 6) {
             leftbutton.setVisibility(View.VISIBLE);
             counter += 1;
 
             imageView.setImageResource(pics.get(counter));
             setText();
 
-            if (counter == 5) {
+            if (counter == 6) {
                 rightbutton.setVisibility(View.INVISIBLE);
             } else {
                 rightbutton.setVisibility(View.VISIBLE);
@@ -92,7 +94,7 @@ public class InstructionActivity extends AppCompatActivity {
     }
 
     public void setText() {
-        String text = Integer.toString(counter + 1) + " / 6";
+        String text = Integer.toString(counter + 1) + " / 7";
         textView.setText(text);
     }
 
