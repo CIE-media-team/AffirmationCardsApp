@@ -67,7 +67,7 @@ public class CardActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         TextView title = findViewById(R.id.toolbar_title);
-        title.setText("My Reading");
+        title.setText("My Affirmation");
         title.setTypeface(font2);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
