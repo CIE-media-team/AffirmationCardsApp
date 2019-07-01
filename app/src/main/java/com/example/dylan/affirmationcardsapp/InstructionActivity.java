@@ -16,6 +16,7 @@ public class InstructionActivity extends AppCompatActivity {
     private int counter = 0;
     ImageView imageView;
     TextView textView;
+    ImageView leftbutton, rightbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,8 @@ public class InstructionActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.imageView);
         textView = findViewById(R.id.numView);
+        leftbutton = findViewById(R.id.left_button);
+        rightbutton = findViewById(R.id.right_button);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -45,6 +48,7 @@ public class InstructionActivity extends AppCompatActivity {
         pics.add(R.drawable.instructions3);
         pics.add(R.drawable.instructions4);
         pics.add(R.drawable.instructions5);
+        leftbutton.setVisibility(View.INVISIBLE);
 
 
     }
@@ -54,17 +58,33 @@ public class InstructionActivity extends AppCompatActivity {
             counter -= 1;
             imageView.setImageResource(pics.get(counter));
             setText();
+
+
+            if (counter == 0) {
+                leftbutton.setVisibility(View.INVISIBLE);
+            } else {
+                rightbutton.setVisibility(View.VISIBLE);
+            }
+
         }
+
 
     }
 
     public void goRight(View view) {
 
         if (counter < 5) {
+            leftbutton.setVisibility(View.VISIBLE);
             counter += 1;
 
             imageView.setImageResource(pics.get(counter));
             setText();
+
+            if (counter == 5) {
+                rightbutton.setVisibility(View.INVISIBLE);
+            } else {
+                rightbutton.setVisibility(View.VISIBLE);
+            }
 
 
         }
