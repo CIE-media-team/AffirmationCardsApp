@@ -47,10 +47,10 @@ public class InstructionActivity extends AppCompatActivity {
         pics.add(R.drawable.newinfocard);
         pics.add(R.drawable.instructions1);
         pics.add(R.drawable.instructions2);
+        pics.add(R.drawable.instructions6);
         pics.add(R.drawable.instructions3);
         pics.add(R.drawable.instructions4);
         pics.add(R.drawable.instructions5);
-        pics.add(R.drawable.instructions6);
 
         leftbutton.setVisibility(View.INVISIBLE);
         imageView.setImageResource(pics.get(0));

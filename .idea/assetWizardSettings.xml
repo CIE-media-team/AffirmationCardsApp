@@ -63,7 +63,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundLayerName" value="ic_launcher_background" />
-                                      <entry key="foregroundImage" value="C:\Users\Dylan\Desktop\falauncher.png" />
+                                      <entry key="foregroundImage" value="/Volumes/Lexar/Fertile Affirmations /FAlauncherIconNew.png" />
                                       <entry key="foregroundLayerName" value="ic_launcher_foreground" />
                                       <entry key="outputName" value="falauncher" />
                                     </map>
