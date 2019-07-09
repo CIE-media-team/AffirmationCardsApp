@@ -196,8 +196,8 @@ public class Main2Activity extends AppCompatActivity
                 Intent intent = new Intent(Intent.ACTION_INSERT)
                         .setData(CalendarContract.Events.CONTENT_URI)
                         .setType("vnd.android.cursor.item/event")
-                        .putExtra(CalendarContract.Events.TITLE, "Fertile Affirmations")
-                        .putExtra(CalendarContract.Events.DESCRIPTION, "Pull my daily Fertile Affirmation!")
+                        .putExtra(CalendarContract.Events.TITLE, "Pull my daily Fertile Affirmation!")
+                        .putExtra(CalendarContract.Events.DESCRIPTION, "Fertile Affirmations")
                         .putExtra(CalendarContract.Events.RRULE, "FREQ=DAILY")
 
                         // to specify start time use "beginTime" instead of "dtstart"

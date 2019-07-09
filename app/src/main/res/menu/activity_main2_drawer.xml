@@ -7,6 +7,11 @@
     <menu android:checkableBehavior="single">
 
         <item
+            android:id="@+id/nav_info"
+            android:icon="@drawable/info_icon"
+            android:title="Instructions" />
+
+        <item
             android:id="@+id/nav_getcard"
             android:enabled="true"
             android:icon="@drawable/ic_menu_gallery"
@@ -28,10 +33,7 @@
             android:icon="@drawable/ic_favorite"
             android:title="Favorites" />
 
-        <item
-            android:id="@+id/nav_info"
-            android:icon="@drawable/info_icon"
-            android:title="Instructions" />
+
         <item
             android:id="@+id/nav_remind"
             android:icon="@drawable/remindme"
