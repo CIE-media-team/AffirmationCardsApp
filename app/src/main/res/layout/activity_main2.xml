@@ -34,7 +34,7 @@
         android:fitsSystemWindows="true"
         app:menu="@menu/activity_main2_drawer"
         app:itemTextAppearance="@style/menu_text_style"
-        android:background="@drawable/noleaves"
+        android:background="@drawable/noleaves2"
 
 
         >

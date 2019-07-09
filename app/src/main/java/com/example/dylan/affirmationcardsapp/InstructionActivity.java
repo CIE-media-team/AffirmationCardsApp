@@ -8,13 +8,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.chrisbanes.photoview.PhotoView;
+
 import java.util.ArrayList;
 
 public class InstructionActivity extends AppCompatActivity {
 
     private ArrayList<Integer> pics = new ArrayList<>();
     private int counter = 0;
-    ImageView imageView;
+    PhotoView imageView;
     TextView textView;
     ImageView leftbutton, rightbutton;
 
@@ -51,6 +53,7 @@ public class InstructionActivity extends AppCompatActivity {
         pics.add(R.drawable.instructions6);
 
         leftbutton.setVisibility(View.INVISIBLE);
+        imageView.setImageResource(pics.get(0));
 
 
     }
