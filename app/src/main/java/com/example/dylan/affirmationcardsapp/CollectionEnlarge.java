@@ -147,8 +147,7 @@ public class CollectionEnlarge extends AppCompatActivity {
         });
 
 
-        cardView2 = findViewById(R.id.enlargedCard);
-        cardView2.setVisibility(View.INVISIBLE);
+        cardView.setVisibility(View.INVISIBLE);
 
         new Handler().postDelayed(new Runnable() {
                                       @Override
