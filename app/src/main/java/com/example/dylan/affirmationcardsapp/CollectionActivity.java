@@ -10,6 +10,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -26,7 +28,8 @@ public class CollectionActivity extends AppCompatActivity {
     private boolean sortByFavorites;
     SharedPreferences prefs = null;
     String imageType;
-
+    RecyclerView cardRecycler;
+    int flipcounter = 0;
 
     public static String getReset() {
         return SORTED_BY_FAVORITES;
@@ -52,7 +55,7 @@ public class CollectionActivity extends AppCompatActivity {
         tv3.setTypeface(font2);
 
         // Initialize the RecyclerView and configure its adapter
-        RecyclerView cardRecycler = findViewById(R.id.building_recycler);
+        cardRecycler = findViewById(R.id.building_recycler);
 
         prefs = getSharedPreferences("CardType", Context.MODE_PRIVATE);
         imageType = prefs.getString("style", "porcelain");
@@ -88,7 +91,7 @@ public class CollectionActivity extends AppCompatActivity {
 //            heartView.setImageResource(R.drawable.fave);
 //        }
 
-        loadCards(sortByFavorites);
+        //loadCards(sortByFavorites);
     }
 
     @Override
@@ -217,5 +220,63 @@ public class CollectionActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+
+        getMenuInflater().inflate(R.menu.collectionoption, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        String action;
+        final Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
+
+
+        switch (item.getItemId()) {
+            case R.id.flip:
+                sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
+
+
+                flipcounter++;
+                if (flipcounter % 2 == 1) {
+
+                    List<Card> cardList;
+                    if (sortByFavorites) {
+                        //cardQuery = cardQuery.orderDesc(Card_.favorite);
+                        QueryBuilder<Card> cardQueryFavorites = cardBox.query()
+                                .equal(Card_.favorite, true);
+                        cardList = cardQueryFavorites.build().find();
+                    } else {
+                        cardList = cardBox.getAll();
+                    }
+
+                    item.setIcon(R.drawable.flipfront);
+                    CaptionedImagesAdapter newAdapter = new CaptionedImagesAdapter(cardList);
+                    cardRecycler.setAdapter(newAdapter);
+                    newAdapter.setFront(true);
+
+
+                    LinearLayoutManager layoutManager = new GridLayoutManager(this, 4);
+                    cardRecycler.setLayoutManager(layoutManager);
+                } else {
+                    item.setIcon(R.drawable.flipback);
+
+                    cardRecycler.setAdapter(adapter);
+                    adapter.setFront(false);
+
+
+                    LinearLayoutManager layoutManager = new GridLayoutManager(this, 4);
+                    cardRecycler.setLayoutManager(layoutManager);
+                }
+
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 }

@@ -81,7 +81,7 @@ public class Main2Activity extends AppCompatActivity
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
-        toggle.getDrawerArrowDrawable().setColor(Color.parseColor("#634f36"));
+        toggle.getDrawerArrowDrawable().setColor(Color.parseColor("#000000"));
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);

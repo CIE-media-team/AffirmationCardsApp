@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.like.LikeButton;
 import com.wajahatkarim3.easyflipview.EasyFlipView;
+
+import java.util.List;
 
 import io.objectbox.Box;
 
@@ -35,6 +38,11 @@ public class CollectionEnlarge extends AppCompatActivity {
     EasyFlipView flipView;
     ImageView cardView2;
     TextView cardText;
+    ImageView cardback;
+    List<Card> cards;
+    ImageView cardView;
+    long cardId;
+
 
 
 
@@ -48,7 +56,7 @@ public class CollectionEnlarge extends AppCompatActivity {
         Typeface font2 = Typeface.createFromAsset(getAssets(), "italic.otf");
 
 
-        ImageView cardback = findViewById(R.id.cardBack);
+        cardback = findViewById(R.id.cardBack);
         SharedPreferences prefs = getSharedPreferences("CardType", Context.MODE_PRIVATE);
         String imageType = prefs.getString("style", "porcelain");
         if (imageType.equals("porcelain")) {
@@ -84,11 +92,12 @@ public class CollectionEnlarge extends AppCompatActivity {
 
 
         heartView = findViewById(R.id.heartView);
-        ImageView cardView = findViewById(R.id.enlargedCard);
+        cardView = findViewById(R.id.enlargedCard);
 
         // The database id of the card is in the intent. Get the Card from ObjectBox based on the id
-        long cardId = getIntent().getLongExtra(EXTRA_CARD_ID, -1);
+        cardId = getIntent().getLongExtra(EXTRA_CARD_ID, -1);
         cardBox = App.getApp().getBoxStore().boxFor(Card.class);
+        cards = cardBox.getAll();
         card = cardBox.get(cardId);
         cardText = findViewById(R.id.cardText);
         cardText.setTypeface(font);
@@ -118,8 +127,26 @@ public class CollectionEnlarge extends AppCompatActivity {
         }
         //cardView.setImageResource(CollectionActivity.imageIDs[cardId]);
 
-
         flipView = findViewById(R.id.flipView);
+
+
+        flipView.setOnTouchListener(new OnSwipeTouchListener(this) {
+            @Override
+            public void onSwipeLeft() {
+
+                changeCard("left");
+            }
+
+            @Override
+            public void onSwipeRight() {
+
+                changeCard("right");
+            }
+
+
+        });
+
+
         cardView2 = findViewById(R.id.enlargedCard);
         cardView2.setVisibility(View.INVISIBLE);
 
@@ -131,6 +158,49 @@ public class CollectionEnlarge extends AppCompatActivity {
                                   },
                 700);
 
+
+    }
+
+    public void changeCard(String direction) {
+        if (direction.equals("left")) {
+            if (cardId < cards.size()) {
+                cardId += 1;
+
+            }
+        } else if (direction.equals("right")) {
+            if (cardId > 1) {
+                cardId -= 1;
+
+            }
+        }
+        Log.d("Test", Long.toString(cardId));
+
+        card = cardBox.get(cardId);
+        if (card.isCreated()) {
+
+
+            Glide
+                    .with(this)
+                    .load(R.drawable.cardblank)
+                    .into(cardView);
+            cardText.setText(card.getText());
+
+        } else {
+
+
+            Glide
+                    .with(this)
+                    .load(card.getImage())
+                    .into(cardView);
+
+            cardText.setText(null);
+        }
+        if (card.isFavorite()) {
+            heartView.setImageDrawable(getResources().getDrawable(R.drawable.ic_favorite_red_24dp));
+        } else {
+            heartView.setImageDrawable(getResources().getDrawable(R.drawable.ic_unsortfavorite_24dp));
+
+        }
 
     }
 

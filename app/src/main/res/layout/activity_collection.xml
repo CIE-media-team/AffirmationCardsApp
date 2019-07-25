@@ -24,6 +24,7 @@
         android:textSize="20sp"
         android:visibility="gone" />
     <android.support.v7.widget.RecyclerView
+        android:paddingTop="3dp"
         android:id="@+id/building_recycler"
         android:layout_width="0dp"
         android:layout_height="0dp"

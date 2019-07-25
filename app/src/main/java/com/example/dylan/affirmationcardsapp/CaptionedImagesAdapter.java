@@ -20,14 +20,23 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
     CardView cardView;
     private List<Card> images;
     private int image;
+    boolean front = false;
 
     public CaptionedImagesAdapter(int image) {
         this.image = image;
     }
 
+    public CaptionedImagesAdapter(List<Card> images) {
+        this.images = images;
+    }
+
 
     void setImages(List<Card> images) {
         this.images = images;
+    }
+
+    void setFront(boolean b) {
+        front = b;
     }
 
     public void setPreference(String imageType) {
@@ -61,11 +70,19 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
         Card c = images.get(position);
         TextView tv = holder.cardView.findViewById(R.id.cardText);
 
+        if (!front) {
+            Glide
+                    .with(holder.cardView.getContext())
+                    .load(image)
+                    .into((ImageView) holder.cardView.findViewById(R.id.cardView));
+        } else {
+            Glide
+                    .with(holder.cardView.getContext())
+                    .load(c.getImage())
+                    .into((ImageView) holder.cardView.findViewById(R.id.cardView));
+        }
 
-        Glide
-                .with(holder.cardView.getContext())
-                .load(image)
-                .into((ImageView) holder.cardView.findViewById(R.id.cardView));
+
 
         final CardView cardView = holder.cardView;
 
