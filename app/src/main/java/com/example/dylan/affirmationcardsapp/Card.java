@@ -31,7 +31,7 @@ public class Card {
 
         this.text = text;
         this.created = true;
-        this.image = R.drawable.ic_menu_send;
+        this.image = R.drawable.cardblank;
         this.favorite = favorited;
         createdId = (new Date()).getTime();
         Random rand = new Random();

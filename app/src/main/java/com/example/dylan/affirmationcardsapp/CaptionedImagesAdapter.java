@@ -64,6 +64,9 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
         return new ViewHolder(cv);
     }
 
+    public boolean isFront() {
+        return front;
+    }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
@@ -76,6 +79,11 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
                     .load(image)
                     .into((ImageView) holder.cardView.findViewById(R.id.cardView));
         } else {
+            if (c.isCreated()) {
+                tv.setText(c.getText());
+            } else {
+                tv.setText(null);
+            }
             Glide
                     .with(holder.cardView.getContext())
                     .load(c.getImage())

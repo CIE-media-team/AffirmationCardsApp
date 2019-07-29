@@ -32,6 +32,8 @@ public class CollectionActivity extends AppCompatActivity {
     int flipcounter = 0;
     LinearLayoutManager layoutManager;
 
+    boolean front;
+
     public static String getReset() {
         return SORTED_BY_FAVORITES;
     }
@@ -150,14 +152,13 @@ public class CollectionActivity extends AppCompatActivity {
 
         // Set the adapter with the arranged list of cards. Then tell it to update the UI.
 
-        adapter = new CaptionedImagesAdapter(cardList);
 
+        adapter.setImages(cardList);
+        adapter.setFront(front);
         adapter.setPreference(imageType);
-
-        cardRecycler.setAdapter(adapter);
-
-
+        cardRecycler.setLayoutManager(layoutManager);
         adapter.notifyDataSetChanged();
+
 
     }
 
@@ -215,6 +216,7 @@ public class CollectionActivity extends AppCompatActivity {
             }
             // Set the adapter with the arranged list of cards. Then tell it to update the UI.
             adapter.setImages(cardList);
+
             adapter.notifyDataSetChanged();
         } else {
             tv.setVisibility(View.INVISIBLE);
@@ -264,7 +266,7 @@ public class CollectionActivity extends AppCompatActivity {
                     item.setIcon(R.drawable.flipfront);
                     adapter.setImages(cardList);
                     adapter.setFront(true);
-
+                    front = true;
 
                     cardRecycler.setLayoutManager(layoutManager);
                     adapter.notifyDataSetChanged();
@@ -274,6 +276,7 @@ public class CollectionActivity extends AppCompatActivity {
 
                     cardRecycler.setAdapter(adapter);
                     adapter.setFront(false);
+                    front = false;
 
 
                 }

@@ -144,9 +144,7 @@ public class Main2Activity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -239,6 +237,7 @@ public class Main2Activity extends AppCompatActivity
                             List<Card> cardList2 = cardQuery2.build().find();
                             for (Card card : cardList2) {
                                 card.setFavorite(false);
+                                cardBox.put(card);
                             }
                             SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
                             editor.putBoolean(CollectionActivity.getReset(), false);
