@@ -1,11 +1,20 @@
 package com.example.dylan.affirmationcardsapp;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+
 import io.objectbox.Box;
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 
 @Entity
 public class Card {
+    private double createdId;
+    private int cardID;
+
+    static List<Integer> ids;
+
     private static boolean justReset = false;
     private int image;
     private boolean free = true;
@@ -16,12 +25,7 @@ public class Card {
     @Id
     private long id;
 
-    public Card(int image, boolean isFree) {
-        this.image = image;
-        this.free = isFree;
 
-
-    }
 
     public Card(String text, boolean favorited) {
 
@@ -29,16 +33,31 @@ public class Card {
         this.created = true;
         this.image = R.drawable.ic_menu_send;
         this.favorite = favorited;
+        createdId = (new Date()).getTime();
+        Random rand = new Random();
+
+        this.cardID = rand.nextInt(100000);
 
 
     }
 
+
     public Card() {
+        //generateRandomId();
+
     }
 
     public Card(int image) {
         this.image = image;
+        Random rand = new Random();
 
+        this.cardID = rand.nextInt(100000);
+
+    }
+
+
+    public double getCreatedId() {
+        return createdId;
     }
 
     public String getText() {
@@ -92,4 +111,10 @@ public class Card {
     public void setJustReset(boolean b) {
         justReset = b;
     }
+
+    public int getCardID() {
+        return this.cardID;
+    }
 }
+
+

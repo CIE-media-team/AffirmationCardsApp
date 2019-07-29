@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:2419748843030360520",
-      "lastPropertyId": "9:418848753581371043",
+      "lastPropertyId": "10:9026232959001823047",
       "name": "Card",
       "properties": [
         {
@@ -37,8 +37,8 @@
           "name": "created"
         },
         {
-          "id": "9:418848753581371043",
-          "name": "number"
+          "id": "10:9026232959001823047",
+          "name": "createdId"
         }
       ],
       "relations": []
@@ -53,7 +53,8 @@
   "retiredEntityUids": [],
   "retiredIndexUids": [],
   "retiredPropertyUids": [
-    2896089122506277954
+    2896089122506277954,
+    418848753581371043
   ],
   "retiredRelationUids": [],
   "version": 1

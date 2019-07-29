@@ -11,7 +11,6 @@ import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +25,9 @@ import com.wajahatkarim3.easyflipview.EasyFlipView;
 import java.util.List;
 
 import io.objectbox.Box;
+import io.objectbox.query.QueryBuilder;
+
+import static com.example.dylan.affirmationcardsapp.CollectionActivity.SORTED_BY_FAVORITES;
 
 public class CollectionEnlarge extends AppCompatActivity {
     public static final String EXTRA_CARD_ID = "id";
@@ -42,6 +44,12 @@ public class CollectionEnlarge extends AppCompatActivity {
     List<Card> cards;
     ImageView cardView;
     long cardId;
+    Boolean sortByFavorites;
+    List<Card> cardList;
+    int position;
+
+
+    int favoritePosition = -1;
 
 
 
@@ -158,54 +166,93 @@ public class CollectionEnlarge extends AppCompatActivity {
                 700);
 
 
+        sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
+
+        if (sortByFavorites) {
+            //cardQuery = cardQuery.orderDesc(Card_.favorite);
+            QueryBuilder<Card> cardQueryFavorites = cardBox.query()
+                    .equal(Card_.favorite, true);
+            cardList = cardQueryFavorites.build().find();
+        } else {
+            cardList = cardBox.getAll();
+        }
+
+
+        Card c = cardBox.get(cardId);
+
+        for (Card card : cardList) {
+
+            if (c.getCardID() == card.getCardID()) {
+                position = cardList.indexOf(card);
+                break;
+            }
+        }
+
     }
 
     public void changeCard(String direction) {
+
+        boolean change = false;
+
+
         if (direction.equals("left")) {
-            if (cardId < cards.size()) {
+            if (position < cardList.size() - 1) {
                 cardId += 1;
+                change = true;
+                position += 1;
+
+                if (sortByFavorites) {
+                    card = cardList.get(position);
+                }
 
             }
         } else if (direction.equals("right")) {
-            if (cardId > 1) {
+            if (position > 0) {
                 cardId -= 1;
-
+                position -= 1;
+                change = true;
+                if (sortByFavorites) {
+                    card = cardList.get(position);
+                }
             }
         }
-        Log.d("Test", Long.toString(cardId));
+        if (change) {
 
-        card = cardBox.get(cardId);
-        if (card.isCreated()) {
-
-
-            Glide
-                    .with(this)
-                    .load(R.drawable.cardblank)
-                    .into(cardView);
-            cardText.setText(card.getText());
-
-        } else {
+            if (!sortByFavorites) {
+                card = cardBox.get(cardId);
+            }
+            if (card.isCreated()) {
 
 
-            Glide
-                    .with(this)
-                    .load(card.getImage())
-                    .into(cardView);
+                Glide
+                        .with(this)
+                        .load(R.drawable.cardblank)
+                        .into(cardView);
+                cardText.setText(card.getText());
 
-            cardText.setText(null);
-        }
-        if (card.isFavorite()) {
-            heartView.setImageDrawable(getResources().getDrawable(R.drawable.ic_favorite_red_24dp));
-        } else {
-            heartView.setImageDrawable(getResources().getDrawable(R.drawable.ic_unsortfavorite_24dp));
+            } else {
 
+
+                Glide
+                        .with(this)
+                        .load(card.getImage())
+                        .into(cardView);
+
+                cardText.setText(null);
+            }
+            if (card.isFavorite()) {
+                heartView.setImageDrawable(getResources().getDrawable(R.drawable.ic_favorite_red_24dp));
+            } else {
+                heartView.setImageDrawable(getResources().getDrawable(R.drawable.ic_unsortfavorite_24dp));
+
+            }
         }
 
     }
 
 
     public void flipCard() {
-        cardView2.setVisibility(View.VISIBLE);
+        cardView.setVisibility(View.VISIBLE);
 
         flipView.flipTheView();
         if (card.isCreated()) {

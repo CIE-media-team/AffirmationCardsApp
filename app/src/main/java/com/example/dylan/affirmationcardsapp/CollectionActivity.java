@@ -30,6 +30,7 @@ public class CollectionActivity extends AppCompatActivity {
     String imageType;
     RecyclerView cardRecycler;
     int flipcounter = 0;
+    LinearLayoutManager layoutManager;
 
     public static String getReset() {
         return SORTED_BY_FAVORITES;
@@ -71,7 +72,7 @@ public class CollectionActivity extends AppCompatActivity {
         cardRecycler.setAdapter(adapter);
 
 
-        LinearLayoutManager layoutManager = new GridLayoutManager(this, 4);
+        layoutManager = new GridLayoutManager(this, 4);
         cardRecycler.setLayoutManager(layoutManager);
         View v = null;
         if (getIntent().getBooleanExtra("delete", false)) {
@@ -148,8 +149,14 @@ public class CollectionActivity extends AppCompatActivity {
         }
 
         // Set the adapter with the arranged list of cards. Then tell it to update the UI.
+
+        adapter = new CaptionedImagesAdapter(cardList);
+
         adapter.setPreference(imageType);
-        adapter.setImages(cardList);
+
+        cardRecycler.setAdapter(adapter);
+
+
         adapter.notifyDataSetChanged();
 
     }
@@ -177,6 +184,7 @@ public class CollectionActivity extends AppCompatActivity {
         editor.apply();
 
         loadCards(sortByFavorites);
+
     }
 
     public void addCard(View view) {
@@ -241,8 +249,7 @@ public class CollectionActivity extends AppCompatActivity {
                 sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
 
 
-                flipcounter++;
-                if (flipcounter % 2 == 1) {
+                if (flipcounter % 2 == 0) {
 
                     List<Card> cardList;
                     if (sortByFavorites) {
@@ -255,13 +262,13 @@ public class CollectionActivity extends AppCompatActivity {
                     }
 
                     item.setIcon(R.drawable.flipfront);
-                    CaptionedImagesAdapter newAdapter = new CaptionedImagesAdapter(cardList);
-                    cardRecycler.setAdapter(newAdapter);
-                    newAdapter.setFront(true);
+                    adapter.setImages(cardList);
+                    adapter.setFront(true);
 
 
-                    LinearLayoutManager layoutManager = new GridLayoutManager(this, 4);
                     cardRecycler.setLayoutManager(layoutManager);
+                    adapter.notifyDataSetChanged();
+
                 } else {
                     item.setIcon(R.drawable.flipback);
 
@@ -269,9 +276,9 @@ public class CollectionActivity extends AppCompatActivity {
                     adapter.setFront(false);
 
 
-                    LinearLayoutManager layoutManager = new GridLayoutManager(this, 4);
-                    cardRecycler.setLayoutManager(layoutManager);
                 }
+                flipcounter++;
+
 
 
             default:

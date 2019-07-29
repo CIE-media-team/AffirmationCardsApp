@@ -29,8 +29,9 @@
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="centerInside"
+            android:scaleType="fitXY"
             android:src="@drawable/cardblank"
+
 
             android:adjustViewBounds="true"
             app:layout_constraintLeft_toLeftOf="parent"
