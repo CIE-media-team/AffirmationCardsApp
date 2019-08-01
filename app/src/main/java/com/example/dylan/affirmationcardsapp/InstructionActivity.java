@@ -54,6 +54,21 @@ public class InstructionActivity extends AppCompatActivity {
 
         leftbutton.setVisibility(View.INVISIBLE);
         imageView.setImageResource(pics.get(0));
+        imageView.setOnTouchListener(new OnSwipeTouchListener(this) {
+            @Override
+            public void onSwipeLeft() {
+
+                goRight(imageView);
+            }
+
+            @Override
+            public void onSwipeRight() {
+
+                goLeft(imageView);
+            }
+
+
+        });
 
 
     }
