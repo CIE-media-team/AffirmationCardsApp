@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,16 +25,18 @@ import io.objectbox.query.QueryBuilder;
 
 public class CollectionActivity extends AppCompatActivity {
     public static final String SORTED_BY_FAVORITES = "sorted_by_favorites";
+
     private static int counter = 0;
     private CaptionedImagesAdapter adapter;
     private boolean sortByFavorites;
     SharedPreferences prefs = null;
     String imageType;
     RecyclerView cardRecycler;
-    int flipcounter = 0;
     LinearLayoutManager layoutManager;
 
-    boolean front;
+    static Menu menu;
+
+    boolean front = false;
 
     public static String getReset() {
         return SORTED_BY_FAVORITES;
@@ -61,7 +65,12 @@ public class CollectionActivity extends AppCompatActivity {
         cardRecycler = findViewById(R.id.building_recycler);
 
         prefs = getSharedPreferences("CardType", Context.MODE_PRIVATE);
+
         imageType = prefs.getString("style", "porcelain");
+
+
+        //front = getSharedPreferences("flipPref", MODE_PRIVATE).getBoolean("front", false);
+
         int image;
         if (imageType.equals("porcelain")) {
             image = (R.drawable.porcelain);
@@ -71,9 +80,10 @@ public class CollectionActivity extends AppCompatActivity {
 
 
         adapter = new CaptionedImagesAdapter(image);
+
+        adapter.setFront(false);
+
         cardRecycler.setAdapter(adapter);
-
-
         layoutManager = new GridLayoutManager(this, 4);
         cardRecycler.setLayoutManager(layoutManager);
         View v = null;
@@ -87,23 +97,37 @@ public class CollectionActivity extends AppCompatActivity {
 
         // Get the stored state of the "Sort By Favorites" button
         sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
+        adapter.notifyDataSetChanged();
 
 
-//        if (sortByFavorites) {
-//            ImageButton heartView = findViewById(R.id.sortFavorite);
-//            heartView.setImageResource(R.drawable.fave);
-//        }
-
-        //loadCards(sortByFavorites);
     }
+
 
     @Override
     public void onResume() {
         // fetch updated data
         sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
         loadCards(sortByFavorites);
+
+
         super.onResume();
 
+    }
+
+    @Override
+    protected void onPause() {
+        final MenuItem mi = menu.findItem(R.id.flip);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mi.setIcon(R.drawable.flipback);
+
+            }
+        }, 500);
+
+
+        super.onPause();
     }
 
     private void loadCards(boolean sortedByFavorites) {
@@ -111,16 +135,14 @@ public class CollectionActivity extends AppCompatActivity {
         List<Card> cardList;
 
         sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
+        front = getSharedPreferences("flipPref", MODE_PRIVATE).getBoolean("front", false);
 
         if (sortByFavorites) {
             ImageButton heartView = findViewById(R.id.sortFavorite);
             heartView.setImageResource(R.drawable.ic_favorite_red_24dp);
         }
         // Let the database do the searching. Get cards that are Free or Owned.
-        QueryBuilder<Card> cardQuery = cardBox.query()
-                .equal(Card_.free, true)
-                .or()
-                .equal(Card_.owned, true);
+
 
         // If sorting by favorites, lets also "order by Favorite descending". This will sort
         // by the "Favorite" property, and True comes after False, so we use descending.
@@ -133,8 +155,7 @@ public class CollectionActivity extends AppCompatActivity {
 
         } else {
 
-
-            cardList = cardQuery.build().find();
+            cardList = cardBox.getAll();
         }
         TextView tv = findViewById(R.id.error);
 
@@ -149,14 +170,12 @@ public class CollectionActivity extends AppCompatActivity {
 
 
         }
-
         // Set the adapter with the arranged list of cards. Then tell it to update the UI.
 
 
         adapter.setImages(cardList);
         adapter.setFront(front);
         adapter.setPreference(imageType);
-        cardRecycler.setLayoutManager(layoutManager);
         adapter.notifyDataSetChanged();
 
 
@@ -193,6 +212,7 @@ public class CollectionActivity extends AppCompatActivity {
         startActivity(i);
 
     }
+
 
     public void removeCard(View view) {
         sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
@@ -232,9 +252,14 @@ public class CollectionActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
+        this.menu = menu;
 
         getMenuInflater().inflate(R.menu.collectionoption, menu);
+        MenuItem mi = menu.findItem(R.id.flip);
+        mi.setIcon(R.drawable.flipback);
+
+
+
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -251,7 +276,7 @@ public class CollectionActivity extends AppCompatActivity {
                 sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
 
 
-                if (flipcounter % 2 == 0) {
+                if (!front) {
 
                     List<Card> cardList;
                     if (sortByFavorites) {
@@ -268,6 +293,7 @@ public class CollectionActivity extends AppCompatActivity {
                     adapter.setFront(true);
                     front = true;
 
+
                     cardRecycler.setLayoutManager(layoutManager);
                     adapter.notifyDataSetChanged();
 
@@ -280,7 +306,12 @@ public class CollectionActivity extends AppCompatActivity {
 
 
                 }
-                flipcounter++;
+                return true;
+            case android.R.id.home:
+                Log.d("Test", "back pressed");
+
+                MenuItem mi = menu.findItem(R.id.flip);
+                mi.setIcon(R.drawable.flipback);
 
 
 
@@ -288,5 +319,6 @@ public class CollectionActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 
 }
