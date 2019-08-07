@@ -134,7 +134,8 @@
 
     <include
         layout="@layout/toolbar"
-        android:id="@+id/toolbar"></include>
+        android:id="@+id/toolbar">
+    </include>
 
     <ImageView
         android:id="@+id/imageView3"
