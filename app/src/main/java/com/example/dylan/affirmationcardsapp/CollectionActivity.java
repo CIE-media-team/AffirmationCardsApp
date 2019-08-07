@@ -37,7 +37,7 @@ public class CollectionActivity extends AppCompatActivity {
     static Menu menu;
 
     boolean front = false;
-    boolean removeCard = false;
+    boolean minusSelected;
 
     public static String getReset() {
         return SORTED_BY_FAVORITES;
@@ -149,9 +149,17 @@ public class CollectionActivity extends AppCompatActivity {
         // by the "Favorite" property, and True comes after False, so we use descending.
         if (sortedByFavorites) {
             //cardQuery = cardQuery.orderDesc(Card_.favorite);
-            QueryBuilder<Card> cardQueryFavorites = cardBox.query()
-                    .equal(Card_.favorite, true);
-            cardList = cardQueryFavorites.build().find();
+            if (minusSelected) {
+                cardBox = App.getApp().getBoxStore().boxFor(Card.class);
+                QueryBuilder<Card> cardQuery = cardBox.query()
+                        .equal(Card_.created, true);
+                cardList = cardQuery.build().find();
+
+            } else {
+                QueryBuilder<Card> cardQueryFavorites = cardBox.query()
+                        .equal(Card_.favorite, true);
+                cardList = cardQueryFavorites.build().find();
+            }
 
 
         } else {
@@ -221,6 +229,7 @@ public class CollectionActivity extends AppCompatActivity {
 
         if (counter % 2 == 0) {
 
+            minusSelected = true;
             Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
             QueryBuilder<Card> cardQuery = cardBox.query()
                     .equal(Card_.created, true);
@@ -240,6 +249,7 @@ public class CollectionActivity extends AppCompatActivity {
 
             adapter.notifyDataSetChanged();
         } else {
+            minusSelected = false;
             tv.setVisibility(View.INVISIBLE);
 
             loadCards(sortByFavorites);
@@ -269,18 +279,26 @@ public class CollectionActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         String action;
-        final Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
 
 
         switch (item.getItemId()) {
             case R.id.flip:
                 sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
+                Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
 
 
                 if (!front) {
 
                     List<Card> cardList;
-                    if (sortByFavorites) {
+                    if (minusSelected) {
+                        cardBox = App.getApp().getBoxStore().boxFor(Card.class);
+                        QueryBuilder<Card> cardQuery = cardBox.query()
+                                .equal(Card_.created, true);
+                        if (sortByFavorites) {
+                            cardQuery = cardQuery.orderDesc(Card_.favorite);
+                        }
+                        cardList = cardQuery.build().find();
+                    } else if (sortByFavorites) {
                         //cardQuery = cardQuery.orderDesc(Card_.favorite);
                         QueryBuilder<Card> cardQueryFavorites = cardBox.query()
                                 .equal(Card_.favorite, true);
