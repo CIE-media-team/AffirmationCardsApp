@@ -39,7 +39,6 @@ public class CardActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card);
-        String purpose = getIntent().getStringExtra("Purpose");
         Typeface font = Typeface.createFromAsset(getAssets(), "font.otf");
         Typeface font2 = Typeface.createFromAsset(getAssets(), "italic.otf");
 

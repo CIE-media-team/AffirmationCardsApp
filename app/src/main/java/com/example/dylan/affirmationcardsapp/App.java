@@ -19,9 +19,6 @@ public class App extends Application {
         return app;
     }
 
-    public static List<Card> getInitialCards() {
-        return initialCards;
-    }
 
     @Override
     public void onCreate() {
