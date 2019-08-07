@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,6 +48,7 @@ public class CollectionEnlarge extends AppCompatActivity {
     Boolean sortByFavorites;
     List<Card> cardList;
     int position;
+    MenuItem menuItem;
 
 
     int favoritePosition = -1;
@@ -196,7 +198,7 @@ public class CollectionEnlarge extends AppCompatActivity {
 
 
         if (direction.equals("left")) {
-            if (position < cardList.size() - 1) {
+            if (cardId < cardList.size() - 1) {
                 cardId += 1;
                 change = true;
                 position += 1;
@@ -207,7 +209,7 @@ public class CollectionEnlarge extends AppCompatActivity {
 
             }
         } else if (direction.equals("right")) {
-            if (position > 0) {
+            if (cardId > 1) {
                 cardId -= 1;
                 position -= 1;
                 change = true;
@@ -221,6 +223,12 @@ public class CollectionEnlarge extends AppCompatActivity {
             if (!sortByFavorites) {
                 card = cardBox.get(cardId);
             }
+
+            menu.findItem(R.id.delete).setVisible(card.isCreated());
+
+            ((BitmapDrawable) cardView.getDrawable()).getBitmap().recycle();
+
+
             if (card.isCreated()) {
 
 
@@ -278,8 +286,9 @@ public class CollectionEnlarge extends AppCompatActivity {
 
         getMenuInflater().inflate(R.menu.delete_card_menu, menu);
         this.menu = menu;
+        this.menuItem = menu.findItem(R.id.delete);
         if (!card.isCreated()) {
-            menu.findItem(R.id.delete).setVisible(false);
+            menuItem.setVisible(false);
 
         }
         return super.onCreateOptionsMenu(menu);
