@@ -47,6 +47,7 @@ public class CollectionEnlarge extends AppCompatActivity {
     Boolean sortByFavorites;
     List<Card> cardList;
     int position;
+    MenuItem menuItem;
 
 
     int favoritePosition = -1;
@@ -221,6 +222,9 @@ public class CollectionEnlarge extends AppCompatActivity {
             if (!sortByFavorites) {
                 card = cardBox.get(cardId);
             }
+
+            menu.findItem(R.id.delete).setVisible(card.isCreated());
+
             if (card.isCreated()) {
 
 
@@ -278,8 +282,9 @@ public class CollectionEnlarge extends AppCompatActivity {
 
         getMenuInflater().inflate(R.menu.delete_card_menu, menu);
         this.menu = menu;
+        this.menuItem = menu.findItem(R.id.delete);
         if (!card.isCreated()) {
-            menu.findItem(R.id.delete).setVisible(false);
+            menuItem.setVisible(false);
 
         }
         return super.onCreateOptionsMenu(menu);

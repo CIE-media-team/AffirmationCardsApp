@@ -37,6 +37,7 @@ public class CollectionActivity extends AppCompatActivity {
     static Menu menu;
 
     boolean front = false;
+    boolean removeCard = false;
 
     public static String getReset() {
         return SORTED_BY_FAVORITES;
