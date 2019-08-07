@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -49,6 +48,7 @@ public class CollectionEnlarge extends AppCompatActivity {
     List<Card> cardList;
     int position;
     MenuItem menuItem;
+
 
 
     int favoritePosition = -1;
@@ -198,7 +198,7 @@ public class CollectionEnlarge extends AppCompatActivity {
 
 
         if (direction.equals("left")) {
-            if (cardId < cardList.size() - 1) {
+            if (cardId < cardList.size()) {
                 cardId += 1;
                 change = true;
                 position += 1;
@@ -226,7 +226,6 @@ public class CollectionEnlarge extends AppCompatActivity {
 
             menu.findItem(R.id.delete).setVisible(card.isCreated());
 
-            ((BitmapDrawable) cardView.getDrawable()).getBitmap().recycle();
 
 
             if (card.isCreated()) {
