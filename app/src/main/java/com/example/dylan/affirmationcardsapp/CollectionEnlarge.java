@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -224,6 +225,9 @@ public class CollectionEnlarge extends AppCompatActivity {
             }
 
             menu.findItem(R.id.delete).setVisible(card.isCreated());
+
+            ((BitmapDrawable) cardView.getDrawable()).getBitmap().recycle();
+
 
             if (card.isCreated()) {
 
