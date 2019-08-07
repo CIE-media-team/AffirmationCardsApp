@@ -1,7 +1,6 @@
 package com.example.dylan.affirmationcardsapp;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Random;
 
 import io.objectbox.Box;
@@ -13,7 +12,6 @@ public class Card {
     private double createdId;
     private int cardID;
 
-    static List<Integer> ids;
 
     private static boolean justReset = false;
     private int image;
@@ -64,9 +62,6 @@ public class Card {
         return this.text;
     }
 
-    public boolean getCreated() {
-        return this.created;
-    }
 
     public boolean isCreated() {
         return this.created;
@@ -104,13 +99,6 @@ public class Card {
         return owned;
     }
 
-    public boolean getJustReset() {
-        return justReset;
-    }
-
-    public void setJustReset(boolean b) {
-        justReset = b;
-    }
 
     public int getCardID() {
         return this.cardID;

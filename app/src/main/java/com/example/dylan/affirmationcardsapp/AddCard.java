@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -57,17 +56,7 @@ public class AddCard extends AppCompatActivity {
                 .into(iv);
 
 
-        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        float dpHeight = displayMetrics.heightPixels / displayMetrics.density;
 
-
-        float textSize = dpWidth / 11.75510f;
-        // et.setTextSize(textSize);
-
-        float textWidth = dpWidth / 1.314468f;
-
-        float textHeight = dpHeight / 1.9972526f;
 
 
         // params.height = (int)textHeight;
@@ -89,7 +78,6 @@ public class AddCard extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         String action;
         Boolean close = true;
-        int id = item.getItemId();
         Log.d("Tag", Integer.toString(item.getItemId()));
         Log.d("Tag", Integer.toString(findViewById(R.id.close).getId()));
         if (item.getItemId() == findViewById(R.id.close).getId()) {

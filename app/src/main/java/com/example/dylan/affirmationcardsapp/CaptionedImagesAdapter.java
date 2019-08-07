@@ -17,7 +17,6 @@ import java.util.List;
 
 
 class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter.ViewHolder> {
-    CardView cardView;
     private List<Card> images;
     private int image;
     boolean front = false;
