@@ -197,7 +197,7 @@ public class CollectionEnlarge extends AppCompatActivity {
 
 
         if (direction.equals("left")) {
-            if (position < cardList.size() - 1) {
+            if (cardId < cardList.size() - 1) {
                 cardId += 1;
                 change = true;
                 position += 1;
@@ -208,7 +208,7 @@ public class CollectionEnlarge extends AppCompatActivity {
 
             }
         } else if (direction.equals("right")) {
-            if (position > 0) {
+            if (cardId > 1) {
                 cardId -= 1;
                 position -= 1;
                 change = true;
