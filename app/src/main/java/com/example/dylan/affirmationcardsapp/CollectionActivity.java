@@ -35,7 +35,8 @@ public class CollectionActivity extends AppCompatActivity {
     LinearLayoutManager layoutManager;
 
     static Menu menu;
-
+    MenuItem mi;
+    static CollectionActivity c;
     boolean front = false;
     boolean minusSelected;
 
@@ -78,6 +79,7 @@ public class CollectionActivity extends AppCompatActivity {
         } else {
             image = (R.drawable.warmcard);
         }
+        c = this;
 
 
         adapter = new CaptionedImagesAdapter(image);
@@ -103,6 +105,13 @@ public class CollectionActivity extends AppCompatActivity {
 
     }
 
+    public static CollectionActivity getC() {
+        return c;
+    }
+
+    public boolean getMinusSelected() {
+        return minusSelected;
+    }
 
     @Override
     public void onResume() {
@@ -147,25 +156,26 @@ public class CollectionActivity extends AppCompatActivity {
 
         // If sorting by favorites, lets also "order by Favorite descending". This will sort
         // by the "Favorite" property, and True comes after False, so we use descending.
-        if (sortedByFavorites) {
-            //cardQuery = cardQuery.orderDesc(Card_.favorite);
-            if (minusSelected) {
-                cardBox = App.getApp().getBoxStore().boxFor(Card.class);
-                QueryBuilder<Card> cardQuery = cardBox.query()
-                        .equal(Card_.created, true);
-                cardList = cardQuery.build().find();
-
-            } else {
-                QueryBuilder<Card> cardQueryFavorites = cardBox.query()
-                        .equal(Card_.favorite, true);
-                cardList = cardQueryFavorites.build().find();
+        if (minusSelected) {
+            cardBox = App.getApp().getBoxStore().boxFor(Card.class);
+            QueryBuilder<Card> cardQuery = cardBox.query()
+                    .equal(Card_.created, true);
+            if (sortByFavorites) {
+                cardQuery = cardQuery.orderDesc(Card_.favorite);
             }
+            cardList = cardQuery.build().find();
 
 
+        } else if (sortByFavorites) {
+            //cardQuery = cardQuery.orderDesc(Card_.favorite);
+            QueryBuilder<Card> cardQueryFavorites = cardBox.query()
+                    .equal(Card_.favorite, true);
+            cardList = cardQueryFavorites.build().find();
         } else {
-
             cardList = cardBox.getAll();
         }
+
+
         TextView tv = findViewById(R.id.error);
 
         if (cardList.size() == 0) {
@@ -197,6 +207,7 @@ public class CollectionActivity extends AppCompatActivity {
 
         //if the heart is currently not sortByFavorites, make it sortByFavorites
         ImageButton heartView = findViewById(R.id.sortFavorite);
+        mi.setIcon(R.drawable.flipback);
 
 
         //change whether the heart is filled or not
@@ -266,7 +277,7 @@ public class CollectionActivity extends AppCompatActivity {
         this.menu = menu;
 
         getMenuInflater().inflate(R.menu.collectionoption, menu);
-        MenuItem mi = menu.findItem(R.id.flip);
+        mi = menu.findItem(R.id.flip);
         mi.setIcon(R.drawable.flipback);
 
 

@@ -169,8 +169,18 @@ public class CollectionEnlarge extends AppCompatActivity {
 
 
         sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
+        Boolean minusSelected = CollectionActivity.getC().getMinusSelected();
+        if (minusSelected) {
+            Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
+            QueryBuilder<Card> cardQuery = cardBox.query()
+                    .equal(Card_.created, true);
+            if (sortByFavorites) {
+                cardQuery = cardQuery.orderDesc(Card_.favorite);
+            }
+            cardList = cardQuery.build().find();
 
-        if (sortByFavorites) {
+
+        } else if (sortByFavorites) {
             //cardQuery = cardQuery.orderDesc(Card_.favorite);
             QueryBuilder<Card> cardQueryFavorites = cardBox.query()
                     .equal(Card_.favorite, true);
@@ -198,18 +208,22 @@ public class CollectionEnlarge extends AppCompatActivity {
 
 
         if (direction.equals("left")) {
-            if (cardId < cardList.size()) {
-                cardId += 1;
-                change = true;
-                position += 1;
+            if (cardList.size() > 1) {
 
-                if (sortByFavorites) {
-                    card = cardList.get(position);
+
+                if (position + 1 < cardList.size()) {
+                    cardId += 1;
+                    change = true;
+                    position += 1;
+
+                    if (sortByFavorites) {
+                        card = cardList.get(position);
+                    }
+
                 }
-
             }
         } else if (direction.equals("right")) {
-            if (cardId > 1) {
+            if (position > 0) {
                 cardId -= 1;
                 position -= 1;
                 change = true;

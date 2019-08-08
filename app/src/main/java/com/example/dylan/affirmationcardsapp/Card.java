@@ -34,7 +34,7 @@ public class Card {
         createdId = (new Date()).getTime();
         Random rand = new Random();
 
-        this.cardID = rand.nextInt(100000);
+        this.cardID = rand.nextInt(10000000);
 
 
     }
@@ -49,7 +49,7 @@ public class Card {
         this.image = image;
         Random rand = new Random();
 
-        this.cardID = rand.nextInt(100000);
+        this.cardID = rand.nextInt(10000000);
 
     }
 
