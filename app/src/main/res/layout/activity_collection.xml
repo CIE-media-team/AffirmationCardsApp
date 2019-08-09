@@ -65,8 +65,8 @@
 
         >
 
-        <ImageButton
-            android:id="@+id/imageButton3"
+        <TextView
+            android:id="@+id/textView1"
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -74,7 +74,10 @@
             android:layout_marginTop="8dp"
             android:background="@null"
             android:onClick="removeCard"
-
+            android:text="My Creations"
+            android:gravity="center"
+            android:textColor="#000"
+            android:textSize="20sp"
             app:srcCompat="@drawable/ic_remove_black_24dp" />
 
         <ImageButton
@@ -88,14 +91,17 @@
 
             app:srcCompat="@drawable/fave" />
 
-        <ImageButton
-            android:id="@+id/imageButton2"
+        <TextView
+            android:id="@+id/textView2"
+            android:text="Create Card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginTop="8dp"
-            android:background="@null"
             android:onClick="addCard"
+            android:gravity="center"
+            android:textColor="#000"
+            android:textSize="20sp"
 
             app:srcCompat="@drawable/ic_add_black_24dp" />
 

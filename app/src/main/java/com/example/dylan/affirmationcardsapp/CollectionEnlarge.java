@@ -32,6 +32,7 @@ import static com.example.dylan.affirmationcardsapp.CollectionActivity.SORTED_BY
 public class CollectionEnlarge extends AppCompatActivity {
     public static final String EXTRA_CARD_ID = "id";
     Drawable d;
+    private CollectionEnlarge ce;
     private Card card;
     private LikeButton likeButton;
     private Box<Card> cardBox;
@@ -64,7 +65,7 @@ public class CollectionEnlarge extends AppCompatActivity {
 
         Typeface font = Typeface.createFromAsset(getAssets(), "font.otf");
         Typeface font2 = Typeface.createFromAsset(getAssets(), "italic.otf");
-
+        ce = this;
 
         cardback = findViewById(R.id.cardBack);
         SharedPreferences prefs = getSharedPreferences("CardType", Context.MODE_PRIVATE);
@@ -144,13 +145,31 @@ public class CollectionEnlarge extends AppCompatActivity {
             @Override
             public void onSwipeLeft() {
 
-                changeCard("left");
+
+                try {
+                    changeCard("left");
+
+                } catch (OutOfMemoryError E) {
+                    String action = "Cannot swipe, out of memory.";
+                    Toast.makeText(ce, action,
+                            Toast.LENGTH_SHORT).show();
+                } finally {
+
+                }
             }
 
             @Override
             public void onSwipeRight() {
+                try {
+                    changeCard("right");
 
-                changeCard("right");
+                } catch (OutOfMemoryError E) {
+                    String action = "Cannot swipe, out of memory.";
+                    Toast.makeText(ce, action,
+                            Toast.LENGTH_SHORT).show();
+                } finally {
+
+                }
             }
 
 

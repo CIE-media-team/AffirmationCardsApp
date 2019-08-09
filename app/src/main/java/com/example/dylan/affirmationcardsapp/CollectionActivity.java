@@ -12,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +34,7 @@ public class CollectionActivity extends AppCompatActivity {
     String imageType;
     RecyclerView cardRecycler;
     LinearLayoutManager layoutManager;
+    TextView tv1, tv2;
 
     static Menu menu;
     MenuItem mi;
@@ -70,6 +72,10 @@ public class CollectionActivity extends AppCompatActivity {
 
         imageType = prefs.getString("style", "porcelain");
 
+        tv1 = findViewById(R.id.textView1);
+        tv2 = findViewById(R.id.textView2);
+        tv1.setTypeface(font2);
+        tv2.setTypeface(font2);
 
         //front = getSharedPreferences("flipPref", MODE_PRIVATE).getBoolean("front", false);
 
@@ -240,6 +246,9 @@ public class CollectionActivity extends AppCompatActivity {
 
         if (counter % 2 == 0) {
 
+            tv1.setText("Back to Collection");
+            tv1.setGravity(Gravity.CENTER);
+
             minusSelected = true;
             Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
             QueryBuilder<Card> cardQuery = cardBox.query()
@@ -264,6 +273,8 @@ public class CollectionActivity extends AppCompatActivity {
             tv.setVisibility(View.INVISIBLE);
 
             loadCards(sortByFavorites);
+            tv1.setText("My Creations");
+
 
         }
 
