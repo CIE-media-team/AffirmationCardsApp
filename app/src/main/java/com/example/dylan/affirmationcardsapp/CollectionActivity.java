@@ -81,9 +81,9 @@ public class CollectionActivity extends AppCompatActivity {
 
         int image;
         if (imageType.equals("porcelain")) {
-            image = (R.drawable.porcelain);
+            image = (R.drawable.porcelainsmall);
         } else {
-            image = (R.drawable.warmcard);
+            image = (R.drawable.warmcardsmall);
         }
         c = this;
 

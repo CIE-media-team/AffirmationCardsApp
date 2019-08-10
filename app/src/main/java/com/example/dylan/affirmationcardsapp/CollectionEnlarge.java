@@ -149,7 +149,7 @@ public class CollectionEnlarge extends AppCompatActivity {
                 try {
                     changeCard("left");
 
-                } catch (OutOfMemoryError E) {
+                } catch (Exception E) {
                     String action = "Cannot swipe, out of memory.";
                     Toast.makeText(ce, action,
                             Toast.LENGTH_SHORT).show();

@@ -15,7 +15,9 @@
         android:scaleY="1.01"
         android:src="@drawable/noleaves"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp" />
 
     <com.wajahatkarim3.easyflipview.EasyFlipView
         android:id="@+id/flipView"

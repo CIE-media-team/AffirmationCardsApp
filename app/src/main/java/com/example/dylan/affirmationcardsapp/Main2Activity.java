@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract;
@@ -22,6 +23,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -77,10 +79,25 @@ public class Main2Activity extends AppCompatActivity
                 .into(background);
 
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
+        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
+
+        //////////Menu icon here!!
+        toggle.setDrawerIndicatorEnabled(false);
+
+        toggle.setToolbarNavigationClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawer.openDrawer(GravityCompat.START);
+            }
+        });
+
+        toggle.setHomeAsUpIndicator(R.drawable.ic_view_list_green);
+        //////////////
+
         toggle.getDrawerArrowDrawable().setColor(Color.parseColor("#000000"));
         toggle.syncState();
 
