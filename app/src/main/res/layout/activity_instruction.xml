@@ -7,6 +7,14 @@
     tools:context=".InstructionActivity"
     android:background="@drawable/noleaves">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/noleaves"
+        android:scaleX="1.07"
+        android:scaleY="1.07"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
     <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/imageView"
         android:layout_width="0dp"
@@ -16,7 +24,7 @@
         android:layout_marginTop="4dp"
 
         android:layout_marginRight="8dp"
-        android:scaleType="fitXY"
+        android:scaleType="fitCenter"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_default="percent"

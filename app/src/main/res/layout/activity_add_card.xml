@@ -22,7 +22,7 @@
 
     <ImageView
         android:id="@+id/image2"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
 
@@ -45,7 +45,7 @@
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
 
 
@@ -58,8 +58,8 @@
         android:lineSpacingExtra="20dp"
         android:textColor="#383833"
 
-        android:paddingStart="40dp"
-        android:paddingEnd="40dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
 

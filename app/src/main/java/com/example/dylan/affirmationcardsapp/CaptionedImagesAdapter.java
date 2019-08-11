@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
     private List<Card> images;
     private int image;
     boolean front = false;
+    float textsize = 10;
 
     public CaptionedImagesAdapter(int image) {
         this.image = image;
@@ -32,6 +34,7 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
 
     void setImages(List<Card> images) {
         this.images = images;
+
     }
 
     void setFront(boolean b) {
@@ -71,6 +74,7 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
     public void onBindViewHolder(ViewHolder holder, final int position) {
         Card c = images.get(position);
         TextView tv = holder.cardView.findViewById(R.id.cardText);
+        tv.setTextSize(textsize);
 
         if (!front) {
             Glide
@@ -113,7 +117,9 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
 
 
     }
-
+    public void setTextsize(float textsize){
+        this.textsize = textsize;
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;

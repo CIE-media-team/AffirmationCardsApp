@@ -257,7 +257,7 @@ public class CollectionEnlarge extends AppCompatActivity {
                 card = cardBox.get(cardId);
             }
 
-            menu.findItem(R.id.delete).setVisible(card.isCreated());
+            menuItem.setVisible(card.isCreated());
 
 
 

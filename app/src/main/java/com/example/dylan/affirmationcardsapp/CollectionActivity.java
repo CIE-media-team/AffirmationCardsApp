@@ -11,6 +11,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -41,6 +42,7 @@ public class CollectionActivity extends AppCompatActivity {
     static CollectionActivity c;
     boolean front = false;
     boolean minusSelected;
+    int image;
 
     public static String getReset() {
         return SORTED_BY_FAVORITES;
@@ -79,7 +81,6 @@ public class CollectionActivity extends AppCompatActivity {
 
         //front = getSharedPreferences("flipPref", MODE_PRIVATE).getBoolean("front", false);
 
-        int image;
         if (imageType.equals("porcelain")) {
             image = (R.drawable.porcelainsmall);
         } else {
@@ -107,6 +108,15 @@ public class CollectionActivity extends AppCompatActivity {
         // Get the stored state of the "Sort By Favorites" button
         sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
         adapter.notifyDataSetChanged();
+
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        this.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        float xInches= metrics.widthPixels/metrics.xdpi;
+
+        float textsize = (float) xInches / .24f;
+        adapter.setTextsize(textsize);
+
 
 
     }

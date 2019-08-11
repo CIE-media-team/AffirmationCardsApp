@@ -115,22 +115,25 @@
     <TextView
         android:id="@+id/cardText"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-
+        android:layout_height="wrap_content"
+        android:enabled="false"
         android:gravity="center"
-        android:lineSpacingExtra="15dp"
+        android:lineSpacingExtra="20dp"
 
 
         android:textColor="#383833"
 
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
 
         android:textSize="36sp"
-        app:layout_constraintLeft_toLeftOf="@id/flipView"
-        app:layout_constraintRight_toRightOf="@id/flipView"
-        app:layout_constraintTop_toTopOf="@id/flipView"
-        app:layout_constraintBottom_toBottomOf="@id/flipView">
+        android:typeface="monospace"
+        app:layout_constraintLeft_toLeftOf="@id/testimage"
+        app:layout_constraintRight_toRightOf="@id/testimage"
+        app:layout_constraintTop_toTopOf="@id/testimage"
+        app:layout_constraintBottom_toBottomOf="@id/testimage">
 
     </TextView>
 
@@ -152,5 +155,29 @@
         app:layout_constraintStart_toEndOf="@+id/heartView"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <ImageView
+        android:id="@+id/testimage"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+
+        android:scaleType="fitCenter"
+        android:src="@drawable/cardblank"
+        android:visibility="invisible"
+
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent=".80"
+
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_goneMarginTop="8dp" />
 
 </android.support.constraint.ConstraintLayout>
