@@ -1,4 +1,4 @@
-package com.example.dylan.affirmationcardsapp;
+package com.fertileaffirmations.dylan.affirmationcardsapp;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -36,7 +36,7 @@ import java.util.TimeZone;
 import io.objectbox.Box;
 import io.objectbox.query.QueryBuilder;
 
-import static com.example.dylan.affirmationcardsapp.CollectionActivity.SORTED_BY_FAVORITES;
+import static com.fertileaffirmations.dylan.affirmationcardsapp.CollectionActivity.SORTED_BY_FAVORITES;
 
 public class Main2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -77,7 +77,6 @@ public class Main2Activity extends AppCompatActivity
                 .with(this)
                 .load(image)
                 .into(background);
-
 
 
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -161,7 +160,9 @@ public class Main2Activity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-
+        if (id == R.id.action_settings) {
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -254,7 +255,6 @@ public class Main2Activity extends AppCompatActivity
                             List<Card> cardList2 = cardQuery2.build().find();
                             for (Card card : cardList2) {
                                 card.setFavorite(false);
-                                cardBox.put(card);
                             }
                             SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
                             editor.putBoolean(CollectionActivity.getReset(), false);

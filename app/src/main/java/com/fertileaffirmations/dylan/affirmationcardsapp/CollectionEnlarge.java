@@ -1,4 +1,4 @@
-package com.example.dylan.affirmationcardsapp;
+package com.fertileaffirmations.dylan.affirmationcardsapp;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -27,7 +27,7 @@ import java.util.List;
 import io.objectbox.Box;
 import io.objectbox.query.QueryBuilder;
 
-import static com.example.dylan.affirmationcardsapp.CollectionActivity.SORTED_BY_FAVORITES;
+import static com.fertileaffirmations.dylan.affirmationcardsapp.CollectionActivity.SORTED_BY_FAVORITES;
 
 public class CollectionEnlarge extends AppCompatActivity {
     public static final String EXTRA_CARD_ID = "id";

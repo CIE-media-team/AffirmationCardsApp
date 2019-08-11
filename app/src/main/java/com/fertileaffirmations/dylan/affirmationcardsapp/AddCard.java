@@ -1,4 +1,4 @@
-package com.example.dylan.affirmationcardsapp;
+package com.fertileaffirmations.dylan.affirmationcardsapp;
 
 import android.content.Intent;
 import android.graphics.Typeface;
