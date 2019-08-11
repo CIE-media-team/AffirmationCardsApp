@@ -1,4 +1,4 @@
-package com.example.dylan.affirmationcardsapp;
+package com.fertileaffirmations.dylan.affirmationcardsapp;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -44,13 +44,14 @@ public class InstructionActivity extends AppCompatActivity {
         textView.setTypeface(font);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        pics.add(R.drawable.newinfocard);
         pics.add(R.drawable.instructions1);
         pics.add(R.drawable.instructions2);
-        pics.add(R.drawable.instructions6);
         pics.add(R.drawable.instructions3);
         pics.add(R.drawable.instructions4);
         pics.add(R.drawable.instructions5);
+        pics.add(R.drawable.instructions6);
+        pics.add(R.drawable.instructions7);
+
 
         leftbutton.setVisibility(View.INVISIBLE);
         imageView.setImageResource(pics.get(0));

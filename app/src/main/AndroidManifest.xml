@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.dylan.affirmationcardsapp">
+    package="com.fertileaffirmations.dylan.affirmationcardsapp">
 
 
     <application
-        android:name=".App"
+        android:name="com.fertileaffirmations.dylan.affirmationcardsapp.App"
         android:allowBackup="true"
         android:icon="@mipmap/falauncher"
         android:roundIcon="@mipmap/falauncher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".FirstRunActivity">
+        <activity android:name="com.fertileaffirmations.dylan.affirmationcardsapp.FirstRunActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Repeating_activity" />
-        <activity android:name=".JournalActivity" />
+        <activity android:name="com.fertileaffirmations.dylan.affirmationcardsapp.Repeating_activity" />
         <activity
-            android:name=".InstructionActivity"
-            android:parentActivityName=".Main2Activity"
+            android:name="com.fertileaffirmations.dylan.affirmationcardsapp.InstructionActivity"
+            android:parentActivityName="com.fertileaffirmations.dylan.affirmationcardsapp.Main2Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Main2Activity"
+            android:name="com.fertileaffirmations.dylan.affirmationcardsapp.Main2Activity"
             android:screenOrientation="portrait"
-            android:parentActivityName=".FirstRunActivity"
+            android:parentActivityName="com.fertileaffirmations.dylan.affirmationcardsapp.FirstRunActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,25 +35,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CardActivity"
-            android:parentActivityName=".Main2Activity"
+            android:name="com.fertileaffirmations.dylan.affirmationcardsapp.CardActivity"
+            android:parentActivityName="com.fertileaffirmations.dylan.affirmationcardsapp.Main2Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CollectionActivity"
-            android:parentActivityName=".Main2Activity"
+            android:name="com.fertileaffirmations.dylan.affirmationcardsapp.CollectionActivity"
+            android:parentActivityName="com.fertileaffirmations.dylan.affirmationcardsapp.Main2Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CollectionEnlarge"
-            android:parentActivityName=".CollectionActivity"
+            android:name="com.fertileaffirmations.dylan.affirmationcardsapp.CollectionEnlarge"
+            android:parentActivityName="com.fertileaffirmations.dylan.affirmationcardsapp.CollectionActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AddCard"
+            android:name="com.fertileaffirmations.dylan.affirmationcardsapp.AddCard"
             android:label="@string/title_activity_add_card"
-            android:parentActivityName=".Main2Activity"
+            android:parentActivityName="com.fertileaffirmations.dylan.affirmationcardsapp.Main2Activity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.dylan.affirmationcardsapp.Main2Activity" />
+                android:value="com.fertileaffirmations.dylan.affirmationcardsapp.Main2Activity" />
         </activity>
     </application>
 
