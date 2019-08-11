@@ -6,6 +6,7 @@ android {
         vectorDrawables.useSupportLibrary = true
 
         applicationId "com.fertileaffirmations.dylan.affirmationcardsapp"
+
         minSdkVersion 19
         versionCode 2
         targetSdkVersion >=28
