@@ -151,9 +151,7 @@ public class CollectionEnlarge extends AppCompatActivity {
 
                 } catch (Exception E) {
                     Glide.get(getBaseContext()).clearMemory();
-                    String action = "Cannot swipe, out of memory.";
-                    Toast.makeText(ce, action,
-                            Toast.LENGTH_SHORT).show();
+                    
                 } finally {
 
                 }
@@ -164,11 +162,9 @@ public class CollectionEnlarge extends AppCompatActivity {
                 try {
                     changeCard("right");
 
-                } catch (OutOfMemoryError E) {
+                } catch (Exception E) {
                     Glide.get(getBaseContext()).clearMemory();
-                    String action = "Cannot swipe, out of memory.";
-                    Toast.makeText(ce, action,
-                            Toast.LENGTH_SHORT).show();
+
                 } finally {
 
                 }
