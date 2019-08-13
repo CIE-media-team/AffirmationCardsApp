@@ -241,21 +241,24 @@ public class Main2Activity extends AppCompatActivity
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
-                            QueryBuilder<Card> cardQuery = cardBox.query()
-                                    .equal(Card_.created, true);
-                            List<Card> cardList = cardQuery.build().find();
-
-
-                            for (Card card : cardList) {
-
-                                cardBox.remove(card);
-                            }
-                            QueryBuilder<Card> cardQuery2 = cardBox.query()
-                                    .equal(Card_.favorite, true);
-                            List<Card> cardList2 = cardQuery2.build().find();
-                            for (Card card : cardList2) {
-                                card.setFavorite(false);
-                            }
+                            cardBox.removeAll();
+                            List<Card> cardList = App.getInitialCards();
+                            cardBox.put(App.getInitialCards());
+//                            QueryBuilder<Card> cardQuery = cardBox.query()
+//                                    .equal(Card_.created, true);
+//                            List<Card> cardList = cardQuery.build().find();
+//
+//
+//                            for (Card card : cardList) {
+//
+//                                cardBox.remove(card);
+//                            }
+//                            QueryBuilder<Card> cardQuery2 = cardBox.query()
+//                                    .equal(Card_.favorite, true);
+//                            List<Card> cardList2 = cardQuery2.build().find();
+//                            for (Card card : cardList2) {
+//                                card.setFavorite(false);
+//                            }
                             SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
                             editor.putBoolean(CollectionActivity.getReset(), false);
                             editor.apply();

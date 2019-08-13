@@ -159,6 +159,7 @@ public class CollectionActivity extends AppCompatActivity {
     private void loadCards() {
         Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
         List<Card> cardList;
+        TextView tv = findViewById(R.id.error);
 
         sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
         front = getSharedPreferences("flipPref", MODE_PRIVATE).getBoolean("front", false);
@@ -174,12 +175,20 @@ public class CollectionActivity extends AppCompatActivity {
         // by the "Favorite" property, and True comes after False, so we use descending.
         if (minusSelected) {
             cardBox = App.getApp().getBoxStore().boxFor(Card.class);
-            QueryBuilder<Card> cardQuery = cardBox.query()
-                    .equal(Card_.created, true);
+            QueryBuilder<Card> cardQueryCF = cardBox.query()
+                    .equal(Card_.created, true)
+                    .equal(Card_.favorite, true);
             if (!this.sortByFavorites) {
-                cardQuery = cardQuery.orderDesc(Card_.favorite);
+                cardQueryCF = cardBox.query()
+                        .equal(Card_.created,true);
+                cardQueryCF = cardQueryCF.orderDesc(Card_.favorite);
             }
-            cardList = cardQuery.build().find();
+            cardList = cardQueryCF.build().find();
+
+            if(cardList.size() == 0){
+                tv.setText("");
+            }
+
 
 
         } else  if (this.sortByFavorites) {
@@ -192,12 +201,21 @@ public class CollectionActivity extends AppCompatActivity {
         }
 
 
-        TextView tv = findViewById(R.id.error);
 
 
         if (cardList.size() == 0) {
+            if(this.minusSelected){
+                if(!this.sortByFavorites){
+                    tv.setText("You have no created cards!");
+                }
+                else {
+                    tv.setText("You have no created cards favorited!");
+                }
+            }
+            else{
+                tv.setText("You have no cards favorited!");
 
-            tv.setText("You have no cards favorited!");
+            }
             tv.setVisibility(View.VISIBLE);
 
         } else {
@@ -234,6 +252,7 @@ public class CollectionActivity extends AppCompatActivity {
         } else {
             heartView.setImageResource(R.drawable.fave);
             this.sortByFavorites = false;
+
         }
         // Save the user's choice so it will be remembered when the Activity is recreated
         SharedPreferences.Editor editor = getSharedPreferences("sort", MODE_PRIVATE).edit();
@@ -258,6 +277,7 @@ public class CollectionActivity extends AppCompatActivity {
         mi.setIcon(R.drawable.flipback);
         this.sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
         TextView tv = findViewById(R.id.error);
+        List<Card> cardList;
 
         if (counter % 2 == 0) {
 
@@ -266,14 +286,23 @@ public class CollectionActivity extends AppCompatActivity {
 
             minusSelected = true;
             Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
-            QueryBuilder<Card> cardQuery = cardBox.query()
-                    .equal(Card_.created, true);
-            if (this.sortByFavorites) {
-                cardQuery = cardQuery.orderDesc(Card_.favorite);
+            if(!this.sortByFavorites){
+                QueryBuilder<Card> cardQuery = cardBox.query()
+                        .equal(Card_.created, true);
+                cardList = cardQuery.build().find();
+
             }
-            List<Card> cardList = cardQuery.build().find();
+            else{
+                QueryBuilder<Card> cardQuery = cardBox.query()
+                        .equal(Card_.created, true)
+                        .equal(Card_.favorite,true);
+                cardList = cardQuery.build().find();
+
+            }
+
+
             if (cardList.size() == 0) {
-                tv.setText("You have no cards left to delete!");
+                tv.setText("You have no created cards!");
                 tv.setVisibility(View.VISIBLE);
             } else {
                 tv.setVisibility(View.INVISIBLE);
@@ -326,32 +355,11 @@ public class CollectionActivity extends AppCompatActivity {
 
                 if (!front) {
 
-                    List<Card> cardList;
-                    if (minusSelected) {
-                        cardBox = App.getApp().getBoxStore().boxFor(Card.class);
-                        QueryBuilder<Card> cardQuery = cardBox.query()
-                                .equal(Card_.created, true);
-                        if (sortByFavorites) {
-                            cardQuery = cardQuery.orderDesc(Card_.favorite);
-                        }
-                        cardList = cardQuery.build().find();
-                    } else if (sortByFavorites) {
-                        //cardQuery = cardQuery.orderDesc(Card_.favorite);
-                        QueryBuilder<Card> cardQueryFavorites = cardBox.query()
-                                .equal(Card_.favorite, true);
-                        cardList = cardQueryFavorites.build().find();
-                    } else {
-                        cardList = cardBox.getAll();
-                    }
-
-                    item.setIcon(R.drawable.flipfront);
-                    adapter.setImages(cardList);
+                    loadCards();
                     adapter.setFront(true);
                     front = true;
+                    item.setIcon(R.drawable.flipfront);
 
-
-                    cardRecycler.setLayoutManager(layoutManager);
-                    adapter.notifyDataSetChanged();
 
                 } else {
                     item.setIcon(R.drawable.flipback);
