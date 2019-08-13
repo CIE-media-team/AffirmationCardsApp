@@ -246,8 +246,8 @@ public class CollectionEnlarge extends AppCompatActivity {
         } else if (direction.equals("right")) {
             if (position > 0) {
                 cardId -= 1;
-                position -= 1;
                 change = true;
+                position -= 1;
                 if (sortByFavorites) {
                     card = cardList.get(position);
                 }
