@@ -75,6 +75,7 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
         Card c = images.get(position);
         TextView tv = holder.cardView.findViewById(R.id.cardText);
         tv.setTextSize(textsize);
+        tv.setText(null);
 
         if (!front) {
             Glide

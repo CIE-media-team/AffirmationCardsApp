@@ -114,7 +114,7 @@ public class CollectionActivity extends AppCompatActivity {
         this.getWindowManager().getDefaultDisplay().getMetrics(metrics);
         float xInches= metrics.widthPixels/metrics.xdpi;
 
-        float textsize = (float) xInches / .24f;
+        float textsize = xInches / .24f;
         adapter.setTextsize(textsize);
 
 
@@ -133,7 +133,7 @@ public class CollectionActivity extends AppCompatActivity {
     public void onResume() {
         // fetch updated data
         sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
-        loadCards(sortByFavorites);
+        loadCards();
 
 
         super.onResume();
@@ -156,7 +156,7 @@ public class CollectionActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    private void loadCards(boolean sortedByFavorites) {
+    private void loadCards() {
         Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
         List<Card> cardList;
 
@@ -193,6 +193,7 @@ public class CollectionActivity extends AppCompatActivity {
 
 
         TextView tv = findViewById(R.id.error);
+
 
         if (cardList.size() == 0) {
 
@@ -238,8 +239,11 @@ public class CollectionActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = getSharedPreferences("sort", MODE_PRIVATE).edit();
         editor.putBoolean(SORTED_BY_FAVORITES, this.sortByFavorites);
         editor.apply();
+        front = false;
 
-        loadCards(this.sortByFavorites);
+  
+
+        loadCards();
 
     }
 
@@ -283,7 +287,7 @@ public class CollectionActivity extends AppCompatActivity {
             minusSelected = false;
             tv.setVisibility(View.INVISIBLE);
 
-            loadCards(this.sortByFavorites);
+            loadCards();
             tv1.setText("My Creations");
 
 
@@ -296,7 +300,7 @@ public class CollectionActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        this.menu = menu;
+        CollectionActivity.menu = menu;
 
         getMenuInflater().inflate(R.menu.collectionoption, menu);
         mi = menu.findItem(R.id.flip);

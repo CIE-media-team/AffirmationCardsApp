@@ -165,6 +165,7 @@ public class CollectionEnlarge extends AppCompatActivity {
                     changeCard("right");
 
                 } catch (OutOfMemoryError E) {
+                    Glide.get(getBaseContext()).clearMemory();
                     String action = "Cannot swipe, out of memory.";
                     Toast.makeText(ce, action,
                             Toast.LENGTH_SHORT).show();

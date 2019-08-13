@@ -115,7 +115,7 @@ public class InstructionActivity extends AppCompatActivity {
     }
 
     public void setText() {
-        String text = Integer.toString(counter + 1) + " / 7";
+        String text = (counter + 1) + " / 7";
         textView.setText(text);
     }
 
