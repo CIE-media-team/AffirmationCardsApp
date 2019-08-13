@@ -54,7 +54,7 @@
             android:layout_marginRight="8dp"
 
             android:scaleType="fitCenter"
-            android:src="@drawable/porcelain" />
+            android:src="@drawable/porcelainsmall" />
 
 
     </com.wajahatkarim3.easyflipview.EasyFlipView>

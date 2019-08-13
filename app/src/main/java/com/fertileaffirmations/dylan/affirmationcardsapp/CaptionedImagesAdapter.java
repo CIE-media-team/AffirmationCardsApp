@@ -44,9 +44,9 @@ class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter
     public void setPreference(String imageType) {
 
         if (imageType.equals("porcelain")) {
-            this.image = R.drawable.porcelain;
+            this.image = R.drawable.porcelainsmall;
         } else {
-            this.image = R.drawable.warmcard;
+            this.image = R.drawable.warmcardsmall;
         }
     }
 
