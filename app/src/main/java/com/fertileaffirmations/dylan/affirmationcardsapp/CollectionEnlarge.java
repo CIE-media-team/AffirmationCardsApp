@@ -232,7 +232,7 @@ public class CollectionEnlarge extends AppCompatActivity {
             if (cardList.size() > 1) {
 
 
-                if (position + 1 < cardList.size()) {
+                if (position + 1  < cardList.size()) {
                     cardId += 1;
                     change = true;
                     position += 1;
@@ -246,8 +246,10 @@ public class CollectionEnlarge extends AppCompatActivity {
         } else if (direction.equals("right")) {
             if (position > 0) {
                 cardId -= 1;
-                position -= 1;
                 change = true;
+
+                position -= 1;
+
                 if (sortByFavorites) {
                     card = cardList.get(position);
                 }
@@ -256,7 +258,7 @@ public class CollectionEnlarge extends AppCompatActivity {
         if (change) {
 
             if (!sortByFavorites) {
-                card = cardBox.get(cardId);
+                card = cardList.get(position);
             }
 
             menuItem.setVisible(card.isCreated());
@@ -346,6 +348,7 @@ public class CollectionEnlarge extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
 
                                 cardBox.remove(card);
+
                                 Intent i = new Intent(CollectionEnlarge.this, CollectionActivity.class);
 
                                 startActivity(i);

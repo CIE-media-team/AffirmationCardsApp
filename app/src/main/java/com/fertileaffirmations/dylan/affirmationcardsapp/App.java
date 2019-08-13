@@ -46,6 +46,10 @@ public class App extends Application {
 
     }
 
+    public void createBoxStore(){
+        boxStore = MyObjectBox.builder().androidContext(App.this).build();
+
+    }
     public BoxStore getBoxStore() {
         return boxStore;
     }
