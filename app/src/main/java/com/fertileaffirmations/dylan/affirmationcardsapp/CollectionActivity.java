@@ -241,7 +241,7 @@ public class CollectionActivity extends AppCompatActivity {
         editor.apply();
         front = false;
 
-  
+
 
         loadCards();
 
