@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -113,6 +114,9 @@ public class CollectionEnlarge extends AppCompatActivity {
         cardText = findViewById(R.id.cardText);
         cardText.setTypeface(font);
 
+        Log.d("Test", Long.toString(cardBox.count()));
+
+
         if (card.isCreated()) {
 
 
@@ -151,7 +155,7 @@ public class CollectionEnlarge extends AppCompatActivity {
 
                 } catch (Exception E) {
                     Glide.get(getBaseContext()).clearMemory();
-                    
+
                 } finally {
 
                 }
