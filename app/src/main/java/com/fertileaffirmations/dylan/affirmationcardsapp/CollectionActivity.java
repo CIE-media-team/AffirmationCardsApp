@@ -163,7 +163,7 @@ public class CollectionActivity extends AppCompatActivity {
         sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
         front = getSharedPreferences("flipPref", MODE_PRIVATE).getBoolean("front", false);
 
-        if (sortByFavorites) {
+        if (this.sortByFavorites) {
             ImageButton heartView = findViewById(R.id.sortFavorite);
             heartView.setImageResource(R.drawable.ic_favorite_red_24dp);
         }
@@ -176,13 +176,13 @@ public class CollectionActivity extends AppCompatActivity {
             cardBox = App.getApp().getBoxStore().boxFor(Card.class);
             QueryBuilder<Card> cardQuery = cardBox.query()
                     .equal(Card_.created, true);
-            if (sortByFavorites) {
+            if (!this.sortByFavorites) {
                 cardQuery = cardQuery.orderDesc(Card_.favorite);
             }
             cardList = cardQuery.build().find();
 
 
-        } else if (sortByFavorites) {
+        } else  if (this.sortByFavorites) {
             //cardQuery = cardQuery.orderDesc(Card_.favorite);
             QueryBuilder<Card> cardQueryFavorites = cardBox.query()
                     .equal(Card_.favorite, true);
@@ -227,19 +227,19 @@ public class CollectionActivity extends AppCompatActivity {
 
 
         //change whether the heart is filled or not
-        if (!sortByFavorites) {
+        if (!this.sortByFavorites) {
             heartView.setImageResource(R.drawable.ic_favorite_red_24dp);
-            sortByFavorites = true;
+            this.sortByFavorites = true;
         } else {
             heartView.setImageResource(R.drawable.fave);
-            sortByFavorites = false;
+            this.sortByFavorites = false;
         }
         // Save the user's choice so it will be remembered when the Activity is recreated
         SharedPreferences.Editor editor = getSharedPreferences("sort", MODE_PRIVATE).edit();
-        editor.putBoolean(SORTED_BY_FAVORITES, sortByFavorites);
+        editor.putBoolean(SORTED_BY_FAVORITES, this.sortByFavorites);
         editor.apply();
 
-        loadCards(sortByFavorites);
+        loadCards(this.sortByFavorites);
 
     }
 
@@ -251,7 +251,8 @@ public class CollectionActivity extends AppCompatActivity {
 
 
     public void removeCard(View view) {
-        sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
+        mi.setIcon(R.drawable.flipback);
+        this.sortByFavorites = getSharedPreferences("sort", MODE_PRIVATE).getBoolean(SORTED_BY_FAVORITES, false);
         TextView tv = findViewById(R.id.error);
 
         if (counter % 2 == 0) {
@@ -263,7 +264,7 @@ public class CollectionActivity extends AppCompatActivity {
             Box<Card> cardBox = App.getApp().getBoxStore().boxFor(Card.class);
             QueryBuilder<Card> cardQuery = cardBox.query()
                     .equal(Card_.created, true);
-            if (sortByFavorites) {
+            if (this.sortByFavorites) {
                 cardQuery = cardQuery.orderDesc(Card_.favorite);
             }
             List<Card> cardList = cardQuery.build().find();
@@ -282,7 +283,7 @@ public class CollectionActivity extends AppCompatActivity {
             minusSelected = false;
             tv.setVisibility(View.INVISIBLE);
 
-            loadCards(sortByFavorites);
+            loadCards(this.sortByFavorites);
             tv1.setText("My Creations");
 
 
