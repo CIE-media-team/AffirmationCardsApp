@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Icon;
@@ -19,6 +22,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.util.Base64;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +34,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
@@ -52,6 +59,22 @@ public class Main2Activity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+//        try {
+//            PackageInfo info = getPackageManager().getPackageInfo(
+//                    getPackageName(),  //Or replace to your package name directly, instead getPackageName()  "com.your.app"
+//                    PackageManager.GET_SIGNATURES);
+//
+//            for (Signature signature : info.signatures) {
+//                MessageDigest md = MessageDigest.getInstance("SHA");
+//                md.update(signature.toByteArray());
+//
+//                Log.e("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+//            }
+//        } catch (PackageManager.NameNotFoundException | NoSuchAlgorithmException e) {
+//
+//        }
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
@@ -192,6 +215,10 @@ public class Main2Activity extends AppCompatActivity
             startActivity(i);
         } else if (id == R.id.nav_info) {
             Intent i = new Intent(this, InstructionActivity.class);
+            startActivity(i);
+        } else if (id == R.id.nav_goddess) {
+            Intent i = new Intent(this, FirstRunActivity.class);
+            prefs.edit().putBoolean("firstrun", true).apply();
             startActivity(i);
         } else if (id == R.id.nav_remind) {
 

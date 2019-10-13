@@ -40,29 +40,16 @@
         android:scaleType="fitCenter"
         app:layout_constraintWidth_percent=".4"
         app:layout_constraintHeight_percent=".4"
+        app:layout_constraintBottom_toBottomOf="parent"
 
         android:onClick="porcelainClicked"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/porcelainfirst" />
 
-    <TextView
-        android:id="@+id/preferenceView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Select your preference."
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/warm"
-        app:layout_constraintVertical_bias="0.25" />
+
 
     <ImageView
         android:id="@+id/imageView5"
@@ -72,9 +59,62 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/warm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/porcelain"
         app:srcCompat="@drawable/fertilelogo" />
+
+    <ImageView
+        android:id="@+id/warrior"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/warm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/selectimage"
+        />
+
+    <!--<FrameLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/warm"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--&gt;-->
+        <!--<TextView-->
+            <!--android:id="@+id/preferenceView"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="#4E331B"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--android:text="Select your Warrior Goddess."-->
+            <!--android:textSize="26sp"-->
+            <!--android:textStyle="bold"-->
+            <!--android:layout_gravity="center"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/warm"-->
+            <!--app:layout_constraintVertical_bias="0.25" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/leavesline"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/preferenceView"-->
+            <!--app:srcCompat="@drawable/leavesup"-->
+            <!--/>-->
+
+    <!--</FrameLayout>-->
+
+
+
+
 </android.support.constraint.ConstraintLayout>

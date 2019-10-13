@@ -22,32 +22,33 @@ public class FirstRunActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_run);
         Typeface font2 = Typeface.createFromAsset(getAssets(), "italic.otf");
-        TextView tv = findViewById(R.id.preferenceView);
-        tv.setTypeface(font2);
+//        TextView tv = findViewById(R.id.preferenceView);
+//        tv.setTypeface(font2);
 
         // Perhaps set content view here
 
 
         prefs = getSharedPreferences("CardType", Context.MODE_PRIVATE);
     }
+// THIS IS WHAT YOU CHANGE FOR FIRST RUN PREFERENCE!!!
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//
-//        if (prefs.getBoolean("firstrun", true)) {
-//            // Do first run stuff here then set 'firstrun' as false
-//            // using the following line to edit/commit prefs
-//
-//
-//        } else {
-//
-//            Intent i = new Intent(this, Main2Activity.class);
-//            i.putExtra("style", prefs.getString("style", "porcelain"));
-//
-//            startActivity(i);
-//        }
-//    }
+        if (prefs.getBoolean("firstrun", true)) {
+            // Do first run stuff here then set 'firstrun' as false
+            // using the following line to edit/commit prefs
+
+
+
+        } else {
+
+            Intent i = new Intent(this, Main2Activity.class);
+            i.putExtra("style", prefs.getString("style", "porcelain"));
+
+            startActivity(i);
+        }
+    }
 
     public void warmClicked(View view) {
         Intent i = new Intent(this, Main2Activity.class);

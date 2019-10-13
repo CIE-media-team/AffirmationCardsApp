@@ -21,6 +21,11 @@
             android:icon="@drawable/ic_collection_1"
             android:title="Collection" />
 
+        <item
+            android:id="@+id/nav_goddess"
+            android:icon="@drawable/ic_preferenceicon"
+            android:title="Select Your Goddess" />
+
 
 
         <item
