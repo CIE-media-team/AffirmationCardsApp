@@ -7,8 +7,8 @@
     <application
         android:name="com.fertileaffirmations.dylan.affirmationcardsapp.App"
         android:allowBackup="true"
-        android:icon="@mipmap/falauncher"
-        android:roundIcon="@mipmap/falauncher_round"
+        android:icon="@mipmap/warmlauncher"
+        android:roundIcon="@mipmap/warmlauncher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
