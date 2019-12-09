@@ -15,6 +15,14 @@
     <string name="info_card">"To use your Fertile Affirmations®, find a comfortable space to be with your intentions and thoughts. While breathing deeply and slowly, allow yourself to be drawn into the delicate Fertile Affirmations® painting. Gently observe the colors, the breath of life, and the many other symbols of fertility. Become enveloped into its womb like peace. When you are ready, choose your card from the deck or allow your card to choose you. It will be the perfect affirmation to focus on in this moment.  Fertile Affirmations are the wisdom and support needed wherever you are on your journey.\n
 Fertile Affirmations were developed by Windy Ezzell, a Licensed Professional Counselor in Wilmington, North Carolina with an extensive background in reproductive health and family building. \n~\n  fertileaffirmations.com\ninnersolutionscounseling.com
 "</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
 
 
 </resources>

@@ -3,53 +3,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.fertileaffirmations.dylan.affirmationcardsapp">
 
-
     <application
-        android:name="com.fertileaffirmations.dylan.affirmationcardsapp.App"
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/warmlauncher"
         android:roundIcon="@mipmap/warmlauncher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.fertileaffirmations.dylan.affirmationcardsapp.FirstRunActivity">
+
+        <activity android:name=".FirstRunActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.fertileaffirmations.dylan.affirmationcardsapp.Repeating_activity" />
+        <activity android:name=".Repeating_activity" />
         <activity
-            android:name="com.fertileaffirmations.dylan.affirmationcardsapp.InstructionActivity"
-            android:parentActivityName="com.fertileaffirmations.dylan.affirmationcardsapp.Main2Activity"
+            android:name=".InstructionActivity"
+            android:parentActivityName=".Main2Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.fertileaffirmations.dylan.affirmationcardsapp.Main2Activity"
+            android:name=".Main2Activity"
+            android:parentActivityName=".FirstRunActivity"
             android:screenOrientation="portrait"
-            android:parentActivityName="com.fertileaffirmations.dylan.affirmationcardsapp.FirstRunActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
             </intent-filter>
         </activity>
         <activity
-            android:name="com.fertileaffirmations.dylan.affirmationcardsapp.CardActivity"
-            android:parentActivityName="com.fertileaffirmations.dylan.affirmationcardsapp.Main2Activity"
+            android:name=".CardActivity"
+            android:parentActivityName=".Main2Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.fertileaffirmations.dylan.affirmationcardsapp.CollectionActivity"
-            android:parentActivityName="com.fertileaffirmations.dylan.affirmationcardsapp.Main2Activity"
+            android:name=".CollectionActivity"
+            android:parentActivityName=".Main2Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.fertileaffirmations.dylan.affirmationcardsapp.CollectionEnlarge"
-            android:parentActivityName="com.fertileaffirmations.dylan.affirmationcardsapp.CollectionActivity"
+            android:name=".CollectionEnlarge"
+            android:parentActivityName=".CollectionActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.fertileaffirmations.dylan.affirmationcardsapp.AddCard"
+            android:name=".AddCard"
             android:label="@string/title_activity_add_card"
-            android:parentActivityName="com.fertileaffirmations.dylan.affirmationcardsapp.Main2Activity"
+            android:parentActivityName=".Main2Activity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
